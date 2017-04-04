@@ -1,0 +1,42 @@
+
+<h1>Workout Home</h1>
+<h2>Previous Workouts</h2>
+{% if latest_workout_list %}
+    <ul>
+    {% for workout in latest_workout_list %}
+        <li><a href="{% url 'tracker:detail' workout.id %}">{{ workout.pub_date }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No workouts are available.</p>
+{% endif %}
+
+<form action="{% url 'tracker:new' %}" method="post">
+{% csrf_token %}
+
+<input type="hidden" name="upper_body" id="upper_body" value="False" />
+<input type="checkbox" name="upper_body" id="upper_body" value="True" /> <label for="upper_body">Upper Body</label>
+OR
+<input type="hidden" name="lower_body" id="lower_body" value="False" />
+<input type="checkbox" name="lower_body" id="lower_body" value="True" /> <label for="lower_body">Lower Body</label><br />
+
+<input type="hidden" name="max_effort" id="max_effort" value="False" />
+<input type="checkbox" name="max_effort" id="max_effort" value="True" /> <label for="max_effort">Max Effort</label>
+OR
+<input type="hidden" name="dynamic_effort" id="dynamic_effort" value="False" />
+<input type="checkbox" name="dynamic_effort" id="dynamic_effort" value="True" /> <label for="dynamic_effort">Dynamic Effort</label><br />
+
+<input type="hidden" name="barbell_workout" id="barbell_workout" value="False" />
+<input type="checkbox" name="barbell_workout" id="barbell_workout" value="True" /> <label for="barbell_workout">Barbells</label>
+OR
+<input type="hidden" name="dumbbell_workout" id="dumbbell_workout" value="False" />
+<input type="checkbox" name="dumbbell_workout" id="dumbbell_workout" value="True" /> <label for="dumbbell_workout">Dumbbells</label><br />
+
+Bar Type: <input type="text" name="bar_type" id="bar_type"><br />
+
+Accessory Resistance: <input type="text" name="acc_resistance" id="acc_resistance"><br />
+
+Box or Free: <input type="text" name="box_free" id="box_free"> <br />
+
+<input type="submit" value="Add New Workout" />
+</form>

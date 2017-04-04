@@ -1,0 +1,12 @@
+<h1>Workout on {{ workout.pub_date }}</h1>
+<p>Upper Body:{{ workout.upper_body }}</p>
+<p>Lower Body:{{ workout.lower_body }}</p>
+<p>Dynamic Effort:{{ workout.dynamic_effort }}</p>
+<p>Max Effort:{{ workout.max_effort }}</p>
+<p>Barbell Workout:{{ workout.barbell_workout }}</p>
+<p>Dumbbell Workout:{{ workout.dumbbell_workout }}</p>
+<p>Bar Type:{{ workout.bar_type }}</p>
+<p>Acc Resistance:{{ workout.acc_resistance }}</p>
+<p>Box Free:{{ workout.box_free }}</p>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
