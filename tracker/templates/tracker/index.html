@@ -1,23 +1,10 @@
 {% extends 'tracker/base.html' %}
 {% block content %}
 
-<div class="container">
 
       <!-- The justified navigation menu is meant for single line per list item.
       Multiple lines will require custom code not provided by Bootstrap. -->
-      <div class="masthead">
-        <h3 class="text-muted">Conjugate Tracker</h3>
-        <!--<nav>
-          <ul class="nav nav-justified">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">Projects</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Downloads</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-      </nav>-->
-  </div>
+
 
   <!-- Jumbotron -->
   <div class="jumbotron">
@@ -112,7 +99,7 @@
 <p><a class="btn btn-primary" href="{% url 'tracker:upper_new' %}" role="button">Add new Upper Accessory Movement</a></p>
 
   </div>
-</div>
+
 
 
 {% endblock %}

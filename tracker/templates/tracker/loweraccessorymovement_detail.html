@@ -1,3 +1,6 @@
+{% extends 'tracker/base.html' %}
+{% block content %}
+
 <h1>{{ object.user.username }}</h1>
 <p>Created At: {{ object.created_at }}</p>
 <p>Top Set: {{ object.top_set }} </p>
@@ -17,3 +20,5 @@
 <p>Inverse Curl: {{ object.inverse_curl }} </p>
 <p>Front Squat: {{ object.front_squat }} </p>
 <p>Back Extension: {{ object.back_extension }} </p>
+
+{% endblock %}

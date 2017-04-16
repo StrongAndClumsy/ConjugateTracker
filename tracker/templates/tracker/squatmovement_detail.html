@@ -1,3 +1,6 @@
+{% extends 'tracker/base.html' %}
+{% block content %}
+
 <h1>{{ object.user.username }}</h1>
 <p>Created At: {{ object.created_at }}</p>
 <p>Effort Type: {{ object.effort_type }}</p>
@@ -7,3 +10,5 @@
 <p>Chain Weight: {{ object.chain_weight}}</p>
 <p>Movement Weight: {{ object.movement_weight}}</p>
 <p>Movement Reps: {{ object.movement_reps}}</p>
+
+{% endblock %}

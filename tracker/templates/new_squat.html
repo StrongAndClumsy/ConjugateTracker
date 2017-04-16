@@ -1,5 +1,12 @@
+{% extends 'tracker/base.html' %}
+{% block content %}
+
+
+<h1>Add a New Squat</h1>
 <form action="{% url 'tracker:squat_new' %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Submit" />
 </form>
+
+{% endblock %}

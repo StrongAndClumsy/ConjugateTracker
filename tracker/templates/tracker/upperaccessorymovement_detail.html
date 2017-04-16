@@ -1,3 +1,6 @@
+{% extends 'tracker/base.html' %}
+{% block content %}
+
 <h1>{{ object.user.username }}</h1>
 <p>Created At: {{ object.created_at }}</p>
 <p> Top Set: {{object.top_set}}</p>
@@ -26,3 +29,5 @@
 <p> OLT Press: {{object.olt_press}}</p>
 <p> Dumbbell Roll: {{object.db_rollbacks}}</p>
 <p> Dead Press: {{object.dead_press}}</p>
+
+{% endblock %}
