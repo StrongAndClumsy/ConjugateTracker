@@ -1,61 +1,62 @@
 
-<h1>Workout Home</h1>
+<h1>Workout Home for {{user_name}}</h1>
+
 <h2>Previous Squat Movements</h2>
 {% if latest_squat_list %}
     <ul>
     {% for squat in latest_squat_list %}
-        <li><a href="{% url 'tracker:detail' squat.id %}">{{ squat.created_at }}</a></li>
+        <li><a href="{% url 'tracker:squat_detail' squat.id %}">Squat on {{ squat.created_at }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
     <p>No squats recorded. Shame.</p>
 {% endif %}
-<a href="">Add new Squat Movement</a>
+<a href="{% url 'tracker:squat_new' %}">Add new Squat Movement</a>
 
 <h2>Previous Deadlift Movements</h2>
 {% if latest_deadlift_list %}
     <ul>
     {% for deadlift in latest_deadlift_list %}
-        <li><a href="{% url 'tracker:detail' deadlift.id %}">{{ deadlift.created_at }}</a></li>
+        <li><a href="{% url 'tracker:deadlift_detail' deadlift.id %}">Deadlift on {{ deadlift.created_at }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
     <p>No deadlifts recorded. Really?</p>
 {% endif %}
-<a href="">Add new Deadlift Movement</a>
+<a href="{% url 'tracker:deadlift_new' %}">Add new Deadlift Movement</a>
 
 <h2>Previous Bench Movements</h2>
 {% if latest_bench_list %}
     <ul>
     {% for bench in latest_bench_list %}
-        <li><a href="{% url 'tracker:detail' bench.id %}">{{ bench.created_at }}</a></li>
+        <li><a href="{% url 'tracker:bench_detail' bench.id %}">Bench on {{ bench.created_at }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
     <p>No benchs recorded. Shame.</p>
 {% endif %}
-<a href="">Add new Bench Movement</a>
+<a href="{% url 'tracker:bench_new' %}">Add new Bench Movement</a>
 
 <h2>Previous Lower Accessory Movements</h2>
 {% if latest_loweraccessory_list %}
     <ul>
     {% for loweraccessory in latest_loweraccessory_list %}
-        <li><a href="{% url 'tracker:detail' loweraccessory.id %}">{{ loweraccessory.created_at }}</a></li>
+        <li><a href="{% url 'tracker:lower_detail' loweraccessory.id %}">Lower Accessory Movement on {{ loweraccessory.created_at }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
     <p>No loweraccessorys recorded. Shame.</p>
 {% endif %}
-<a href="">Add new Lower Accessory Movement</a>
+<a href="{% url 'tracker:lower_new' %}">Add new Lower Accessory Movement</a>
 
 <h2>Previous Upper Accessory Movements</h2>
 {% if latest_upperaccessory_list %}
     <ul>
     {% for upperaccessory in latest_upperaccessory_list %}
-        <li><a href="{% url 'tracker:detail' upperaccessory.id %}">{{ upperaccessory.created_at }}</a></li>
+        <li><a href="{% url 'tracker:upper_detail' upperaccessory.id %}">Upper Accessory Movement on {{ upperaccessory.created_at }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
     <p>No upperaccessorys recorded. Shame.</p>
 {% endif %}
-<a href="">Add new Upper Accessory Movement</a>
+<a href="{% url 'tracker:upper_new' %}">Add new Upper Accessory Movement</a>

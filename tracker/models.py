@@ -25,7 +25,7 @@ class DeadliftMovement(models.Model):
 	reverse = models.BooleanField()
 	movement_weight = models.IntegerField(default=0)
 	movement_reps = models.IntegerField(default=0)
-	deadlift_notes = models.CharField(max_length=60)
+	deadlift_notes = models.CharField(max_length=60, blank=True)
 
 class BenchMovement(models.Model):
 	user = models.ForeignKey('auth.User')
