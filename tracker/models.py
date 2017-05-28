@@ -38,7 +38,7 @@ class BenchMovement(models.Model):
 	board = models.BooleanField()
 	manpon = models.BooleanField()
 	pin = models.BooleanField()
-	notes = models.CharField(max_length=60, blank=True)
+	bench_notes = models.CharField(max_length=60, blank=True)
 	bands = models.CharField(max_length=60, blank=True)
 	chains = models.CharField(max_length=60, blank=True)
 
