@@ -1,6 +1,9 @@
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.utils import timezone
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.views.generic.detail import DetailView
 from .models import SquatMovement, DeadliftMovement, BenchMovement, LowerAccessoryMovement, UpperAccessoryMovement
@@ -41,13 +44,28 @@ class LowerDetailView(DetailView):
         context['now'] = timezone.now()
         return context
 
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('/')
+    else:
+        form = UserCreationForm()
+    return render(request, 'signup.html', {'form': form})
 
 def index(request):
-    latest_squat_list = SquatMovement.objects.order_by('-created_at')[:5]
-    latest_deadlift_list = DeadliftMovement.objects.order_by('-created_at')[:5]
-    latest_bench_list = BenchMovement.objects.order_by('-created_at')[:5]
-    latest_loweraccessory_list = LowerAccessoryMovement.objects.order_by('-created_at')[:5]
-    latest_upperaccessory_list = UpperAccessoryMovement.objects.order_by('-created_at')[:5]
+    if not request.user.is_authenticated:
+        return redirect('%s?next=%s' % ('/login/', request.path))
+    latest_squat_list = SquatMovement.objects.filter(user_id=request.user.id).order_by('-created_at')[:5]
+    latest_deadlift_list = DeadliftMovement.objects.filter(user_id=request.user.id).order_by('-created_at')[:5]
+    latest_bench_list = BenchMovement.objects.filter(user_id=request.user.id).order_by('-created_at')[:5]
+    latest_loweraccessory_list = LowerAccessoryMovement.objects.filter(user_id=request.user.id).order_by('-created_at')[:5]
+    latest_upperaccessory_list = UpperAccessoryMovement.objects.filter(user_id=request.user.id).order_by('-created_at')[:5]
     context = {
         'user_name': request.user.username,
         'latest_squat_list': latest_squat_list,
