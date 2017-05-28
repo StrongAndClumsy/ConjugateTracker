@@ -12,6 +12,7 @@ class SquatMovement(models.Model):
 	chain_weight = models.IntegerField(default=0, blank=True)
 	movement_weight = models.IntegerField(default=0)
 	movement_reps = models.IntegerField(default=0)
+	squat_notes = models.CharField(max_length=60,blank=True)
 
 
 class DeadliftMovement(models.Model):
@@ -40,6 +41,7 @@ class BenchMovement(models.Model):
 	notes = models.CharField(max_length=60, blank=True)
 	bands = models.CharField(max_length=60, blank=True)
 	chains = models.CharField(max_length=60, blank=True)
+
 
 class UpperAccessoryMovement(models.Model):
 	user = models.ForeignKey('auth.User')
@@ -70,6 +72,8 @@ class UpperAccessoryMovement(models.Model):
 	olt_press = models.CharField(max_length=60,blank=True)
 	db_rollbacks = models.CharField(max_length=60,blank=True)
 	dead_press = models.CharField(max_length=60,blank=True)
+	notes = models.CharField(max_length=300, blank=True)
+
 
 
 
@@ -94,3 +98,4 @@ class LowerAccessoryMovement(models.Model):
 	front_squat = models.CharField(max_length=60,blank=True)
 	back_extension = models.CharField(max_length=60,blank=True)
 	top_set = models.CharField(max_length=60,blank=True)
+	notes = models.CharField(max_length=300, blank=True)
