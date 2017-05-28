@@ -59,6 +59,8 @@ def signup(request):
     return render(request, 'signup.html', {'form': form})
 
 def index(request):
+    if not request.user.is_authenticated:
+        return redirect('%s?next=%s' % ('/login/', request.path))
     latest_squat_list = SquatMovement.objects.order_by('-created_at')[:5]
     latest_deadlift_list = DeadliftMovement.objects.order_by('-created_at')[:5]
     latest_bench_list = BenchMovement.objects.order_by('-created_at')[:5]
