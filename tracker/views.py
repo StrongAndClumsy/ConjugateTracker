@@ -61,11 +61,11 @@ def signup(request):
 def index(request):
     if not request.user.is_authenticated:
         return redirect('%s?next=%s' % ('/login/', request.path))
-    latest_squat_list = SquatMovement.objects.order_by('-created_at')[:5]
-    latest_deadlift_list = DeadliftMovement.objects.order_by('-created_at')[:5]
-    latest_bench_list = BenchMovement.objects.order_by('-created_at')[:5]
-    latest_loweraccessory_list = LowerAccessoryMovement.objects.order_by('-created_at')[:5]
-    latest_upperaccessory_list = UpperAccessoryMovement.objects.order_by('-created_at')[:5]
+    latest_squat_list = SquatMovement.objects.filter(user_id=request.user.id).order_by('-created_at')[:5]
+    latest_deadlift_list = DeadliftMovement.objects.filter(user_id=request.user.id).order_by('-created_at')[:5]
+    latest_bench_list = BenchMovement.objects.filter(user_id=request.user.id).order_by('-created_at')[:5]
+    latest_loweraccessory_list = LowerAccessoryMovement.objects.filter(user_id=request.user.id).order_by('-created_at')[:5]
+    latest_upperaccessory_list = UpperAccessoryMovement.objects.filter(user_id=request.user.id).order_by('-created_at')[:5]
     context = {
         'user_name': request.user.username,
         'latest_squat_list': latest_squat_list,
