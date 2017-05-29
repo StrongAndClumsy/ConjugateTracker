@@ -90,7 +90,7 @@ def new_squat(request):
             new_squat_data = SquatMovement( user = request.user, effort_type = effort, box_free = box_free, bar_type = bar_type, bands_type = bands_type,
                 chain_weight = chain_weight, movement_weight = movement_weight,movement_reps = movement_reps)
             new_squat_data.save()
-            return HttpResponseRedirect('/tracker/')
+            return HttpResponseRedirect('/')
     else:
         form = SquatForm()
     return render(request, 'new_squat.html', {'form': form})
@@ -112,7 +112,7 @@ def new_deadlift(request):
                 deadlift_notes=form.cleaned_data['deadlift_notes']
             )
             new_deadlift_data.save()
-            return HttpResponseRedirect('/tracker/')
+            return HttpResponseRedirect('/')
     else:
         form = DeadliftForm()
     return render(request, 'new_deadlift.html', {'form': form})
@@ -135,7 +135,7 @@ def new_bench(request):
                 chains=form.cleaned_data['chains']
         )
             new_bench_data.save()
-            return HttpResponseRedirect('/tracker/')
+            return HttpResponseRedirect('/')
     else:
         form = BenchForm()
     return render(request, 'new_bench.html', {'form': form})
@@ -165,7 +165,7 @@ def new_lower(request):
                 top_set=form.cleaned_data['top_set']
             )
             new_lower_data.save()
-            return HttpResponseRedirect('/tracker/')
+            return HttpResponseRedirect('/')
     else:
         form = LowerForm()
     return render(request, 'new_lower.html', {'form': form})
@@ -204,7 +204,7 @@ def new_upper(request):
                 dead_press=form.cleaned_data['dead_press'],
                 )
             new_upper_data.save()
-            return HttpResponseRedirect('/tracker/')
+            return HttpResponseRedirect('/')
     else:
         form = UpperForm()
     return render(request, 'new_upper.html', {'form': form})
