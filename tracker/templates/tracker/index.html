@@ -4,101 +4,79 @@
 
       <!-- The justified navigation menu is meant for single line per list item.
       Multiple lines will require custom code not provided by Bootstrap. -->
+      <div class="row marketing">
+        <div class="col-lg-6">
+          <h4>Squat Movements</h4>
+          {% if latest_squat_list %}
+          <ul>
+              {% for squat in latest_squat_list %}
+              <li><a href="{% url 'tracker:squat_detail' squat.id %}">Squat on {{ squat.created_at }}</a></li>
+              {% endfor %}
+          </ul>
+          {% else %}
+          <p>No squats recorded. Shame.</p>
+          {% endif %}
+
+          <p><a class="btn btn-primary" href="{% url 'tracker:squat_new' %}" role="button">Add New &raquo;</a></p>
+
+          <h4>Bench Movements</h4>
+          {% if latest_bench_list %}
+          <ul>
+              {% for bench in latest_bench_list %}
+              <li><a href="{% url 'tracker:bench_detail' bench.id %}">Bench on {{ bench.created_at }}</a></li>
+              {% endfor %}
+          </ul>
+          {% else %}
+          <p>No benchs recorded. Shame.</p>
+          {% endif %}
+          <p><a class="btn btn-primary" href="{% url 'tracker:bench_new' %}" role="button">Add New &raquo;</a></p>
+
+          <h4>Lower Accessory Movements</h4>
+          {% if latest_loweraccessory_list %}
+          <ul>
+              {% for loweraccessory in latest_loweraccessory_list %}
+              <li><a href="{% url 'tracker:lower_detail' loweraccessory.id %}">Lower Accessory Movement on {{ loweraccessory.created_at }}</a></li>
+              {% endfor %}
+          </ul>
+          {% else %}
+          <p>No lower accessories recorded. Shame.</p>
+          {% endif %}
+
+          <p><a class="btn btn-primary" href="{% url 'tracker:lower_new' %}" role="button">Add New  &raquo;</a></p>
+        </div>
+
+        <div class="col-lg-6">
+          <h4>Deadlift Movements</h4>
+          {% if latest_deadlift_list %}
+          <ul>
+              {% for deadlift in latest_deadlift_list %}
+              <li><a href="{% url 'tracker:deadlift_detail' deadlift.id %}">Deadlift on {{ deadlift.created_at }}</a></li>
+              {% endfor %}
+          </ul>
+          {% else %}
+          <p>No deadlifts recorded. Really?</p>
+          {% endif %}
 
 
-  <!-- Jumbotron -->
-  <div class="jumbotron">
-    <h1>Workout Home for {{user_name}}</h1>
-    <p class="lead">Track your conjugate training here!</p>
+          <p><a class="btn btn-primary" href="{% url 'tracker:deadlift_new' %}" role="button">Add New &raquo;</a></p>
 
-</div>
+          <h4>Upper Accessory Movements</h4>
+          {% if latest_upperaccessory_list %}
+          <ul>
+              {% for upperaccessory in latest_upperaccessory_list %}
+              <li><a href="{% url 'tracker:upper_detail' upperaccessory.id %}">Upper Accessory Movement on {{ upperaccessory.created_at }}</a></li>
+              {% endfor %}
+          </ul>
+          {% else %}
+          <p>No upper accessories recorded. Shame.</p>
+          {% endif %}
 
-<!-- Example row of columns -->
-<div class="row">
-    <div class="col-lg-4">
-        <h2>Squat Movements</h2>
-        {% if latest_squat_list %}
-        <ul>
-            {% for squat in latest_squat_list %}
-            <li><a href="{% url 'tracker:squat_detail' squat.id %}">Squat on {{ squat.created_at }}</a></li>
-            {% endfor %}
-        </ul>
-        {% else %}
-        <p>No squats recorded. Shame.</p>
-        {% endif %}
+          <p><a class="btn btn-primary" href="{% url 'tracker:upper_new' %}" role="button">Add New</a></p>
+        </div>
+      </div>
 
-        <p><a class="btn btn-primary" href="{% url 'tracker:squat_new' %}" role="button">Add New &raquo;</a></p>
-    </div>
+ <!-- /container -->
 
-
-
-    <div class="col-lg-4">
-        <h2>Deadlift Movements</h2>
-        {% if latest_deadlift_list %}
-        <ul>
-            {% for deadlift in latest_deadlift_list %}
-            <li><a href="{% url 'tracker:deadlift_detail' deadlift.id %}">Deadlift on {{ deadlift.created_at }}</a></li>
-            {% endfor %}
-        </ul>
-        {% else %}
-        <p>No deadlifts recorded. Really?</p>
-        {% endif %}
-
-
-        <p><a class="btn btn-primary" href="{% url 'tracker:deadlift_new' %}" role="button">Add New &raquo;</a></p>
-    </div>
-
-    <h2>Bench Movements</h2>
-{% if latest_bench_list %}
-<ul>
-    {% for bench in latest_bench_list %}
-    <li><a href="{% url 'tracker:bench_detail' bench.id %}">Bench on {{ bench.created_at }}</a></li>
-    {% endfor %}
-</ul>
-{% else %}
-<p>No benchs recorded. Shame.</p>
-{% endif %}
-
-    <div class="col-lg-4">
-
-      <p><a class="btn btn-primary" href="{% url 'tracker:bench_new' %}" role="button">Add New &raquo;</a></p>
-  </div>
-</div>
-
-<div class="row">
-    <div class="col-lg-6">
-      <h2>Lower Accessory Movements</h2>
-{% if latest_loweraccessory_list %}
-<ul>
-    {% for loweraccessory in latest_loweraccessory_list %}
-    <li><a href="{% url 'tracker:lower_detail' loweraccessory.id %}">Lower Accessory Movement on {{ loweraccessory.created_at }}</a></li>
-    {% endfor %}
-</ul>
-{% else %}
-<p>No lower accessories recorded. Shame.</p>
-{% endif %}
-
-<p><a class="btn btn-primary" href="{% url 'tracker:lower_new' %}" role="button">Add New</a></p>
-
-  </div>
-
-
-
-  <div class="col-lg-6">
-      <h2>Upper Accessory Movements</h2>
-{% if latest_upperaccessory_list %}
-<ul>
-    {% for upperaccessory in latest_upperaccessory_list %}
-    <li><a href="{% url 'tracker:upper_detail' upperaccessory.id %}">Upper Accessory Movement on {{ upperaccessory.created_at }}</a></li>
-    {% endfor %}
-</ul>
-{% else %}
-<p>No upper accessories recorded. Shame.</p>
-{% endif %}
-
-<p><a class="btn btn-primary" href="{% url 'tracker:upper_new' %}" role="button">Add New</a></p>
-
-  </div>
 
 
 

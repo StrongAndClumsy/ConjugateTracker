@@ -1,5 +1,6 @@
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404, render
+from django.http import Http404
 from django.utils import timezone
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
@@ -14,6 +15,8 @@ class SquatDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(SquatDetailView, self).get_context_data(**kwargs)
         context['now'] = timezone.now()
+        if context['object'].user != self.request.user:
+            raise Http404
         return context
 
 class BenchDetailView(DetailView):
@@ -21,6 +24,8 @@ class BenchDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(BenchDetailView, self).get_context_data(**kwargs)
         context['now'] = timezone.now()
+        if context['object'].user != self.request.user:
+            raise Http404
         return context
 
 class DeadliftDetailView(DetailView):
@@ -28,6 +33,8 @@ class DeadliftDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(DeadliftDetailView, self).get_context_data(**kwargs)
         context['now'] = timezone.now()
+        if context['object'].user != self.request.user:
+            raise Http404
         return context
 
 class UpperDetailView(DetailView):
@@ -35,6 +42,8 @@ class UpperDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(UpperDetailView, self).get_context_data(**kwargs)
         context['now'] = timezone.now()
+        if context['object'].user != self.request.user:
+            raise Http404
         return context
 
 class LowerDetailView(DetailView):
@@ -42,6 +51,8 @@ class LowerDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(LowerDetailView, self).get_context_data(**kwargs)
         context['now'] = timezone.now()
+        if context['object'].user != self.request.user:
+            raise Http404
         return context
 
 def signup(request):
