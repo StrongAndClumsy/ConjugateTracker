@@ -130,7 +130,7 @@ def new_bench(request):
                 board=form.cleaned_data['board'],
                 manpon=form.cleaned_data['manpon'],
                 pin=form.cleaned_data['pin'],
-                notes=form.cleaned_data['notes'],
+                bench_notes=form.cleaned_data['bench_notes'],
                 bands=form.cleaned_data['bands'],
                 chains=form.cleaned_data['chains']
         )
