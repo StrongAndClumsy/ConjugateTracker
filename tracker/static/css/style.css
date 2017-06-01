@@ -1,8 +1,41 @@
 
+body {
+	background:white;
+	opacity:0.8;
+}
+
+.bodyimage {
+	background-image: url("/static/images/diamondplate.jpg");
+	height:100vh;
+}
+
 .jumbotron h1 {
 	font-family: 'Passion One', cursive;
 }
 
 div {
 	font-family: 'Catamaran', sans-serif;
+	background:white;
+	opacity:0.97;
+}
+
+.header {
+	height: 60px;
+	width: 50%;
+	top: 0;
+	float: right;
+
+}
+
+.header_inner {
+	width: 50%;
+	height: 100%;
+	float: left;
+
+}
+
+.header_text {
+	text-align: center;
+	font-size: 20px;
+	padding-top: 20px;
 }

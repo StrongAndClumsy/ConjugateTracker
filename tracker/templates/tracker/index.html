@@ -16,7 +16,7 @@
 <!-- Example row of columns -->
 <div class="row">
     <div class="col-lg-4">
-        <h2>Previous Squat Movements</h2>
+        <h2>Squat Movements</h2>
         {% if latest_squat_list %}
         <ul>
             {% for squat in latest_squat_list %}
@@ -27,13 +27,13 @@
         <p>No squats recorded. Shame.</p>
         {% endif %}
 
-        <p><a class="btn btn-primary" href="{% url 'tracker:squat_new' %}" role="button">Add new Squat Movement &raquo;</a></p>
+        <p><a class="btn btn-primary" href="{% url 'tracker:squat_new' %}" role="button">Add New &raquo;</a></p>
     </div>
 
 
 
     <div class="col-lg-4">
-        <h2>Previous Deadlift Movements</h2>
+        <h2>Deadlift Movements</h2>
         {% if latest_deadlift_list %}
         <ul>
             {% for deadlift in latest_deadlift_list %}
@@ -45,10 +45,10 @@
         {% endif %}
 
 
-        <p><a class="btn btn-primary" href="{% url 'tracker:deadlift_new' %}" role="button">Add new Deadlift Movement &raquo;</a></p>
+        <p><a class="btn btn-primary" href="{% url 'tracker:deadlift_new' %}" role="button">Add New &raquo;</a></p>
     </div>
 
-    <h2>Previous Bench Movements</h2>
+    <h2>Bench Movements</h2>
 {% if latest_bench_list %}
 <ul>
     {% for bench in latest_bench_list %}
@@ -61,13 +61,13 @@
 
     <div class="col-lg-4">
 
-      <p><a class="btn btn-primary" href="{% url 'tracker:bench_new' %}" role="button">Add new Bench Movement &raquo;</a></p>
+      <p><a class="btn btn-primary" href="{% url 'tracker:bench_new' %}" role="button">Add New &raquo;</a></p>
   </div>
 </div>
 
 <div class="row">
     <div class="col-lg-6">
-      <h2>Previous Lower Accessory Movements</h2>
+      <h2>Lower Accessory Movements</h2>
 {% if latest_loweraccessory_list %}
 <ul>
     {% for loweraccessory in latest_loweraccessory_list %}
@@ -78,14 +78,14 @@
 <p>No lower accessories recorded. Shame.</p>
 {% endif %}
 
-<p><a class="btn btn-primary" href="{% url 'tracker:lower_new' %}" role="button">Add new Lower Accessory Movement</a></p>
+<p><a class="btn btn-primary" href="{% url 'tracker:lower_new' %}" role="button">Add New</a></p>
 
   </div>
 
 
 
   <div class="col-lg-6">
-      <h2>Previous Upper Accessory Movements</h2>
+      <h2>Upper Accessory Movements</h2>
 {% if latest_upperaccessory_list %}
 <ul>
     {% for upperaccessory in latest_upperaccessory_list %}
@@ -96,7 +96,7 @@
 <p>No upper accessories recorded. Shame.</p>
 {% endif %}
 
-<p><a class="btn btn-primary" href="{% url 'tracker:upper_new' %}" role="button">Add new Upper Accessory Movement</a></p>
+<p><a class="btn btn-primary" href="{% url 'tracker:upper_new' %}" role="button">Add New</a></p>
 
   </div>
 
