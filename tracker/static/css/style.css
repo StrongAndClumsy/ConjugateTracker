@@ -13,18 +13,37 @@ body {
 	font-family: 'Passion One', cursive;
 }
 
+.jumbotron {
+	padding-top:10px !important;
+	padding-bottom:10px !important;
+}
+
 div {
 	font-family: 'Catamaran', sans-serif;
 	background:white;
 	opacity:0.97;
 }
-
+.container {
+	border-radius:5px;
+	padding: 15px 25px 25px 35px !important;
+	height:100vh;
+}
 .header {
 	height: 60px;
 	width: 50%;
 	top: 0;
 	float: right;
 
+}
+.masthead {
+	height:70px;
+	line-height:70px;
+	text-align:center;
+	width:100%;
+}
+
+.masthead a {
+	margin: 0 15px 0px 15px;
 }
 
 .header_inner {
