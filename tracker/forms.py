@@ -35,7 +35,7 @@ class BenchForm(forms.Form):
 	pin = forms.BooleanField(required=False)
 	bands = forms.CharField(required=False,max_length=60)
 	chains = forms.CharField(required=False,max_length=60)
-	notes = forms.CharField(required=False,max_length=300,widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Bench Notes Here'}))
+	bench_notes = forms.CharField(required=False,max_length=300,widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Bench Notes Here'}))
 
 
 class UpperForm(forms.Form):
