@@ -41,6 +41,8 @@ class BenchMovement(models.Model):
 	bench_notes = models.CharField(max_length=60, blank=True)
 	bands = models.CharField(max_length=60, blank=True)
 	chains = models.CharField(max_length=60, blank=True)
+	movement_weight = models.IntegerField(default=0)
+	movement_reps = models.IntegerField(default=0)
 
 
 class UpperAccessoryMovement(models.Model):
@@ -72,6 +74,7 @@ class UpperAccessoryMovement(models.Model):
 	olt_press = models.CharField(max_length=60,blank=True)
 	db_rollbacks = models.CharField(max_length=60,blank=True)
 	dead_press = models.CharField(max_length=60,blank=True)
+	ab_movement = models.CharField(max_length=60,blank=True)
 	notes = models.CharField(max_length=300, blank=True)
 
 
@@ -81,6 +84,7 @@ class UpperAccessoryMovement(models.Model):
 class LowerAccessoryMovement(models.Model):
 	user = models.ForeignKey('auth.User')
 	created_at = models.DateTimeField(default=timezone.now)
+	top_set = models.CharField(max_length=60,blank=True)
 	chair_dl = models.CharField(max_length=60,blank=True)
 	ghr = models.CharField(max_length=60,blank=True)
 	lunge = models.CharField(max_length=60,blank=True)
@@ -97,5 +101,5 @@ class LowerAccessoryMovement(models.Model):
 	inverse_curl = models.CharField(max_length=60,blank=True)
 	front_squat = models.CharField(max_length=60,blank=True)
 	back_extension = models.CharField(max_length=60,blank=True)
-	top_set = models.CharField(max_length=60,blank=True)
+	ab_movement = models.CharField(max_length=60,blank=True)
 	notes = models.CharField(max_length=300, blank=True)

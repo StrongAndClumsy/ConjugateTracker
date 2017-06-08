@@ -128,6 +128,7 @@ def new_deadlift(request):
         form = DeadliftForm()
     return render(request, 'new_deadlift.html', {'form': form})
 
+
 def new_bench(request):
     if request.method == 'POST':
         form = BenchForm(request.POST)
@@ -143,13 +144,16 @@ def new_bench(request):
                 pin=form.cleaned_data['pin'],
                 bench_notes=form.cleaned_data['bench_notes'],
                 bands=form.cleaned_data['bands'],
-                chains=form.cleaned_data['chains']
-        )
+                chains=form.cleaned_data['chains'],
+                movement_weight=form.cleaned_data['movement_weight'],
+                movement_reps=form.cleaned_data['movement_reps'],
+                )
             new_bench_data.save()
             return HttpResponseRedirect('/')
     else:
         form = BenchForm()
     return render(request, 'new_bench.html', {'form': form})
+
 
 def new_lower(request):
     if request.method == 'POST':
@@ -157,6 +161,7 @@ def new_lower(request):
         if form.is_valid():
             new_lower_data = LowerAccessoryMovement(
                 user=request.user,
+                top_set=form.cleaned_data['top_set'],
                 chair_dl=form.cleaned_data['chair_dl'],
                 ghr=form.cleaned_data['ghr'],
                 lunge=form.cleaned_data['lunge'],
@@ -173,7 +178,9 @@ def new_lower(request):
                 inverse_curl=form.cleaned_data['inverse_curl'],
                 front_squat=form.cleaned_data['front_squat'],
                 back_extension=form.cleaned_data['back_extension'],
-                top_set=form.cleaned_data['top_set']
+                ab_movement=form.cleaned_data['ab_movement']
+
+
             )
             new_lower_data.save()
             return HttpResponseRedirect('/')
@@ -213,6 +220,7 @@ def new_upper(request):
                 olt_press=form.cleaned_data['olt_press'],
                 db_rollbacks=form.cleaned_data['db_rollbacks'],
                 dead_press=form.cleaned_data['dead_press'],
+                ab_movement=form.cleaned_data['ab_movement']
                 )
             new_upper_data.save()
             return HttpResponseRedirect('/')
