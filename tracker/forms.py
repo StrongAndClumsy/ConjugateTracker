@@ -35,6 +35,8 @@ class BenchForm(forms.Form):
 	pin = forms.BooleanField(required=False)
 	bands = forms.CharField(required=False,max_length=60)
 	chains = forms.CharField(required=False,max_length=60)
+	movement_weight = forms.IntegerField(label="Bar Weight",required=False, initial=0)
+	movement_reps = forms.IntegerField(label="Reps",required=False, initial=0)
 	bench_notes = forms.CharField(required=False,max_length=300,widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Bench Notes Here'}))
 
 
@@ -65,10 +67,12 @@ class UpperForm(forms.Form):
 	olt_press = forms.CharField(label="Overhead Press",required=False,max_length=60)
 	db_rollbacks = forms.CharField(label="DB Rollbacks",required=False,max_length=60)
 	dead_press = forms.CharField(required=False,max_length=60)
+	ab_movement = forms.CharField(required=False,max_length=60)
 	notes = forms.CharField(required=False,max_length=300,widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Upper Accessory Notes Here'}))
 
 
 class LowerForm(forms.Form):
+	top_set = forms.CharField(required=False,max_length=60)
 	chair_dl = forms.CharField(label="Chair Deadlift",required=False,max_length=60)
 	ghr = forms.CharField(label="GHR",required=False,max_length=60)
 	lunge = forms.CharField(required=False,max_length=60)
@@ -85,5 +89,5 @@ class LowerForm(forms.Form):
 	inverse_curl = forms.CharField(required=False,max_length=60)
 	front_squat = forms.CharField(required=False,max_length=60)
 	back_extension = forms.CharField(required=False,max_length=60)
-	top_set = forms.CharField(required=False,max_length=60)
+	ab_movement = forms.CharField(required=False,max_length=60)
 	notes = forms.CharField(required=False,max_length=300,widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Lower Accessory Notes Here'}))
