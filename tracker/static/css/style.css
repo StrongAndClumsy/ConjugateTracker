@@ -80,9 +80,13 @@ body {
 	opacity:0.8;
 }
 
+.container {
+	border-radius:5px;
+}
 .bodyimage {
 	background-image: url("/static/images/diamondplate.jpg");
 	height:100vh;
+	padding:15px;
 }
 
 div {
