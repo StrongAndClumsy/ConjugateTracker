@@ -1,6 +1,6 @@
 {% extends 'tracker/base.html' %}
 {% block content %}
-
+<a class="btn btn-default" href="{% url 'tracker:squat_edit' pk=object.pk %}">Edit</a>
 <h1>{{ object.user.username }}</h1>
 <p>Created At: {{ object.created_at }}</p>
 <p>Effort Type: {{ object.effort_type }}</p>
@@ -10,5 +10,6 @@
 <p>Chain Weight: {{ object.chain_weight}}</p>
 <p>Movement Weight: {{ object.movement_weight}}</p>
 <p>Movement Reps: {{ object.movement_reps}}</p>
+<p>Squat Notes: {{object.squat_notes}}</p>
 
 {% endblock %}

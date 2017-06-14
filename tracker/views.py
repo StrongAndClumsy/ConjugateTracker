@@ -98,8 +98,9 @@ def new_squat(request):
             chain_weight = form.cleaned_data['chain_weight']
             movement_weight = form.cleaned_data['movement_weight']
             movement_reps = form.cleaned_data['movement_reps']
+            squat_notes = form.cleaned_data['squat_notes']
             new_squat_data = SquatMovement( user = request.user, effort_type = effort, box_free = box_free, bar_type = bar_type, bands_type = bands_type,
-                chain_weight = chain_weight, movement_weight = movement_weight,movement_reps = movement_reps)
+                chain_weight = chain_weight, movement_weight = movement_weight,movement_reps = movement_reps, squat_notes = squat_notes)
             new_squat_data.save()
             return HttpResponseRedirect('/')
     else:
@@ -178,9 +179,8 @@ def new_lower(request):
                 inverse_curl=form.cleaned_data['inverse_curl'],
                 front_squat=form.cleaned_data['front_squat'],
                 back_extension=form.cleaned_data['back_extension'],
-                ab_movement=form.cleaned_data['ab_movement']
-
-
+                ab_movement=form.cleaned_data['ab_movement'],
+                notes = form.cleaned_data['notes']
             )
             new_lower_data.save()
             return HttpResponseRedirect('/')
@@ -220,10 +220,72 @@ def new_upper(request):
                 olt_press=form.cleaned_data['olt_press'],
                 db_rollbacks=form.cleaned_data['db_rollbacks'],
                 dead_press=form.cleaned_data['dead_press'],
-                ab_movement=form.cleaned_data['ab_movement']
+                ab_movement=form.cleaned_data['ab_movement'],
+                notes = form.cleaned_data['notes']
                 )
             new_upper_data.save()
             return HttpResponseRedirect('/')
     else:
         form = UpperForm()
     return render(request, 'new_upper.html', {'form': form})
+
+
+def squat_edit(request, pk):
+    squat = get_object_or_404(SquatMovement, pk=pk)
+    if request.method == "POST":
+        form = SquatForm(request.POST, instance=post)
+        if form.is_valid():
+            squat = form.save(commit=False)
+            squat.save()
+            return redirect('squat_detail', pk=post.pk)
+    else:
+        form = SquatForm(instance=squat)
+    return render(request, 'new_squat.html', {'form': form})
+
+def bench_edit(request, pk):
+    bench = get_object_or_404(BenchMovement, pk=pk)
+    if request.method == "POST":
+        form = BenchForm(request.POST, instance=post)
+        if form.is_valid():
+            bench = form.save(commit=False)
+            bench.save()
+            return redirect('bench_detail', pk=post.pk)
+    else:
+        form = BenchForm(instance=bench)
+    return render(request, 'new_bench.html', {'form': form})
+
+def deadlift_edit(request, pk):
+    deadlift = get_object_or_404(DeadliftMovement, pk=pk)
+    if request.method == "POST":
+        form = DeadliftForm(request.POST, instance=post)
+        if form.is_valid():
+            deadlift = form.save(commit=False)
+            deadlift.save()
+            return redirect('deadlift_detail', pk=post.pk)
+    else:
+        form = DeadliftForm(instance=deadlift)
+    return render(request, 'new_deadlift.html', {'form': form})
+
+def upper_edit(request, pk):
+    upper = get_object_or_404(UpperAccessoryMovement, pk=pk)
+    if request.method == "POST":
+        form = UpperForm(request.POST, instance=post)
+        if form.is_valid():
+            upper = form.save(commit=False)
+            upper.save()
+            return redirect('upper_detail', pk=post.pk)
+    else:
+        form = UpperForm(instance=upper)
+    return render(request, 'new_upper.html', {'form': form})
+
+def lower_edit(request, pk):
+    lower = get_object_or_404(LowerAccessoryMovement, pk=pk)
+    if request.method == "POST":
+        form = LowerForm(request.POST, instance=post)
+        if form.is_valid():
+            lower = form.save(commit=False)
+            lower.save()
+            return redirect('lower_detail', pk=post.pk)
+    else:
+        form = LowerForm(instance=lower)
+    return render(request, 'new_lower.html', {'form': form})

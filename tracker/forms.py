@@ -1,10 +1,15 @@
 from django import forms
+from .models import SquatMovement, DeadliftMovement, BenchMovement, LowerAccessoryMovement, UpperAccessoryMovement
 
 EFFORT_CHOICES = (('dynamic', 'Dynamic Effort'), ('max', 'Max Effort'))
 BOXFREE_CHOICES = (('free', 'Free'), ('box', 'Box'))
 SUMO_CHOICES = (('sumo', 'Sumo'), ('conventional', 'Conventional'))
 
-class SquatForm(forms.Form):
+class SquatForm(forms.ModelForm):
+	class Meta:
+		model = SquatMovement
+		fields = ['box_free','effort_type','bar_type','bands_type','chain_weight',
+		'movement_weight','movement_reps','squat_notes']
 	effort_type = forms.ChoiceField(label="Day", widget=forms.RadioSelect, choices=EFFORT_CHOICES)
 	box_free = forms.ChoiceField(label="Squat Type", widget=forms.RadioSelect, choices=BOXFREE_CHOICES)
 	bar_type = forms.CharField(required=False, max_length=60)
@@ -14,7 +19,11 @@ class SquatForm(forms.Form):
 	movement_reps = forms.IntegerField(label="Reps",required=False, initial=0)
 	squat_notes = forms.CharField(max_length=300,widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Squat Notes Here'}),required=False)
 
-class DeadliftForm(forms.Form):
+class DeadliftForm(forms.ModelForm):
+	class Meta:
+		model = DeadliftMovement
+		fields = ['sumo_conventional','deficit','block','standard','pin',
+		'reverse','movement_weight','movement_reps','deadlift_notes']
 	sumo_conventional = forms.ChoiceField(label="Deadlift Style",widget=forms.RadioSelect, choices=SUMO_CHOICES)
 	deficit = forms.BooleanField(required=False)
 	block = forms.BooleanField(required=False)
@@ -23,9 +32,13 @@ class DeadliftForm(forms.Form):
 	reverse = forms.BooleanField(label="Reverse Band",required=False)
 	movement_weight = forms.IntegerField(label="Bar Weight",required=False, initial=0)
 	movement_reps = forms.IntegerField(label="Reps",required=False, initial=0)
-	deadlift_notes = forms.CharField(max_length=300,widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Deadlift Notes Here'}),required=False)
+	deadlift_notes = forms.CharField(required=False,max_length=300,widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Deadlift Notes Here'}))
 
-class BenchForm(forms.Form):
+class BenchForm(forms.ModelForm):
+	class Meta:
+		model = BenchMovement
+		fields = ['bar_type','floor','reverse','standard','board','manpon',
+		'pin','bands','chains','movement_weight','movement_reps','bench_notes']
 	bar_type = forms.CharField(max_length=60)
 	floor = forms.BooleanField(label="Floor Press",required=False)
 	reverse = forms.BooleanField(label="Reverse Band",required=False)
@@ -40,7 +53,15 @@ class BenchForm(forms.Form):
 	bench_notes = forms.CharField(required=False,max_length=300,widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Bench Notes Here'}))
 
 
-class UpperForm(forms.Form):
+class UpperForm(forms.ModelForm):
+	class Meta:
+		model = UpperAccessoryMovement
+		fields = ['top_set','close_grippness','tate_press','dips','rev_db_fly',
+		'windmills','bamboo_bar','lat_pulldowns','lat_pullovers','pec_dec',
+		'reverse_pec_dec','t_bar_rows','chest_supported_rows','low_rows',
+		'pullups','inverted_row','face_pulls','db_rows','db_press','pullaparts',
+		'tri_extensions','skull_crushers','jam_press','olt_press','db_rollbacks',
+		'dead_press','ab_movement','notes']
 	top_set = forms.CharField(required=False,max_length=60)
 	close_grippness = forms.CharField(label="Close Grip",required=False,max_length=60)
 	tate_press = forms.CharField(required=False,max_length=60)
@@ -71,7 +92,13 @@ class UpperForm(forms.Form):
 	notes = forms.CharField(required=False,max_length=300,widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Upper Accessory Notes Here'}))
 
 
-class LowerForm(forms.Form):
+class LowerForm(forms.ModelForm):
+	class Meta:
+		model = LowerAccessoryMovement
+		fields = ['top_set','chair_dl','ghr','lunge','dimel_dl',
+		'reverse_hyper','hip_bridge','good_morning', 'step_up',
+		'belt_squat','hack_squat','leg_press','leg_curl','stiff_leg_dl',
+		'inverse_curl','front_squat','back_extension','ab_movement','notes']
 	top_set = forms.CharField(required=False,max_length=60)
 	chair_dl = forms.CharField(label="Chair Deadlift",required=False,max_length=60)
 	ghr = forms.CharField(label="GHR",required=False,max_length=60)

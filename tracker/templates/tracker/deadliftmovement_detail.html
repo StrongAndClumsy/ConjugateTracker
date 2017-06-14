@@ -1,5 +1,6 @@
 {% extends 'tracker/base.html' %}
 {% block content %}
+<a class="btn btn-default" href="{% url 'tracker:deadlift_edit' pk=object.pk %}">Edit</a>
 
 <h1>{{ object.user.username }}</h1>
 <p>Created At: {{ object.created_at }}</p>

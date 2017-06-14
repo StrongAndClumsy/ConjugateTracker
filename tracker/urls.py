@@ -18,4 +18,9 @@ urlpatterns = [
     url(r'^bench_movement/new$', views.new_bench, name='bench_new'),
     url(r'^lower_movement/new$', views.new_lower, name='lower_new'),
     url(r'^upper_movement/new$', views.new_upper, name='upper_new'),
+    url(r'^squat_movement/(?P<pk>\d+)/edit/$', views.squat_edit, name='squat_edit'),
+    url(r'^bench_movement/(?P<pk>\d+)/edit/$', views.bench_edit, name='bench_edit'),
+    url(r'^deadlift_movement/(?P<pk>\d+)/edit/$', views.deadlift_edit, name='deadlift_edit'),
+    url(r'^upper_movement/(?P<pk>\d+)/edit/$', views.upper_edit, name='upper_edit'),
+    url(r'^lower_movement/(?P<pk>\d+)/edit/$', views.lower_edit, name='lower_edit'),
 ]

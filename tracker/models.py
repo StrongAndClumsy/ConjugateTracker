@@ -6,13 +6,15 @@ class SquatMovement(models.Model):
 	user = models.ForeignKey('auth.User')
 	created_at = models.DateTimeField(default=timezone.now)
 	effort_type = models.CharField(max_length=60)
+	squat_notes = models.CharField(max_length=300,blank=True)
 	box_free = models.CharField(max_length=60)
 	bar_type = models.CharField(max_length=60, blank=True)
 	bands_type = models.CharField(max_length=60, blank=True)
 	chain_weight = models.IntegerField(default=0, blank=True)
 	movement_weight = models.IntegerField(default=0)
 	movement_reps = models.IntegerField(default=0)
-	squat_notes = models.CharField(max_length=60,blank=True)
+
+
 
 
 class DeadliftMovement(models.Model):
