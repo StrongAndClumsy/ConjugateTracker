@@ -10,7 +10,7 @@ class SquatForm(forms.ModelForm):
 		model = SquatMovement
 		fields = ['box_free','effort_type','bar_type','bands_type','chain_weight',
 		'movement_weight','movement_reps','squat_notes']
-	effort_type = forms.ChoiceField(label="Day", widget=forms.RadioSelect, choices=EFFORT_CHOICES)
+	effort_type = forms.ChoiceField(label="Day", widget=forms.RadioSelect(), choices=EFFORT_CHOICES)
 	box_free = forms.ChoiceField(label="Squat Type", widget=forms.RadioSelect, choices=BOXFREE_CHOICES)
 	bar_type = forms.CharField(required=False, max_length=60)
 	bands_type = forms.CharField(label="Band Type", required=False, max_length=60)

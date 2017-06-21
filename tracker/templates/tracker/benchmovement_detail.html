@@ -1,18 +1,17 @@
 {% extends 'tracker/base.html' %}
 {% block content %}
-<a class="btn btn-default" href="{% url 'tracker:bench_edit' pk=object.pk %}">Edit</a>
+<a class="btn btn-primary" href="{% url 'tracker:bench_edit' pk=object.pk %}">Edit</a>
 
 <h1>{{ object.user.username }}</h1>
-<p>Created At: {{ object.created_at }}</p>
-<p>Bar Type: {{ object.bar_type }}</p>
-<p>Floor: {{ object.floor }}</p>
-<p>Reverse: {{ object.reverse}}</p>
-<p>Standard: {{ object.standard}}</p>
-<p>Board: {{ object.board}}</p>
-<p>Manpon: {{ object.manpon}}</p>
-<p>Pin: {{ object.pin}}</p>
-<p>Notes: {{ object.notes}}</p>
-<p>Movement Weight: {{ object.movement_weight}}</p>
-<p>Movement Reps: {{ object.movement_reps}}</p>
-
+<p><h4><b>Created: </b>{{ object.created_at }}</h4></p>
+<p><h4><b>Bar Type: </b> {{ object.bar_type }}</h4></p>
+<p><h4><b>Floor: </b> {{ object.floor }}</h4></p>
+<p><h4><b>Reverse: </b>{{ object.reverse}}</h4></p>
+<p><h4><b>Standard: </b>{{ object.standard}}</h4></p>
+<p><h4><b>Board: </b>{{ object.board}}</h4></p>
+<p><h4><b>Manpon: </b>{{ object.manpon}}</h4></p>
+<p><h4><b>Pin: </b>{{ object.pin}}</h4></p>
+<p><h4><b>Movement Weight: </b>{{ object.movement_weight}}</h4></p>
+<p><h4><b>Movement Reps: </b>{{ object.movement_reps}}</h4></p>
+<p><h4><b>Notes: </b>{{ object.notes}}</h4></p>
 {% endblock %}

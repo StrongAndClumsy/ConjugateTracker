@@ -1,25 +1,26 @@
 {% extends 'tracker/base.html' %}
 {% block content %}
-<a class="btn btn-default" href="{% url 'tracker:lower_edit' pk=object.pk %}">Edit</a>
+<a class="btn btn-primary" href="{% url 'tracker:lower_edit' pk=object.pk %}">Edit</a>
 
 <h1>{{ object.user.username }}</h1>
-<p>Created At: {{ object.created_at }}</p>
-<p>Top Set: {{ object.top_set }} </p>
-<p>Chair Deadlift: {{ object.chair_dl }} </p>
-<p>Glute Ham Raise: {{ object.ghr }} </p>
-<p>Lunge: {{ object.lunge }} </p>
-<p>Dimel Deadlift: {{ object.dimel_dl }} </p>
-<p>Reverse Hyper: {{ object.reverse_hyper }} </p>
-<p>Hip Bridge: {{ object.hip_bridge }} </p>
-<p>Good Morning: {{ object.good_morning }} </p>
-<p>Step Up: {{ object.step_up }} </p>
-<p>Belt Squat: {{ object.belt_squat }} </p>
-<p>Hack Squat: {{ object.hack_squat }} </p>
-<p>Leg Press: {{ object.leg_press }} </p>
-<p>Leg Curl: {{ object.leg_curl }} </p>
-<p>Stiff Leg Deadlift: {{ object.stiff_leg_dl }} </p>
-<p>Inverse Curl: {{ object.inverse_curl }} </p>
-<p>Front Squat: {{ object.front_squat }} </p>
-<p>Back Extension: {{ object.back_extension }} </p>
+<p><h4><b>Created: </b>{{ object.created_at }}</h4></p>
+<p><h4><b>Top Set: </b>{{ object.top_set }}</h4></p>
+<p><h4><b>Chair Deadlift: </b>{{ object.chair_dl }} </h4></p>
+<p><h4><b>Glute Ham Raise: </b>{{ object.ghr }} </h4></p>
+<p><h4><b>Lunge: </b>{{ object.lunge }} </h4></p>
+<p><h4><b>Dimel Deadlift: </b>{{ object.dimel_dl }} </h4></p>
+<p><h4><b>Reverse Hyper: </b>{{ object.reverse_hyper }} </h4></p>
+<p><h4><b>Hip Bridge: </b>{{ object.hip_bridge }}</h4></p>
+<p><h4><b>Good Morning: </b>{{ object.good_morning }} </h4></p>
+<p><h4><b>Step Up: </b>{{ object.step_up }} </h4></p>
+<p><h4><b>Belt Squat: </b>{{ object.belt_squat }} </h4></p>
+<p><h4><b>Hack Squat: </b>{{ object.hack_squat }} </h4></p>
+<p><h4><b>Leg Press: </b>{{ object.leg_press }} </h4></p>
+<p><h4><b>Leg Curl: </b>{{ object.leg_curl }} </h4></p>
+<p><h4><b>Stiff Leg Deadlift: </b>{{ object.stiff_leg_dl }} </h4></p>
+<p><h4><b>Inverse Curl: </b>{{ object.inverse_curl }} </h4></p>
+<p><h4><b>Front Squat: </b>{{ object.front_squat }} </h4></p>
+<p><h4><b>Back Extension: </b>{{ object.back_extension }} </h4></p>
+<p><h4><b>Notes: </b>{{ object.notes}}</h4></p>
 
 {% endblock %}

@@ -1,15 +1,15 @@
 {% extends 'tracker/base.html' %}
 {% block content %}
-<a class="btn btn-default" href="{% url 'tracker:squat_edit' pk=object.pk %}">Edit</a>
+<a class="btn btn-primary" href="{% url 'tracker:squat_edit' pk=object.pk %}">Edit</a>
 <h1>{{ object.user.username }}</h1>
-<p>Created At: {{ object.created_at }}</p>
-<p>Effort Type: {{ object.effort_type }}</p>
-<p>Box/Free: {{ object.box_free }}</p>
-<p>Bar Type: {{ object.bar_type}}</p>
-<p>Bands Type: {{ object.bands_type}}</p>
-<p>Chain Weight: {{ object.chain_weight}}</p>
-<p>Movement Weight: {{ object.movement_weight}}</p>
-<p>Movement Reps: {{ object.movement_reps}}</p>
-<p>Squat Notes: {{object.squat_notes}}</p>
+<p><h4><b>Created: </b> {{ object.created_at }}</h4></p>
+<p><h4><b>Effort Type: </b> {{ object.effort_type }}</h4></p>
+<p><h4><b>Box/Free: </b> {{ object.box_free }}</h4></p>
+<p><h4><b>Bar Type: </b>{{ object.bar_type}}</h4></p>
+<p><h4><b>Bands Type: </b>{{ object.bands_type}}</h4></p>
+<p><h4><b>Chain Weight: </b>{{ object.chain_weight}}</h4></p>
+<p><h4><b>Movement Weight: </b>{{ object.movement_weight}}</h4></p>
+<p><h4><b>Movement Reps: </b>{{ object.movement_reps}}</h4></p>
+<p><h4><b>Squat Notes: </b>{{object.squat_notes}}</h4></p>
 
 {% endblock %}

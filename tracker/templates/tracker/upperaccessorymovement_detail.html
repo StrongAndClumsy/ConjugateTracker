@@ -1,34 +1,35 @@
 {% extends 'tracker/base.html' %}
 {% block content %}
-<a class="btn btn-default" href="{% url 'tracker:upper_edit' pk=object.pk %}">Edit</a>
+<a class="btn btn-primary" href="{% url 'tracker:upper_edit' pk=object.pk %}">Edit</a>
 
 <h1>{{ object.user.username }}</h1>
-<p>Created At: {{ object.created_at }}</p>
-<p> Top Set: {{object.top_set}}</p>
-<p> Close Grippness: {{object.close_grippness}}</p>
-<p> Tate Press: {{object.tate_press}}</p>
-<p> Dips: {{object.dips}}</p>
-<p> Reverse Dumbbell Fly: {{object.rev_db_fly}}</p>
-<p> Windmills: {{object.windmills}}</p>
-<p> Bamboo Bar: {{object.bamboo_bar}}</p>
-<p> Lat Pulldowns: {{object.lat_pulldowns}}</p>
-<p> Lat Pullovers: {{object.lat_pullovers}}</p>
-<p> Pec Dec: {{object.pec_dec}}</p>
-<p> Reverse Pec Dec:  {{object.reverse_pec_dec}}</p>
-<p> T Bar Rows: {{object.t_bar_rows}}</p>
-<p> Chest Supported Rows:  {{object.chest_supported_rows}}</p>
-<p> Low Rows: {{object.low_rows}}</p>
-<p> Pullups: {{object.pullups}}</p>
-<p> Inverted Row: {{object.inverted_row}}</p>
-<p> Face Pulls: {{object.face_pulls}}</p>
-<p> Dumbbell Rows: {{object.db_rows}}</p>
-<p> Dumbbell Press: {{object.db_press}}</p>
-<p> Pullaparts: {{object.pullaparts}}</p>
-<p> Tri Extensions: {{object.tri_extensions}}</p>
-<p> Skull Crushers: {{object.skull_crushers}}</p>
-<p> Jam Press: {{object.jam_press}}</p>
-<p> OLT Press: {{object.olt_press}}</p>
-<p> Dumbbell Roll: {{object.db_rollbacks}}</p>
-<p> Dead Press: {{object.dead_press}}</p>
+<p><h4><b>Created: </b>{{ object.created_at }}</h4></p>
+<p><h4><b> Top Set: </b>{{object.top_set}}</h4></p>
+<p><h4><b> Close Grip Press: </b>{{object.close_grippness}}</h4></p>
+<p><h4><b> Tate Press: </b>{{object.tate_press}}</h4></p>
+<p><h4><b> Dips: </b>{{object.dips}}</p>
+<p><h4><b> Reverse Dumbbell Fly: </b>{{object.rev_db_fly}}</h4></p>
+<p><h4><b> Windmills: </b> {{object.windmills}}</h4></p>
+<p><h4><b> Bamboo Bar: </b>{{object.bamboo_bar}}</h4></p>
+<p><h4><b> Lat Pulldowns:</b> {{object.lat_pulldowns}}</h4></p>
+<p><h4><b> Lat Pullovers: </b>{{object.lat_pullovers}}</h4></p>
+<p><h4><b> Pec Dec: </b>{{object.pec_dec}}</h4></p>
+<p><h4><b> Reverse Pec Dec:  </b>{{object.reverse_pec_dec}}</h4></p>
+<p><h4><b> T Bar Rows: </b>{{object.t_bar_rows}}</h4></p>
+<p><h4><b> Chest Supported Rows:  </b>{{object.chest_supported_rows}}</h4></p>
+<p><h4><b> Low Rows: </b>{{object.low_rows}}</h4></p>
+<p><h4><b> Pullups: </b>{{object.pullups}}</h4></p>
+<p><h4><b> Inverted Row: </b>{{object.inverted_row}}</h4></p>
+<p><h4><b> Face Pulls: </b>{{object.face_pulls}}</h4></p>
+<p><h4><b> Dumbbell Rows: </b>{{object.db_rows}}</h4></p>
+<p><h4><b> Dumbbell Press: </b>{{object.db_press}}</h4></p>
+<p><h4><b> Pullaparts: </b>{{object.pullaparts}}</h4></p>
+<p><h4><b> Tricep Extensions: </b>{{object.tri_extensions}}</h4></p>
+<p><h4><b> Skull Crushers: </b>{{object.skull_crushers}}</h4></p>
+<p><h4><b> JM Press: </b>{{object.jam_press}}</h4></p>
+<p><h4><b> Overhead Press: </b>{{object.olt_press}}</h4></p>
+<p><h4><b> Dumbbell Rollbacks: </b>{{object.db_rollbacks}}</h4></p>
+<p><h4><b> Dead Press:</b> {{object.dead_press}}</h4></p>
+<p><h4><b>Notes: </b>{{ object.notes}}</h4></p>
 
 {% endblock %}
