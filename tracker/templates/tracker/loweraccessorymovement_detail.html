@@ -4,23 +4,75 @@
 
 <h1>{{ object.user.username }}</h1>
 <p><h4><b>Created: </b>{{ object.created_at }}</h4></p>
+
+{% if object.top_set != '' %}
 <p><h4><b>Top Set: </b>{{ object.top_set }}</h4></p>
+{% endif %}
+
+{% if object.chair_dl != '' %}
 <p><h4><b>Chair Deadlift: </b>{{ object.chair_dl }} </h4></p>
+{% endif %}
+
+{% if object.ghr != '' %}
 <p><h4><b>Glute Ham Raise: </b>{{ object.ghr }} </h4></p>
+{% endif %}
+
+{% if object.lunge != '' %}
 <p><h4><b>Lunge: </b>{{ object.lunge }} </h4></p>
+{% endif %}
+
+{% if object.dimel_dl != '' %}
 <p><h4><b>Dimel Deadlift: </b>{{ object.dimel_dl }} </h4></p>
+{% endif %}
+
+{% if object.reverse_hyper != '' %}
 <p><h4><b>Reverse Hyper: </b>{{ object.reverse_hyper }} </h4></p>
+{% endif %}
+
+{% if object.hip_bridge != '' %}
 <p><h4><b>Hip Bridge: </b>{{ object.hip_bridge }}</h4></p>
+{% endif %}
+
+{% if object.good_morning != '' %}
 <p><h4><b>Good Morning: </b>{{ object.good_morning }} </h4></p>
+{% endif %}
+
+{% if object.step_up != '' %}
 <p><h4><b>Step Up: </b>{{ object.step_up }} </h4></p>
+{% endif %}
+
+{% if object.belt_squat != '' %}
 <p><h4><b>Belt Squat: </b>{{ object.belt_squat }} </h4></p>
+{% endif %}
+
+{% if object.hack_squat != '' %}
 <p><h4><b>Hack Squat: </b>{{ object.hack_squat }} </h4></p>
+{% endif %}
+
+{% if object.leg_press != '' %}
 <p><h4><b>Leg Press: </b>{{ object.leg_press }} </h4></p>
+{% endif %}
+
+{% if object.leg_curl != '' %}
 <p><h4><b>Leg Curl: </b>{{ object.leg_curl }} </h4></p>
+{% endif %}
+
+{% if object.stiff_leg_dl != '' %}
 <p><h4><b>Stiff Leg Deadlift: </b>{{ object.stiff_leg_dl }} </h4></p>
+{% endif %}
+
+{% if object.inverse_curl != '' %}
 <p><h4><b>Inverse Curl: </b>{{ object.inverse_curl }} </h4></p>
+{% endif %}
+
+{% if object.front_squat != '' %}
 <p><h4><b>Front Squat: </b>{{ object.front_squat }} </h4></p>
+{% endif %}
+
+{% if object.back_extension != '' %}
 <p><h4><b>Back Extension: </b>{{ object.back_extension }} </h4></p>
+{% endif %}
+
 <p><h4><b>Notes: </b>{{ object.notes}}</h4></p>
 
 {% endblock %}

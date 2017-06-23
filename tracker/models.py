@@ -26,6 +26,7 @@ class DeadliftMovement(models.Model):
 	standard = models.BooleanField()
 	pin = models.BooleanField()
 	reverse = models.BooleanField()
+	chain_weight = models.IntegerField(blank=True)
 	movement_weight = models.IntegerField(default=0)
 	movement_reps = models.IntegerField(default=0)
 	deadlift_notes = models.CharField(max_length=60, blank=True)
@@ -42,7 +43,7 @@ class BenchMovement(models.Model):
 	pin = models.BooleanField()
 	bench_notes = models.CharField(max_length=60, blank=True)
 	bands = models.CharField(max_length=60, blank=True)
-	chains = models.CharField(max_length=60, blank=True)
+	chain_weight = models.IntegerField(blank=True)
 	movement_weight = models.IntegerField(default=0)
 	movement_reps = models.IntegerField(default=0)
 

@@ -1,0 +1,10 @@
+{% extends 'tracker/base.html' %}
+{% block content %}
+
+<h1>Add a New Deadlift</h1>
+<form action="{% url 'tracker:deadlift_edit' pk=pk  %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit" class="btn btn-primary"/>
+</form>
+{% endblock %}

@@ -119,6 +119,7 @@ def new_deadlift(request):
                 standard=form.cleaned_data['standard'],
                 pin=form.cleaned_data['pin'],
                 reverse=form.cleaned_data['reverse'],
+                chain_weight=form.cleaned_data['chain_weight'],
                 movement_weight=form.cleaned_data['movement_weight'],
                 movement_reps=form.cleaned_data['movement_reps'],
                 deadlift_notes=form.cleaned_data['deadlift_notes']
@@ -145,7 +146,7 @@ def new_bench(request):
                 pin=form.cleaned_data['pin'],
                 bench_notes=form.cleaned_data['bench_notes'],
                 bands=form.cleaned_data['bands'],
-                chains=form.cleaned_data['chains'],
+                chain_weight=form.cleaned_data['chain_weight'],
                 movement_weight=form.cleaned_data['movement_weight'],
                 movement_reps=form.cleaned_data['movement_reps'],
                 )
@@ -233,59 +234,59 @@ def new_upper(request):
 def squat_edit(request, pk):
     squat = get_object_or_404(SquatMovement, pk=pk)
     if request.method == "POST":
-        form = SquatForm(request.POST, instance=post)
+        form = SquatForm(request.POST, instance=squat)
         if form.is_valid():
             squat = form.save(commit=False)
             squat.save()
-            return redirect('squat_detail', pk=post.pk)
+            return render(request, 'tracker/squatmovement_detail.html', {'object': squat})
     else:
         form = SquatForm(instance=squat)
-    return render(request, 'new_squat.html', {'form': form})
+    return render(request, 'edit_squat.html', {'form': form, 'pk': pk})
 
 def bench_edit(request, pk):
     bench = get_object_or_404(BenchMovement, pk=pk)
     if request.method == "POST":
-        form = BenchForm(request.POST, instance=post)
+        form = BenchForm(request.POST, instance=bench)
         if form.is_valid():
             bench = form.save(commit=False)
             bench.save()
-            return redirect('bench_detail', pk=post.pk)
+            return render(request, 'tracker/benchmovement_detail.html', {'object': bench})
     else:
         form = BenchForm(instance=bench)
-    return render(request, 'new_bench.html', {'form': form})
+    return render(request, 'edit_bench.html', {'form': form, 'pk': pk})
 
 def deadlift_edit(request, pk):
     deadlift = get_object_or_404(DeadliftMovement, pk=pk)
     if request.method == "POST":
-        form = DeadliftForm(request.POST, instance=post)
+        form = DeadliftForm(request.POST, instance=deadlift)
         if form.is_valid():
             deadlift = form.save(commit=False)
             deadlift.save()
-            return redirect('deadlift_detail', pk=post.pk)
+            return render(request, 'tracker/deadliftmovement_detail.html', {'object': deadlift})
     else:
         form = DeadliftForm(instance=deadlift)
-    return render(request, 'new_deadlift.html', {'form': form})
+    return render(request, 'edit_deadlift.html', {'form': form, 'pk': pk})
 
 def upper_edit(request, pk):
     upper = get_object_or_404(UpperAccessoryMovement, pk=pk)
     if request.method == "POST":
-        form = UpperForm(request.POST, instance=post)
+        form = UpperForm(request.POST, instance=upper)
         if form.is_valid():
             upper = form.save(commit=False)
             upper.save()
-            return redirect('upper_detail', pk=post.pk)
+            return render(request, 'tracker/upperaccessorymovement_detail.html', {'object': upper})
     else:
         form = UpperForm(instance=upper)
-    return render(request, 'new_upper.html', {'form': form})
+    return render(request, 'edit_upper.html', {'form': form, 'pk': pk})
 
 def lower_edit(request, pk):
     lower = get_object_or_404(LowerAccessoryMovement, pk=pk)
     if request.method == "POST":
-        form = LowerForm(request.POST, instance=post)
+        form = LowerForm(request.POST, instance=lower)
         if form.is_valid():
             lower = form.save(commit=False)
             lower.save()
-            return redirect('lower_detail', pk=post.pk)
+            return render(request, 'tracker/loweraccessorymovement_detail.html', {'object': lower})
     else:
         form = LowerForm(instance=lower)
-    return render(request, 'new_lower.html', {'form': form})
+    return render(request, 'edit_lower.html', {'form': form, 'pk': pk})

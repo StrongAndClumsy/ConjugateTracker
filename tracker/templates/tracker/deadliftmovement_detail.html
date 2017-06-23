@@ -5,11 +5,28 @@
 <h1>{{ object.user.username }}</h1>
 <p><h4><b>Created: </b>{{ object.created_at }}</h4></p>
 <p><h4><b>Sumo/Conventional: </b>{{ object.sumo_conventional }}</h4></p>
+
+{% if object.deficit == True %}
 <p><h4><b>Deficit: </b>{{ object.deficit }}</h4></p>
+{% endif %}
+
+{% if object.block == True %}
 <p><h4><b>Block: </b>{{ object.block}}</h4></p>
+{% endif %}
+
+{% if object.standard == True %}
 <p><h4><b>Standard: </b>{{ object.standard}}</h4></p>
+{% endif %}
+
+{% if object.pin == True %}
 <p><h4><b>Pin: </b>{{ object.pin}}</h4></p>
+{% endif %}
+
+{% if object.reverse == True %}
 <p><h4><b>Reverse: </b>{{ object.reverse}}</h4></p>
+{% endif %}
+
+<p><h4><b>Chain Weight: </b>{{ object.chain_weight}}</h4></p>
 <p><h4><b>Movement Weight: </b>{{ object.movement_weight}}</h4></p>
 <p><h4><b>Movement Reps: </b>{{ object.movement_reps}}</h4></p>
 <p><h4><b>Notes: </b>{{ object.notes}}</h4></p>
