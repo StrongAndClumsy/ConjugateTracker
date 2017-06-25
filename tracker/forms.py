@@ -22,7 +22,7 @@ class SquatForm(forms.ModelForm):
 class DeadliftForm(forms.ModelForm):
 	class Meta:
 		model = DeadliftMovement
-		fields = ['sumo_conventional','deficit','block','standard','pin','chain_weight',
+		fields = ['sumo_conventional','deficit','block','standard','pin','chain_weight', 'bands_type',
 		'reverse','movement_weight','movement_reps','deadlift_notes']
 	sumo_conventional = forms.ChoiceField(label="Deadlift Style",widget=forms.RadioSelect, choices=SUMO_CHOICES)
 	deficit = forms.BooleanField(required=False)
@@ -30,6 +30,7 @@ class DeadliftForm(forms.ModelForm):
 	standard = forms.BooleanField(required=False)
 	pin = forms.BooleanField(required=False)
 	reverse = forms.BooleanField(label="Reverse Band",required=False)
+	bands_type = forms.CharField(label="Band Type", required=False, max_length=60)
 	chain_weight = forms.IntegerField(required=False, initial=0)
 	movement_weight = forms.IntegerField(label="Bar Weight", required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 120'}))
 	movement_reps = forms.IntegerField(label="Reps", required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 1'}))
@@ -39,7 +40,7 @@ class BenchForm(forms.ModelForm):
 	class Meta:
 		model = BenchMovement
 		fields = ['bar_type','floor','reverse','standard','board','manpon',
-		'pin','bands','chain_weight','movement_weight','movement_reps','bench_notes']
+		'pin','bands_type','chain_weight','movement_weight','movement_reps','bench_notes']
 	bar_type = forms.CharField(max_length=60)
 	floor = forms.BooleanField(label="Floor Press",required=False)
 	reverse = forms.BooleanField(label="Reverse Band",required=False)
@@ -47,7 +48,7 @@ class BenchForm(forms.ModelForm):
 	board = forms.BooleanField(required=False)
 	manpon = forms.BooleanField(required=False)
 	pin = forms.BooleanField(required=False)
-	bands = forms.CharField(required=False,max_length=60)
+	bands_type = forms.CharField(required=False,max_length=60)
 	chain_weight = forms.IntegerField(required=False, initial=0)
 	movement_weight = forms.IntegerField(label="Bar Weight",required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 150'}))
 	movement_reps = forms.IntegerField(label="Reps",required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 1'}))
