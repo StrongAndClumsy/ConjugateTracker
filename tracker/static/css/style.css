@@ -119,7 +119,6 @@ body {
 }
 .bodyimage {
 	background-image: url("/static/images/diamondplate.jpg");
-	height:100vh;
 	padding:15px;
 }
 

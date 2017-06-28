@@ -6,7 +6,7 @@
       Multiple lines will require custom code not provided by Bootstrap. -->
       <div class="row marketing">
         <div class="col-lg-6">
-          <h4>Squat Movements</h4>
+          <h3><b>Squat Movements</b></h3>
           {% if latest_squat_list %}
           <ul>
               {% for squat in latest_squat_list %}
@@ -19,7 +19,7 @@
 
           <p><a class="btn btn-primary" href="{% url 'tracker:squat_new' %}" role="button">Add New &raquo;</a></p>
 
-          <h4>Bench Movements</h4>
+          <h3><b>Bench Movements</b></h3>
           {% if latest_bench_list %}
           <ul>
               {% for bench in latest_bench_list %}
@@ -31,7 +31,7 @@
           {% endif %}
           <p><a class="btn btn-primary" href="{% url 'tracker:bench_new' %}" role="button">Add New &raquo;</a></p>
 
-          <h4>Lower Accessory Movements</h4>
+          <h3><b>Lower Accessory Movements</b></h3>
           {% if latest_loweraccessory_list %}
           <ul>
               {% for loweraccessory in latest_loweraccessory_list %}
@@ -46,7 +46,7 @@
         </div>
 
         <div class="col-lg-6">
-          <h4>Deadlift Movements</h4>
+          <h3><b>Deadlift Movements</b></h3>
           {% if latest_deadlift_list %}
           <ul>
               {% for deadlift in latest_deadlift_list %}
@@ -60,7 +60,7 @@
 
           <p><a class="btn btn-primary" href="{% url 'tracker:deadlift_new' %}" role="button">Add New &raquo;</a></p>
 
-          <h4>Upper Accessory Movements</h4>
+          <h3><b>Upper Accessory Movements</b></h3>
           {% if latest_upperaccessory_list %}
           <ul>
               {% for upperaccessory in latest_upperaccessory_list %}
