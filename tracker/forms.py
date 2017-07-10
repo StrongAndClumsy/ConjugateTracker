@@ -9,7 +9,7 @@ class SquatForm(forms.ModelForm):
 	class Meta:
 		model = SquatMovement
 		fields = ['box_free','effort_type','bar_type','bands_type','chain_weight',
-		'movement_weight','movement_reps','squat_notes']
+		'movement_weight','movement_reps','squat_notes', 'media_url']
 	effort_type = forms.ChoiceField(label="Day", widget=forms.RadioSelect(), choices=EFFORT_CHOICES)
 	box_free = forms.ChoiceField(label="Squat Type", widget=forms.RadioSelect, choices=BOXFREE_CHOICES)
 	bar_type = forms.CharField(required=True, max_length=60)
@@ -18,12 +18,13 @@ class SquatForm(forms.ModelForm):
 	movement_weight = forms.IntegerField(label="Bar Weight", required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 150'}))
 	movement_reps = forms.IntegerField(label="Reps", required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 1'}))
 	squat_notes = forms.CharField(max_length=300,widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Squat Notes Here'}),required=False)
+	media_url = forms.URLField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Media URL Here'}),required=False)
 
 class DeadliftForm(forms.ModelForm):
 	class Meta:
 		model = DeadliftMovement
 		fields = ['sumo_conventional','deficit','block','standard','pin','chain_weight', 'bands_type',
-		'reverse','movement_weight','movement_reps','deadlift_notes']
+		'reverse','movement_weight','movement_reps','deadlift_notes', 'media_url']
 	sumo_conventional = forms.ChoiceField(label="Deadlift Style",widget=forms.RadioSelect, choices=SUMO_CHOICES)
 	deficit = forms.BooleanField(required=False)
 	block = forms.BooleanField(required=False)
@@ -35,12 +36,13 @@ class DeadliftForm(forms.ModelForm):
 	movement_weight = forms.IntegerField(label="Bar Weight", required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 120'}))
 	movement_reps = forms.IntegerField(label="Reps", required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 1'}))
 	deadlift_notes = forms.CharField(required=False,max_length=300,widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Deadlift Notes Here'}))
+	media_url = forms.URLField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Media URL Here'}),required=False)
 
 class BenchForm(forms.ModelForm):
 	class Meta:
 		model = BenchMovement
 		fields = ['bar_type','floor','reverse','standard','board','manpon',
-		'pin','bands_type','chain_weight','movement_weight','movement_reps','bench_notes']
+		'pin','bands_type','chain_weight','movement_weight','movement_reps','bench_notes', 'media_url']
 	bar_type = forms.CharField(max_length=60)
 	floor = forms.BooleanField(label="Floor Press",required=False)
 	reverse = forms.BooleanField(label="Reverse Band",required=False)
@@ -53,6 +55,7 @@ class BenchForm(forms.ModelForm):
 	movement_weight = forms.IntegerField(label="Bar Weight",required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 150'}))
 	movement_reps = forms.IntegerField(label="Reps",required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 1'}))
 	bench_notes = forms.CharField(required=False,max_length=300,widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Bench Notes Here'}))
+	media_url = forms.URLField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Media URL Here'}),required=False)
 
 
 class UpperForm(forms.ModelForm):
@@ -63,7 +66,7 @@ class UpperForm(forms.ModelForm):
 		'reverse_pec_dec','t_bar_rows','chest_supported_rows','low_rows',
 		'pullups','inverted_row','face_pulls','db_rows','db_press','pullaparts',
 		'tri_extensions','skull_crushers','jam_press','olt_press','db_rollbacks',
-		'dead_press','ab_movement','notes']
+		'dead_press','ab_movement','notes', 'media_url']
 	top_set = forms.CharField(required=False,max_length=60)
 	close_grippness = forms.CharField(label="Close Grip",required=False,max_length=60)
 	tate_press = forms.CharField(required=False,max_length=60)
@@ -92,6 +95,7 @@ class UpperForm(forms.ModelForm):
 	dead_press = forms.CharField(required=False,max_length=60)
 	ab_movement = forms.CharField(required=False,max_length=60)
 	notes = forms.CharField(required=False,max_length=300,widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Upper Accessory Notes Here'}))
+	media_url = forms.URLField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Media URL Here'}),required=False)
 
 
 class LowerForm(forms.ModelForm):
@@ -100,7 +104,7 @@ class LowerForm(forms.ModelForm):
 		fields = ['top_set','chair_dl','ghr','lunge','dimel_dl',
 		'reverse_hyper','hip_bridge','good_morning', 'step_up',
 		'belt_squat','hack_squat','leg_press','leg_curl','stiff_leg_dl',
-		'inverse_curl','front_squat','back_extension','ab_movement','notes']
+		'inverse_curl','front_squat','back_extension','ab_movement','notes', 'media_url']
 	top_set = forms.CharField(required=False,max_length=60)
 	chair_dl = forms.CharField(label="Chair Deadlift",required=False,max_length=60)
 	ghr = forms.CharField(label="GHR",required=False,max_length=60)
@@ -120,3 +124,4 @@ class LowerForm(forms.ModelForm):
 	back_extension = forms.CharField(required=False,max_length=60)
 	ab_movement = forms.CharField(required=False,max_length=60)
 	notes = forms.CharField(required=False,max_length=300,widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Lower Accessory Notes Here'}))
+	media_url = forms.URLField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Media URL Here'}),required=False)
