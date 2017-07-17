@@ -4,6 +4,8 @@
 
 <h1>{{ object.user.username }}</h1>
 <p><h4><b>Created: </b>{{ object.created_at }}</h4></p>
+
+<p><h4><b>Effort Type: </b> {{ object.effort_type }}</h4></p>
 <p><h4><b>Sumo/Conventional: </b>{{ object.sumo_conventional }}</h4></p>
 
 {% if object.deficit == True %}
