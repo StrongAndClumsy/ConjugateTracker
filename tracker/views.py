@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.views.generic.detail import DetailView
 from .models import SquatMovement, DeadliftMovement, BenchMovement, LowerAccessoryMovement, UpperAccessoryMovement
-from .forms import SquatForm, DeadliftForm, BenchForm, LowerForm, UpperForm
+from .forms import SquatForm, SquatSearchForm, DeadliftForm, BenchForm, LowerForm, UpperForm
 
 class SquatDetailView(DetailView):
     model = SquatMovement
@@ -99,8 +99,9 @@ def new_squat(request):
             movement_weight = form.cleaned_data['movement_weight']
             movement_reps = form.cleaned_data['movement_reps']
             squat_notes = form.cleaned_data['squat_notes']
+            media_url = form.cleaned_data['media_url']
             new_squat_data = SquatMovement( user = request.user, effort_type = effort, box_free = box_free, bar_type = bar_type, bands_type = bands_type,
-                chain_weight = chain_weight, movement_weight = movement_weight,movement_reps = movement_reps, squat_notes = squat_notes)
+                chain_weight = chain_weight, movement_weight = movement_weight,movement_reps = movement_reps, squat_notes = squat_notes, media_url = media_url )
             new_squat_data.save()
             return HttpResponseRedirect('/')
     else:
@@ -124,7 +125,8 @@ def new_deadlift(request):
                 chain_weight=form.cleaned_data['chain_weight'],
                 movement_weight=form.cleaned_data['movement_weight'],
                 movement_reps=form.cleaned_data['movement_reps'],
-                deadlift_notes=form.cleaned_data['deadlift_notes']
+                deadlift_notes=form.cleaned_data['deadlift_notes'],
+                media_url=form.cleaned_data['media_url']
             )
             new_deadlift_data.save()
             return HttpResponseRedirect('/')
@@ -152,6 +154,7 @@ def new_bench(request):
                 chain_weight=form.cleaned_data['chain_weight'],
                 movement_weight=form.cleaned_data['movement_weight'],
                 movement_reps=form.cleaned_data['movement_reps'],
+                media_url=form.cleaned_data['media_url']
                 )
             new_bench_data.save()
             return HttpResponseRedirect('/')
@@ -184,7 +187,8 @@ def new_lower(request):
                 front_squat=form.cleaned_data['front_squat'],
                 back_extension=form.cleaned_data['back_extension'],
                 ab_movement=form.cleaned_data['ab_movement'],
-                notes = form.cleaned_data['notes']
+                notes = form.cleaned_data['notes'],
+                media_url=form.cleaned_data['media_url']
             )
             new_lower_data.save()
             return HttpResponseRedirect('/')
@@ -225,7 +229,8 @@ def new_upper(request):
                 db_rollbacks=form.cleaned_data['db_rollbacks'],
                 dead_press=form.cleaned_data['dead_press'],
                 ab_movement=form.cleaned_data['ab_movement'],
-                notes = form.cleaned_data['notes']
+                notes = form.cleaned_data['notes'],
+                media_url=form.cleaned_data['media_url']
                 )
             new_upper_data.save()
             return HttpResponseRedirect('/')
@@ -245,6 +250,21 @@ def squat_edit(request, pk):
     else:
         form = SquatForm(instance=squat)
     return render(request, 'edit_squat.html', {'form': form, 'pk': pk})
+
+def squat_search(request):
+    if request.method == "GET":
+        search_dict = request.GET.dict()
+        print(search_dict)
+        filter_dict = {}
+        for key, value in search_dict.items():
+            if value != '':
+                filter_dict[key] = value
+        print(filter_dict)
+        filtered_movements = SquatMovement.objects.filter(**filter_dict)
+        print(filtered_movements)
+        form = SquatSearchForm()
+        return render(request, 'tracker/squatmovement_search.html', {'form': form, 'objects': filtered_movements })
+    return render(request, 'Hello' )
 
 def bench_edit(request, pk):
     bench = get_object_or_404(BenchMovement, pk=pk)
