@@ -55,6 +55,11 @@ ul {
   line-height: 40px;
 }
 
+.dropdown {
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
 /* Custom page footer */
 .footer {
   padding-top: 19px;

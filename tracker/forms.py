@@ -1,9 +1,12 @@
 from django import forms
 from .models import SquatMovement, DeadliftMovement, BenchMovement, LowerAccessoryMovement, UpperAccessoryMovement
 
-EFFORT_CHOICES = (('dynamic', 'Dynamic Effort'), ('max', 'Max Effort'))
-BOXFREE_CHOICES = (('free', 'Free'), ('box', 'Box'))
-SUMO_CHOICES = (('sumo', 'Sumo'), ('conventional', 'Conventional'))
+EFFORT_CHOICES = (('Dynamic', 'Dynamic Effort'), ('Max', 'Max Effort'))
+BOXFREE_CHOICES = (('Free', 'Free'), ('Box', 'Box'))
+SUMO_CHOICES = (('Sumo', 'Sumo'), ('Conventional', 'Conventional'))
+BAR_OPTIONS = (('Straight', 'Straight'), ('Giant Cambered', 'Giant Cambered'), ('Buffalo', 'Buffalo'), ('Bow', 'Bow'), ('Safety Squat Bar', 'Safety Squat Bar'))
+BENCH_BAR_OPTIONS = (('Straight', 'Straight'), ('Cambered', 'Cambered'), ('Bow', 'Bow'), ('Football Bar', 'Football Bar'))
+BAND_TYPE = (('Micro mini', 'Micro Mini'), ('Mini', 'Mini'), ('Light', 'Light'), ('Average', 'Average'), ('Heavy', 'Heavy'))
 
 class SquatForm(forms.ModelForm):
 	class Meta:
@@ -12,8 +15,8 @@ class SquatForm(forms.ModelForm):
 		'movement_weight','movement_reps','squat_notes', 'media_url']
 	effort_type = forms.ChoiceField(label="Day", widget=forms.RadioSelect(), choices=EFFORT_CHOICES)
 	box_free = forms.ChoiceField(label="Squat Type", widget=forms.RadioSelect, choices=BOXFREE_CHOICES)
-	bar_type = forms.CharField(required=True, max_length=60)
-	bands_type = forms.CharField(label="Band Type", required=False, max_length=60)
+	bar_type = forms.ChoiceField(label="Bar Type", widget=forms.Select, choices=BAR_OPTIONS, required=True)
+	bands_type = forms.ChoiceField(label="Band Type", widget=forms.Select, choices=BAND_TYPE, required=False)
 	chain_weight = forms.IntegerField(required=False, initial=0)
 	movement_weight = forms.IntegerField(label="Bar Weight", required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 150'}))
 	movement_reps = forms.IntegerField(label="Reps", required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 1'}))
@@ -38,15 +41,16 @@ class SquatSearchForm(forms.ModelForm):
 class DeadliftForm(forms.ModelForm):
 	class Meta:
 		model = DeadliftMovement
-		fields = ['sumo_conventional','deficit','block','standard','pin','chain_weight', 'bands_type',
+		fields = ['effort_type','sumo_conventional','deficit','block','standard','pin','chain_weight', 'bands_type',
 		'reverse','movement_weight','movement_reps','deadlift_notes', 'media_url']
+	effort_type = forms.ChoiceField(label="Day", widget=forms.RadioSelect(), choices=EFFORT_CHOICES)
 	sumo_conventional = forms.ChoiceField(label="Deadlift Style",widget=forms.RadioSelect, choices=SUMO_CHOICES)
 	deficit = forms.BooleanField(required=False)
 	block = forms.BooleanField(required=False)
 	standard = forms.BooleanField(required=False)
 	pin = forms.BooleanField(required=False)
 	reverse = forms.BooleanField(label="Reverse Band",required=False)
-	bands_type = forms.CharField(label="Band Type", required=False, max_length=60)
+	bands_type = forms.ChoiceField(label="Band Type", widget=forms.Select, choices=BAND_TYPE, required=False)
 	chain_weight = forms.IntegerField(required=False, initial=0)
 	movement_weight = forms.IntegerField(label="Bar Weight", required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 120'}))
 	movement_reps = forms.IntegerField(label="Reps", required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 1'}))
@@ -56,16 +60,17 @@ class DeadliftForm(forms.ModelForm):
 class BenchForm(forms.ModelForm):
 	class Meta:
 		model = BenchMovement
-		fields = ['bar_type','floor','reverse','standard','board','manpon',
+		fields = ['effort_type','bar_type','floor','reverse','standard','board','manpon',
 		'pin','bands_type','chain_weight','movement_weight','movement_reps','bench_notes', 'media_url']
-	bar_type = forms.CharField(max_length=60)
+	effort_type = forms.ChoiceField(label="Day", widget=forms.RadioSelect(), choices=EFFORT_CHOICES)
+	bar_type = forms.ChoiceField(label="Bar Type", widget=forms.Select, choices=BENCH_BAR_OPTIONS, required=True)
 	floor = forms.BooleanField(label="Floor Press",required=False)
 	reverse = forms.BooleanField(label="Reverse Band",required=False)
 	standard = forms.BooleanField(label="Straight Weight",required=False)
 	board = forms.BooleanField(required=False)
 	manpon = forms.BooleanField(required=False)
 	pin = forms.BooleanField(required=False)
-	bands_type = forms.CharField(required=False,max_length=60)
+	bands_type = forms.ChoiceField(label="Band Type", widget=forms.Select, choices=BAND_TYPE, required=False)
 	chain_weight = forms.IntegerField(required=False, initial=0)
 	movement_weight = forms.IntegerField(label="Bar Weight",required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 150'}))
 	movement_reps = forms.IntegerField(label="Reps",required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 1'}))

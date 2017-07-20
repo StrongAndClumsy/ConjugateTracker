@@ -21,6 +21,7 @@ class SquatMovement(models.Model):
 class DeadliftMovement(models.Model):
 	user = models.ForeignKey('auth.User')
 	created_at = models.DateTimeField(default=timezone.now)
+	effort_type = models.CharField(max_length=60)
 	sumo_conventional = models.CharField(max_length=60)
 	deficit = models.BooleanField()
 	block = models.BooleanField()
@@ -37,6 +38,7 @@ class DeadliftMovement(models.Model):
 class BenchMovement(models.Model):
 	user = models.ForeignKey('auth.User')
 	created_at = models.DateTimeField(default=timezone.now)
+	effort_type = models.CharField(max_length=60)
 	bar_type = models.CharField(max_length=60, blank=True)
 	floor = models.BooleanField()
 	reverse = models.BooleanField()

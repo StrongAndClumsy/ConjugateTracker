@@ -3,9 +3,65 @@
 
 <h1>Add Upper Accessories</h1>
 
+<select class="dropdown" id="upAcc"  onchange="ToggleEntry()">
+  <option value="id_top_set">Top Set</option>
+  <option value="id_close_grippness">Close Grip</option>
+  <option value="id_tate_press">Tate Press</option>
+  <option value="id_dips">Dips</option>
+  <option value="id_rev_db_fly">Reverse DB Fly</option>
+  <option value="id_windmills">Windmills</option>
+  <option value="id_bamboo_bar">Bamboo Bar</option>
+  <option value="id_lat_pulldowns">Lat Pulldowns</option>
+  <option value="id_lat_pullovers">Lat Pullovers</option>
+  <option value="id_pec_dec">Pec Dec</option>
+  <option value="id_reverse_pec_dec">Reverse Pec Dec</option>
+  <option value="id_t_bar_rows">T Bar Rows</option>
+  <option value="id_chest_supported_rows">Chest Supported Rows</option>
+  <option value="id_low_rows">Low Rows</option>
+  <option value="id_pullups">Pullups</option>
+  <option value="id_inverted_row">Inverted Row</option>
+  <option value="id_face_pulls">Face Pulls</option>
+  <option value="id_db_rows">DB Rows</option>
+  <option value="id_db_press">DB Press</option>
+  <option value="id_pullaparts">Pullaparts</option>
+  <option value="id_tri_extensions">Tricep Extensions</option>
+  <option value="id_skull_crushers">Skull Crushers</option>
+  <option value="id_jam_press">JM Press</option>
+  <option value="id_olt_press">Overhead Press</option>
+  <option value="id_db_rollbacks">DB Rollbacks</option>
+  <option value="id_dead_press">Dead Press</option>
+  <option value="id_ab_movement">Ab Movement</option>
+</select>
+
 <form action="{% url 'tracker:upper_new' %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Submit" class="btn btn-primary"/>
 </form>
+
+<script type="text/javascript">
+
+window.onload = function() {
+  HideList();
+}
+
+  function HideList() {
+    var form = document.getElementsByTagName('form')[0];
+    for (var i = 0; i < form.children.length - 1; i++) {
+
+      form.children[i].style.display = 'none';
+    }
+}
+
+function ToggleEntry() {
+  var select = document.getElementById('upAcc');
+  var selectedId = select.options[select.selectedIndex].value;
+  var targetElement = document.getElementById(selectedId);
+  var parentElement = targetElement.parentElement;
+
+  parentElement.style.display = 'block';
+
+}
+
+</script>
 {% endblock %}

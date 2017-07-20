@@ -114,6 +114,7 @@ def new_deadlift(request):
         if form.is_valid():
             new_deadlift_data = DeadliftMovement(
                 user=request.user,
+                effort_type = form.cleaned_data['effort_type'],
                 sumo_conventional=form.cleaned_data['sumo_conventional'],
                 deficit=form.cleaned_data['deficit'],
                 block=form.cleaned_data['block'],
@@ -140,6 +141,7 @@ def new_bench(request):
         if form.is_valid():
             new_bench_data = BenchMovement(
                 user=request.user,
+                effort_type=form.cleaned_data['effort_type'],
                 bar_type=form.cleaned_data['bar_type'],
                 floor=form.cleaned_data['floor'],
                 reverse=form.cleaned_data['reverse'],
