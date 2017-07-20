@@ -20,6 +20,21 @@ class SquatForm(forms.ModelForm):
 	squat_notes = forms.CharField(max_length=300,widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Squat Notes Here'}),required=False)
 	media_url = forms.URLField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Media URL Here'}),required=False)
 
+class SquatSearchForm(forms.ModelForm):
+	class Meta:
+		model = SquatMovement
+		fields = ['box_free','effort_type','bar_type','bands_type','chain_weight',
+		'movement_weight','movement_reps','squat_notes', 'media_url']
+	effort_type = forms.ChoiceField(label="Day", widget=forms.RadioSelect(), choices=EFFORT_CHOICES)
+	box_free = forms.ChoiceField(label="Squat Type", widget=forms.RadioSelect, choices=BOXFREE_CHOICES)
+	bar_type = forms.CharField(max_length=60)
+	bands_type = forms.CharField(label="Band Type", required=False, max_length=60)
+	chain_weight = forms.IntegerField(required=False, initial=0)
+	movement_weight = forms.IntegerField(label="Bar Weight", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 150'}))
+	movement_reps = forms.IntegerField(label="Reps", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 1'}))
+	squat_notes = forms.CharField(max_length=300,widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Squat Notes Here'}),required=False)
+	media_url = forms.URLField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Media URL Here'}),required=False)
+
 class DeadliftForm(forms.ModelForm):
 	class Meta:
 		model = DeadliftMovement
