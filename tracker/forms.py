@@ -57,6 +57,25 @@ class DeadliftForm(forms.ModelForm):
 	deadlift_notes = forms.CharField(required=False,max_length=300,widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Deadlift Notes Here'}))
 	media_url = forms.URLField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Media URL Here'}),required=False)
 
+class DeadliftSearchForm(forms.ModelForm):
+	class Meta:
+		model = DeadliftMovement
+		fields = ['effort_type','sumo_conventional','deficit','block','standard','pin','chain_weight', 'bands_type',
+		'reverse','movement_weight','movement_reps','deadlift_notes', 'media_url']
+	effort_type = forms.ChoiceField(label="Day", widget=forms.RadioSelect(), choices=EFFORT_CHOICES)
+	sumo_conventional = forms.ChoiceField(label="Deadlift Style",widget=forms.RadioSelect, choices=SUMO_CHOICES)
+	deficit = forms.BooleanField(required=False)
+	block = forms.BooleanField(required=False)
+	standard = forms.BooleanField(required=False)
+	pin = forms.BooleanField(required=False)
+	reverse = forms.BooleanField(label="Reverse Band",required=False)
+	bands_type = forms.ChoiceField(label="Band Type", widget=forms.Select, choices=BAND_TYPE, required=False)
+	chain_weight = forms.IntegerField(required=False, initial=0)
+	movement_weight = forms.IntegerField(label="Bar Weight", required=False, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 120'}))
+	movement_reps = forms.IntegerField(label="Reps", required=False, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 1'}))
+	deadlift_notes = forms.CharField(required=False,max_length=300,widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Deadlift Notes Here'}))
+	media_url = forms.URLField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Media URL Here'}),required=False)
+
 class BenchForm(forms.ModelForm):
 	class Meta:
 		model = BenchMovement
@@ -74,6 +93,26 @@ class BenchForm(forms.ModelForm):
 	chain_weight = forms.IntegerField(required=False, initial=0)
 	movement_weight = forms.IntegerField(label="Bar Weight",required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 150'}))
 	movement_reps = forms.IntegerField(label="Reps",required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 1'}))
+	bench_notes = forms.CharField(required=False,max_length=300,widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Bench Notes Here'}))
+	media_url = forms.URLField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Media URL Here'}),required=False)
+
+class BenchSearchForm(forms.ModelForm):
+	class Meta:
+		model = BenchMovement
+		fields = ['effort_type','bar_type','floor','reverse','standard','board','manpon',
+		'pin','bands_type','chain_weight','movement_weight','movement_reps','bench_notes', 'media_url']
+	effort_type = forms.ChoiceField(label="Day", widget=forms.RadioSelect(), choices=EFFORT_CHOICES)
+	bar_type = forms.ChoiceField(label="Bar Type", widget=forms.Select, choices=BENCH_BAR_OPTIONS, required=False)
+	floor = forms.BooleanField(label="Floor Press",required=False)
+	reverse = forms.BooleanField(label="Reverse Band",required=False)
+	standard = forms.BooleanField(label="Straight Weight",required=False)
+	board = forms.BooleanField(required=False)
+	manpon = forms.BooleanField(required=False)
+	pin = forms.BooleanField(required=False)
+	bands_type = forms.ChoiceField(label="Band Type", widget=forms.Select, choices=BAND_TYPE, required=False)
+	chain_weight = forms.IntegerField(required=False, initial=0)
+	movement_weight = forms.IntegerField(label="Bar Weight",required=False, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 150'}))
+	movement_reps = forms.IntegerField(label="Reps",required=False, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 1'}))
 	bench_notes = forms.CharField(required=False,max_length=300,widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Bench Notes Here'}))
 	media_url = forms.URLField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Media URL Here'}),required=False)
 
