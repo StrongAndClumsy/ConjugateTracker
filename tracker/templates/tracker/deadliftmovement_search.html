@@ -1,36 +1,42 @@
 {% extends 'tracker/base.html' %}
 {% block content %}
+<h2>Search Deadlifts</h2>
 <form action="{% url 'tracker:deadlift_search' %}" method="get">
-         <p><label for="id_effort_type_0">Day:</label> <ul id="id_effort_type"><li><label for="id_effort_type_0"><input id="id_effort_type_0" name="effort_type" type="radio" value="Dynamic" required /> Dynamic Effort</label></li>
-    <li><label for="id_effort_type_1"><input id="id_effort_type_1" name="effort_type" type="radio" value="Max" required /> Max Effort</label></li></ul></p>
-    <p><label for="id_sumo_conventional_0">Deadlift Style:</label> <ul id="id_sumo_conventional"><li><label for="id_sumo_conventional_0"><input id="id_sumo_conventional_0" name="sumo_conventional" type="radio" value="Sumo" required /> Sumo</label></li>
-    <li><label for="id_sumo_conventional_1"><input id="id_sumo_conventional_1" name="sumo_conventional" type="radio" value="Conventional" required /> Conventional</label></li></ul></p>
-    <p><label for="id_deficit">Deficit:</label> <input id="id_deficit" name="deficit" type="checkbox" /></p>
-    <p><label for="id_block">Block:</label> <input id="id_block" name="block" type="checkbox" /></p>
-    <p><label for="id_standard">Standard:</label> <input id="id_standard" name="standard" type="checkbox" /></p>
-    <p><label for="id_pin">Pin:</label> <input id="id_pin" name="pin" type="checkbox" /></p>
+         <p><label for="id_effort_type_0">Day:</label> <ul id="id_effort_type"><li><label for="id_effort_type_0"><input id="id_effort_type_0" name="effort_type" type="radio" value="Dynamic"  /> Dynamic Effort</label></li>
+    <li><label for="id_effort_type_1"><input id="id_effort_type_1" name="effort_type" type="radio" value="Max"  /> Max Effort</label></li></ul></p>
+    <p><label for="id_sumo_conventional_0">Deadlift Style:</label> <ul id="id_sumo_conventional"><li><label for="id_sumo_conventional_0"><input id="id_sumo_conventional_0" name="sumo_conventional" type="radio" value="Sumo"  /> Sumo</label></li>
+    <li><label for="id_sumo_conventional_1"><input id="id_sumo_conventional_1" name="sumo_conventional" type="radio" value="Conventional"  /> Conventional</label></li></ul></p>
+    <p><label for="id_deficit">Deficit:</label> <input id="id_deficit" name="deficit" type="checkbox" value="True"/></p>
+    <p><label for="id_block">Block:</label> <input id="id_block" name="block" type="checkbox" value="True"/></p>
+    <p><label for="id_standard">Standard:</label> <input id="id_standard" name="standard" type="checkbox" value="True"/></p>
+    <p><label for="id_pin">Pin:</label> <input id="id_pin" name="pin" type="checkbox" value="True"/></p>
     <p><label for="id_chain_weight">Chain weight:</label> <input id="id_chain_weight" name="chain_weight" type="number" /></p>
     <p><label for="id_bands_type">Band Type:</label> <select id="id_bands_type" name="bands_type">
+    <option value="None">None</option>
     <option value="Micro mini">Micro Mini</option>
     <option value="Mini">Mini</option>
     <option value="Light">Light</option>
     <option value="Average">Average</option>
     <option value="Heavy">Heavy</option>
     </select></p>
-    <p><label for="id_reverse">Reverse Band:</label> <input id="id_reverse" name="reverse" type="checkbox" /></p>
-    <p><label for="id_movement_weight">Bar Weight:</label> <input class="form-control" id="id_movement_weight" name="movement_weight" placeholder="Example: 120" type="number" required /></p>
-    <p><label for="id_movement_reps">Reps:</label> <input class="form-control" id="id_movement_reps" name="movement_reps" placeholder="Example: 1" type="number" required /></p>
+    <p><label for="id_reverse">Reverse Band:</label> <input id="id_reverse" name="reverse" type="checkbox" value="True"/></p>
+    <p><label for="id_movement_weight">Bar Weight:</label> <input class="form-control" id="id_movement_weight" name="movement_weight" placeholder="Example: 120" type="number"  /></p>
+    <p><label for="id_movement_reps">Reps:</label> <input class="form-control" id="id_movement_reps" name="movement_reps" placeholder="Example: 1" type="number"  /></p>
     <p><label for="id_deadlift_notes">Deadlift notes:</label> <input class="form-control" id="id_deadlift_notes" maxlength="300" name="deadlift_notes" placeholder="Add Deadlift Notes Here" type="text" /></p>
     <p><label for="id_media_url">Media url:</label> <input class="form-control" id="id_media_url" name="media_url" placeholder="Add Media URL Here" type="text" /></p>
         <input type="submit" value="Submit" class="btn btn-primary"/>
     </form>
 
-{% for object in objects %}
-<h2>
-    {{ object.created_at}}
-    {{ object.box_free }}
-    {{ object.effort_type }}
-</h2>
-{% endfor %}
+    {% if not objects %}
+    <h2> No Results. Please search again..</h2>
+    {% else %}
+    <h2>Results</h2>
+    {% endif %}
+
+    {% for object in objects %}
+    <h3>
+        - <a href="{% url 'tracker:deadlift_detail' object.id %}">Deadlift on {{ object.created_at }} ({{object.effort_type}},Weight:{{object.movement_weight}})</a>
+    </h3>
+    {% endfor %}
 
 {% endblock %}

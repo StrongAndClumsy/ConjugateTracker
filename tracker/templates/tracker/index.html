@@ -17,7 +17,8 @@
           <p>No squats recorded. Shame.</p>
           {% endif %}
 
-          <p><a class="btn btn-primary" href="{% url 'tracker:squat_new' %}" role="button">Add New &raquo;</a></p>
+          <p><a class="btn btn-primary" href="{% url 'tracker:squat_new' %}" role="button">Add New &raquo;</a>
+              <a class="btn btn-info" href="{% url 'tracker:squat_search' %}" role="button">Search Squats &raquo;</a></p>
 
           <h3><b>Bench Movements</b></h3>
           {% if latest_bench_list %}
@@ -29,7 +30,8 @@
           {% else %}
           <p>No benchs recorded. Shame.</p>
           {% endif %}
-          <p><a class="btn btn-primary" href="{% url 'tracker:bench_new' %}" role="button">Add New &raquo;</a></p>
+          <p><a class="btn btn-primary" href="{% url 'tracker:bench_new' %}" role="button">Add New &raquo;</a>
+          <a class="btn btn-info" href="{% url 'tracker:bench_search' %}" role="button">Search Bench &raquo;</a></p>
 
           <h3><b>Lower Accessory Movements</b></h3>
           {% if latest_loweraccessory_list %}
@@ -58,7 +60,8 @@
           {% endif %}
 
 
-          <p><a class="btn btn-primary" href="{% url 'tracker:deadlift_new' %}" role="button">Add New &raquo;</a></p>
+          <p><a class="btn btn-primary" href="{% url 'tracker:deadlift_new' %}" role="button">Add New &raquo;</a>
+          <a class="btn btn-info" href="{% url 'tracker:deadlift_search' %}" role="button">Search Deadlift &raquo;</a></p>
 
           <h3><b>Upper Accessory Movements</b></h3>
           {% if latest_upperaccessory_list %}
