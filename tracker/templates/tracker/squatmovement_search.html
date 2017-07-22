@@ -1,25 +1,43 @@
 {% extends 'tracker/base.html' %}
 {% block content %}
+<h2>Search Squat Movement</h2>
 <form action="{% url 'tracker:squat_search' %}" method="get">
-    <p><label for="id_box_free_0">Squat Type:</label> <ul id="id_box_free"><li><label for="id_box_free_0"><input id="id_box_free_0" name="box_free" type="radio" value="free"  /> Free</label></li>
-<li><label for="id_box_free_1"><input id="id_box_free_1" name="box_free" type="radio" value="box"  /> Box</label></li></ul></p>
-<p><label for="id_effort_type_0">Day:</label> <ul id="id_effort_type"><li><label for="id_effort_type_0"><input id="id_effort_type_0" name="effort_type" type="radio" value="dynamic"  /> Dynamic Effort</label></li>
-<li><label for="id_effort_type_1"><input id="id_effort_type_1" name="effort_type" type="radio" value="max"  /> Max Effort</label></li></ul></p>
-<p><label for="id_bar_type">Bar type:</label> <input id="id_bar_type" maxlength="60" name="bar_type" type="text"  /></p>
-<p><label for="id_bands_type">Band Type:</label> <input id="id_bands_type" maxlength="60" name="bands_type" type="text" /></p>
-<p><label for="id_chain_weight">Chain weight:</label> <input id="id_chain_weight" name="chain_weight" type="text" /></p>
-<p><label for="id_movement_weight">Bar Weight:</label> <input class="form-control" id="id_movement_weight" name="movement_weight" placeholder="Example: 150" type="text"  /></p>
-<p><label for="id_movement_reps">Reps:</label> <input class="form-control" id="id_movement_reps" name="movement_reps" placeholder="Example: 1" type="text"  /></p>
+    <p><label for="id_box_free_0">Squat Type:</label> <ul id="id_box_free"><li><label for="id_box_free_0"><input id="id_box_free_0" name="box_free" type="radio" value="Free" /> Free</label></li>
+<li><label for="id_box_free_1"><input id="id_box_free_1" name="box_free" type="radio" value="Box" /> Box</label></li></ul></p>
+<p><label for="id_effort_type_0">Day:</label> <ul id="id_effort_type"><li><label for="id_effort_type_0"><input id="id_effort_type_0" name="effort_type" type="radio" value="Dynamic"  /> Dynamic Effort</label></li>
+<li><label for="id_effort_type_1"><input id="id_effort_type_1" name="effort_type" type="radio" value="Max"  /> Max Effort</label></li></ul></p>
+<p><label for="id_bar_type">Bar Type:</label> <select id="id_bar_type" name="bar_type" >
+<option value="Straight">Straight</option>
+<option value="Giant Cambered">Giant Cambered</option>
+<option value="Buffalo">Buffalo</option>
+<option value="Bow">Bow</option>
+<option value="Safety Squat Bar">Safety Squat Bar</option>
+</select></p>
+<p><label for="id_bands_type">Band Type:</label> <select id="id_bands_type" name="bands_type">
+<option value="None">None</option>
+<option value="Micro mini">Micro Mini</option>
+<option value="Mini">Mini</option>
+<option value="Light">Light</option>
+<option value="Average">Average</option>
+<option value="Heavy">Heavy</option>
+</select></p>
+<p><label for="id_chain_weight">Chain weight:</label> <input id="id_chain_weight" name="chain_weight" type="number" /></p>
+<p><label for="id_movement_weight">Bar Weight:</label> <input class="form-control" id="id_movement_weight" name="movement_weight" placeholder="Example: 150" type="number"  /></p>
+<p><label for="id_movement_reps">Reps:</label> <input class="form-control" id="id_movement_reps" name="movement_reps" placeholder="Example: 1" type="number"  /></p>
 <p><label for="id_squat_notes">Squat notes:</label> <input class="form-control" id="id_squat_notes" maxlength="300" name="squat_notes" placeholder="Add Squat Notes Here" type="text" /></p>
 <p><label for="id_media_url">Media url:</label> <input class="form-control" id="id_media_url" name="media_url" placeholder="Add Media URL Here" type="text" /></p>
     <input type="submit" value="Submit" class= "btn btn-primary" />
 </form>
+{% if not objects %}
+<h2> No Results. Please search again..</h2>
+{% else %}
+<h2>Results</h2>
+{% endif %}
+
 {% for object in objects %}
-<h2>
-    {{ object.created_at}}
-    {{ object.box_free }}
-    {{ object.effort_type }}
-</h2>
+<h3>
+    - <a href="{% url 'tracker:squat_detail' object.id %}">Squat on {{ object.created_at }} ({{object.effort_type}},Weight:{{object.movement_weight}})</a>
+</h3>
 {% endfor %}
 
 {% endblock %}

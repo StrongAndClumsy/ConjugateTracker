@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.views.generic.detail import DetailView
 from .models import SquatMovement, DeadliftMovement, BenchMovement, LowerAccessoryMovement, UpperAccessoryMovement
-from .forms import SquatForm, SquatSearchForm, DeadliftForm, BenchForm, LowerForm, UpperForm
+from .forms import SquatForm, SquatSearchForm, DeadliftForm, DeadliftSearchForm, BenchForm, BenchSearchForm, LowerForm, UpperForm
 
 class SquatDetailView(DetailView):
     model = SquatMovement
@@ -251,21 +251,6 @@ def squat_edit(request, pk):
         form = SquatForm(instance=squat)
     return render(request, 'edit_squat.html', {'form': form, 'pk': pk})
 
-def squat_search(request):
-    if request.method == "GET":
-        search_dict = request.GET.dict()
-        print(search_dict)
-        filter_dict = {}
-        for key, value in search_dict.items():
-            if value != '':
-                filter_dict[key] = value
-        print(filter_dict)
-        filtered_movements = SquatMovement.objects.filter(**filter_dict)
-        print(filtered_movements)
-        form = SquatSearchForm()
-        return render(request, 'tracker/squatmovement_search.html', {'form': form, 'objects': filtered_movements })
-    return render(request, 'Hello' )
-
 def bench_edit(request, pk):
     bench = get_object_or_404(BenchMovement, pk=pk)
     if request.method == "POST":
@@ -313,3 +298,42 @@ def lower_edit(request, pk):
     else:
         form = LowerForm(instance=lower)
     return render(request, 'edit_lower.html', {'form': form, 'pk': pk})
+
+def squat_search(request):
+    if request.method == "GET":
+        search_dict = request.GET.dict()
+        filter_dict = {}
+        for key, value in search_dict.items():
+            if value != '':
+                filter_dict[key] = value
+        print(filter_dict)
+        filtered_movements = SquatMovement.objects.filter(user_id=request.user.id).filter(**filter_dict)
+        print(filtered_movements)
+        form = SquatSearchForm()
+        return render(request, 'tracker/squatmovement_search.html', {'form': form, 'objects': filtered_movements })
+    return render(request, 'Hello' )
+
+def bench_search(request):
+    if request.method == "GET":
+        search_dict = request.GET.dict()
+        filter_dict = {}
+        for key, value in search_dict.items():
+            if value != '':
+                filter_dict[key] = value
+        print(filter_dict)
+        filtered_movements = BenchMovement.objects.filter(user_id=request.user.id).filter(**filter_dict)
+        form = BenchSearchForm()
+        return render(request, 'tracker/benchmovement_search.html', {'form': form, 'objects': filtered_movements })
+    return render(request, 'Hello' )
+
+def deadlift_search(request):
+    if request.method == "GET":
+        search_dict = request.GET.dict()
+        filter_dict = {}
+        for key, value in search_dict.items():
+            if value != '':
+                filter_dict[key] = value
+        filtered_movements = DeadliftMovement.objects.filter(user_id=request.user.id).filter(**filter_dict)
+        form = DeadliftSearchForm()
+        return render(request, 'tracker/deadliftmovement_search.html', {'form': form, 'objects': filtered_movements })
+    return render(request, 'Hello' )
