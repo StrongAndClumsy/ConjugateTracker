@@ -29,7 +29,7 @@ ul {
   width: 180px;
   height: 90px;
   float: left;
-  background-image: url(../images/logo.png);
+  background-image: url(../images/logotransparency.png);
   background-size: contain;
 }
 
@@ -116,19 +116,19 @@ ul {
 
 body {
 	background:white;
-	opacity:0.8;
+	background-image: url("/static/images/diamondplate.jpg");
+
 }
 
 .container {
 	border-radius:5px;
 }
 .bodyimage {
-	background-image: url("/static/images/diamondplate.jpg");
-	padding:15px;
+	margin:15px;
+  background-color: rgba(255, 255, 255, .8);
 }
 
 div {
 	font-family: 'Catamaran', sans-serif;
-	background:white;
-	opacity:0.97;
+
 }

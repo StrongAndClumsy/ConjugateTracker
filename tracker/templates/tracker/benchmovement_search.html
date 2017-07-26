@@ -1,6 +1,6 @@
 {% extends 'tracker/base.html' %}
 {% block content %}
-<h2>Search Bench Movement</h2>
+<h3>Search Bench Movements</h3>
 <form action="{% url 'tracker:bench_search' %}" method="get">
     <p><label for="id_effort_type_0">Day:</label> <ul id="id_effort_type"><li><label for="id_effort_type_0"><input id="id_effort_type_0" name="effort_type" type="radio" value="Dynamic" /> Dynamic Effort</label></li>
 <li><label for="id_effort_type_1"><input id="id_effort_type_1" name="effort_type" type="radio" value="Max" /> Max Effort</label></li></ul></p>
@@ -40,7 +40,7 @@
 
 {% for object in objects %}
 <h3>
-    - <a href="{% url 'tracker:bench_detail' object.id %}">Bench on {{ object.created_at }} ({{object.effort_type}},Weight:{{object.movement_weight}})</a>
+    - <a href="{% url 'tracker:bench_detail' object.id %}">{{ object.bar_type }} Bar Bench on {{ object.created_at }}, ({{object.effort_type}} Effort, Weight:{{object.movement_weight}})</a>
 </h3>
 {% endfor %}
 

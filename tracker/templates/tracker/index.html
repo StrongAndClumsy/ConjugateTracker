@@ -10,7 +10,7 @@
           {% if latest_squat_list %}
           <ul>
               {% for squat in latest_squat_list %}
-              <li><a href="{% url 'tracker:squat_detail' squat.id %}">Squat on {{ squat.created_at }}</a></li>
+              <li><a href="{% url 'tracker:squat_detail' squat.id %}">{{ squat.bar_type }} Bar, {{ squat.effort_type }} Effort, {{ squat.created_at}}</a></li>
               {% endfor %}
           </ul>
           {% else %}
@@ -24,7 +24,7 @@
           {% if latest_bench_list %}
           <ul>
               {% for bench in latest_bench_list %}
-              <li><a href="{% url 'tracker:bench_detail' bench.id %}">Bench on {{ bench.created_at }}</a></li>
+              <li><a href="{% url 'tracker:bench_detail' bench.id %}">{{ bench.bar_type }} Bar, {{ bench.effort_type}} Effort, {{ bench.created_at }}</a></li>
               {% endfor %}
           </ul>
           {% else %}
@@ -32,6 +32,24 @@
           {% endif %}
           <p><a class="btn btn-primary" href="{% url 'tracker:bench_new' %}" role="button">Add New &raquo;</a>
           <a class="btn btn-info" href="{% url 'tracker:bench_search' %}" role="button">Search Bench &raquo;</a></p>
+
+        </div>
+
+        <div class="col-lg-6">
+          <h3><b>Deadlift Movements</b></h3>
+          {% if latest_deadlift_list %}
+          <ul>
+              {% for deadlift in latest_deadlift_list %}
+              <li><a href="{% url 'tracker:deadlift_detail' deadlift.id %}">Deadlift, {{ deadlift.effort_type}} Effort, {{ deadlift.sumo_conventional}}, {{ deadlift.created_at }}</a></li>
+              {% endfor %}
+          </ul>
+          {% else %}
+          <p>No deadlifts recorded. Really?</p>
+          {% endif %}
+
+
+          <p><a class="btn btn-primary" href="{% url 'tracker:deadlift_new' %}" role="button">Add New &raquo;</a>
+          <a class="btn btn-info" href="{% url 'tracker:deadlift_search' %}" role="button">Search Deadlift &raquo;</a></p>
 
           <h3><b>Lower Accessory Movements</b></h3>
           {% if latest_loweraccessory_list %}
@@ -45,23 +63,6 @@
           {% endif %}
 
           <p><a class="btn btn-primary" href="{% url 'tracker:lower_new' %}" role="button">Add New  &raquo;</a></p>
-        </div>
-
-        <div class="col-lg-6">
-          <h3><b>Deadlift Movements</b></h3>
-          {% if latest_deadlift_list %}
-          <ul>
-              {% for deadlift in latest_deadlift_list %}
-              <li><a href="{% url 'tracker:deadlift_detail' deadlift.id %}">Deadlift on {{ deadlift.created_at }}</a></li>
-              {% endfor %}
-          </ul>
-          {% else %}
-          <p>No deadlifts recorded. Really?</p>
-          {% endif %}
-
-
-          <p><a class="btn btn-primary" href="{% url 'tracker:deadlift_new' %}" role="button">Add New &raquo;</a>
-          <a class="btn btn-info" href="{% url 'tracker:deadlift_search' %}" role="button">Search Deadlift &raquo;</a></p>
 
           <h3><b>Upper Accessory Movements</b></h3>
           {% if latest_upperaccessory_list %}

@@ -1,6 +1,6 @@
 {% extends 'tracker/base.html' %}
 {% block content %}
-<h2>Search Squat Movement</h2>
+<h3>Search Squat Movements</h3>
 <form action="{% url 'tracker:squat_search' %}" method="get">
     <p><label for="id_box_free_0">Squat Type:</label> <ul id="id_box_free"><li><label for="id_box_free_0"><input id="id_box_free_0" name="box_free" type="radio" value="Free" /> Free</label></li>
 <li><label for="id_box_free_1"><input id="id_box_free_1" name="box_free" type="radio" value="Box" /> Box</label></li></ul></p>
@@ -36,7 +36,7 @@
 
 {% for object in objects %}
 <h3>
-    - <a href="{% url 'tracker:squat_detail' object.id %}">Squat on {{ object.created_at }} ({{object.effort_type}},Weight:{{object.movement_weight}})</a>
+    - <a href="{% url 'tracker:squat_detail' object.id %}">{{ object.bar_type }} Bar Squat on {{ object.created_at }}, ({{object.effort_type}} Effort, Weight:{{object.movement_weight}})</a>
 </h3>
 {% endfor %}
 
