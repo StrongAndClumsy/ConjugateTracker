@@ -7,6 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.views.generic.detail import DetailView
+from django.db.models import Q
 from .models import SquatMovement, DeadliftMovement, BenchMovement, LowerAccessoryMovement, UpperAccessoryMovement
 from .forms import SquatForm, SquatSearchForm, DeadliftForm, DeadliftSearchForm, BenchForm, BenchSearchForm, LowerForm, UpperForm
 
@@ -336,4 +337,29 @@ def deadlift_search(request):
         filtered_movements = DeadliftMovement.objects.filter(user_id=request.user.id).filter(**filter_dict)
         form = DeadliftSearchForm()
         return render(request, 'tracker/deadliftmovement_search.html', {'form': form, 'objects': filtered_movements })
+    return render(request, 'Hello' )
+
+def upper_search(request):
+    if request.method == "GET":
+        search_dict = request.GET.dict()
+        filter_dict = {}
+        for key, value in search_dict.items():
+            if value != '':
+                filter_dict[key] = ''
+        filtered_movements = UpperAccessoryMovement.objects.filter(user_id=request.user.id).filter(~Q(**filter_dict))
+        print(filtered_movements)
+        form = UpperForm()
+        return render(request, 'tracker/uppermovement_search.html', {'form': form, 'objects': filtered_movements })
+    return render(request, 'Hello' )
+
+def lower_search(request):
+    if request.method == "GET":
+        search_dict = request.GET.dict()
+        filter_dict = {}
+        for key, value in search_dict.items():
+            if value != '':
+                filter_dict[key] = ''
+        filtered_movements = LowerAccessoryMovement.objects.filter(user_id=request.user.id).filter(~Q(**filter_dict))
+        form = LowerForm()
+        return render(request, 'tracker/lowermovement_search.html', {'form': form, 'objects': filtered_movements })
     return render(request, 'Hello' )
