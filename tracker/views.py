@@ -72,21 +72,23 @@ def signup(request):
 
 def index(request):
     if not request.user.is_authenticated:
-        return redirect('%s?next=%s' % ('/login/', request.path))
-    latest_squat_list = SquatMovement.objects.filter(user_id=request.user.id).order_by('-created_at')[:5]
-    latest_deadlift_list = DeadliftMovement.objects.filter(user_id=request.user.id).order_by('-created_at')[:5]
-    latest_bench_list = BenchMovement.objects.filter(user_id=request.user.id).order_by('-created_at')[:5]
-    latest_loweraccessory_list = LowerAccessoryMovement.objects.filter(user_id=request.user.id).order_by('-created_at')[:5]
-    latest_upperaccessory_list = UpperAccessoryMovement.objects.filter(user_id=request.user.id).order_by('-created_at')[:5]
-    context = {
-        'user_name': request.user.username,
-        'latest_squat_list': latest_squat_list,
-        'latest_deadlift_list': latest_deadlift_list,
-        'latest_bench_list': latest_bench_list,
-        'latest_loweraccessory_list': latest_loweraccessory_list,
-        'latest_upperaccessory_list': latest_upperaccessory_list,
-    }
-    return render(request, 'tracker/index.html', context)
+        #return redirect('%s?next=%s' % ('/login/', request.path))
+        return render(request, 'tracker/landing_page.html')
+    else:
+        latest_squat_list = SquatMovement.objects.filter(user_id=request.user.id).order_by('-created_at')[:5]
+        latest_deadlift_list = DeadliftMovement.objects.filter(user_id=request.user.id).order_by('-created_at')[:5]
+        latest_bench_list = BenchMovement.objects.filter(user_id=request.user.id).order_by('-created_at')[:5]
+        latest_loweraccessory_list = LowerAccessoryMovement.objects.filter(user_id=request.user.id).order_by('-created_at')[:5]
+        latest_upperaccessory_list = UpperAccessoryMovement.objects.filter(user_id=request.user.id).order_by('-created_at')[:5]
+        context = {
+            'user_name': request.user.username,
+            'latest_squat_list': latest_squat_list,
+            'latest_deadlift_list': latest_deadlift_list,
+            'latest_bench_list': latest_bench_list,
+            'latest_loweraccessory_list': latest_loweraccessory_list,
+            'latest_upperaccessory_list': latest_upperaccessory_list,
+        }
+        return render(request, 'tracker/index.html', context)
 
 def new_squat(request):
     if request.method == 'POST':
