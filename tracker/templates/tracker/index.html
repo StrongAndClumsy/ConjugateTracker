@@ -63,6 +63,7 @@
           {% endif %}
 
           <p><a class="btn btn-primary" href="{% url 'tracker:lower_new' %}" role="button">Add New  &raquo;</a></p>
+          <a class="btn btn-info" href="{% url 'tracker:lower_search' %}" role="button">Search Lower Accessory &raquo;</a></p>
 
           <h3><b>Upper Accessory Movements</b></h3>
           {% if latest_upperaccessory_list %}
@@ -76,6 +77,7 @@
           {% endif %}
 
           <p><a class="btn btn-primary" href="{% url 'tracker:upper_new' %}" role="button">Add New</a></p>
+          <a class="btn btn-info" href="{% url 'tracker:upper_search' %}" role="button">Search Upper Accessory&raquo;</a></p>
         </div>
       </div>
 
