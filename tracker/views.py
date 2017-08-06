@@ -307,7 +307,7 @@ def squat_search(request):
         search_dict = request.GET.dict()
         filter_dict = {}
         for key, value in search_dict.items():
-            if value != '':
+            if value != ''and value != "None":
                 filter_dict[key] = value
         print(filter_dict)
         filtered_movements = SquatMovement.objects.filter(user_id=request.user.id).filter(**filter_dict)
@@ -321,7 +321,7 @@ def bench_search(request):
         search_dict = request.GET.dict()
         filter_dict = {}
         for key, value in search_dict.items():
-            if value != '':
+            if value != ''and value != "None":
                 filter_dict[key] = value
         print(filter_dict)
         filtered_movements = BenchMovement.objects.filter(user_id=request.user.id).filter(**filter_dict)
@@ -334,7 +334,7 @@ def deadlift_search(request):
         search_dict = request.GET.dict()
         filter_dict = {}
         for key, value in search_dict.items():
-            if value != '':
+            if value != '' and value != "None":
                 filter_dict[key] = value
         filtered_movements = DeadliftMovement.objects.filter(user_id=request.user.id).filter(**filter_dict)
         form = DeadliftSearchForm()
@@ -346,7 +346,7 @@ def upper_search(request):
         search_dict = request.GET.dict()
         filter_dict = {}
         for key, value in search_dict.items():
-            if value != '':
+            if value != ''and value != "None":
                 filter_dict[key] = ''
         filtered_movements = UpperAccessoryMovement.objects.filter(user_id=request.user.id).filter(~Q(**filter_dict))
         print(filtered_movements)
@@ -359,7 +359,7 @@ def lower_search(request):
         search_dict = request.GET.dict()
         filter_dict = {}
         for key, value in search_dict.items():
-            if value != '':
+            if value != ''and value != "None":
                 filter_dict[key] = ''
         filtered_movements = LowerAccessoryMovement.objects.filter(user_id=request.user.id).filter(~Q(**filter_dict))
         form = LowerForm()
