@@ -190,7 +190,8 @@ def new_lower(request):
                 front_squat=form.cleaned_data['front_squat'],
                 back_extension=form.cleaned_data['back_extension'],
                 ab_movement=form.cleaned_data['ab_movement'],
-                notes = form.cleaned_data['notes'],
+                other=form.cleaned_data['other'],
+                notes=form.cleaned_data['notes'],
                 media_url=form.cleaned_data['media_url']
             )
             new_lower_data.save()

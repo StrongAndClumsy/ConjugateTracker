@@ -73,6 +73,10 @@
 <p><h4><b>Back Extension: </b>{{ object.back_extension }} </h4></p>
 {% endif %}
 
+{% if object.other != '' %}
+<p><h4><b>Other: </b>{{ object.other }} </h4></p>
+{% endif %}
+
 <p><h4><b>Media URL: </b><a href="{{ object.media_url}}">{{object.media_url}}</a></h4></p>
 <p><h4><b>Notes: </b>{{ object.notes}}</h4></p>
 
