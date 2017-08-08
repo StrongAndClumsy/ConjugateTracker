@@ -125,7 +125,7 @@ class UpperForm(forms.ModelForm):
 		'reverse_pec_dec','t_bar_rows','chest_supported_rows','low_rows',
 		'pullups','inverted_row','face_pulls','db_rows','db_press','pullaparts',
 		'tri_extensions','skull_crushers','jam_press','olt_press','db_rollbacks',
-		'dead_press','ab_movement','notes', 'media_url']
+		'dead_press','ab_movement', 'other', 'notes', 'media_url']
 	top_set = forms.CharField(required=False,max_length=60)
 	close_grippness = forms.CharField(label="Close Grip",required=False,max_length=60)
 	tate_press = forms.CharField(required=False,max_length=60)
@@ -153,6 +153,7 @@ class UpperForm(forms.ModelForm):
 	db_rollbacks = forms.CharField(label="DB Rollbacks",required=False,max_length=60)
 	dead_press = forms.CharField(required=False,max_length=60)
 	ab_movement = forms.CharField(required=False,max_length=60)
+	other = forms.CharField(required=False,max_length=60)
 	notes = forms.CharField(required=False,max_length=300,widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Upper Accessory Notes Here'}))
 	media_url = forms.URLField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Media URL Here'}),required=False)
 

@@ -233,7 +233,8 @@ def new_upper(request):
                 db_rollbacks=form.cleaned_data['db_rollbacks'],
                 dead_press=form.cleaned_data['dead_press'],
                 ab_movement=form.cleaned_data['ab_movement'],
-                notes = form.cleaned_data['notes'],
+                other=form.cleaned_data['other'],
+                notes=form.cleaned_data['notes'],
                 media_url=form.cleaned_data['media_url']
                 )
             new_upper_data.save()
