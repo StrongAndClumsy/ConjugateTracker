@@ -74,14 +74,14 @@ ul {
   height: 100vh;
   float: left;
   background-color: rgba(0, 0, 0, .5);
+  position: relative;
 }
 
 #splash_text {
-  padding-top: 45vh;
   width: 80%;
-  padding-left: 10%;
-  padding-right: 10%;
-
+  position: absolute;
+  left: 80px;
+  bottom: 80px;
 }
 
 #splash_text > h1 {
@@ -101,30 +101,38 @@ ul {
   width: 60%;
 }
 
-#landing_page_button {
-  width: 50%;
-  padding-left: 10%;
-  padding-top: 50px;
+.landing_page_button {
+  width: 200px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 
 }
 
-.column_container {
+.row {
   width: 100%;
-  height: 500px;
+  height: auto;
   float: left;
 }
 
-.column_left {
-
+.content_container {
+  width: 960px;
+  height: auto;
+  margin: auto;
 }
 
-.column_middle {
-
+.landing_page_icon {
+  width: 100%;
+  height: 150px;
 }
 
-.column_right {
-  
+.one_third_column {
+  width: 33.33%;
+  padding: 2.5%;
+  float: left;
+  text-align: center;
 }
+
+
 
 /* Custom page footer */
 .footer {
