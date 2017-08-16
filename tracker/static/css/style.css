@@ -2,6 +2,16 @@
 
 ul {
   list-style-type: none;
+  padding: 0;
+}
+
+.bordered_list {
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  padding: 5px;
+
 }
 
 .hamburger_icon {
@@ -74,14 +84,14 @@ ul {
   height: 100vh;
   float: left;
   background-color: rgba(0, 0, 0, .5);
+  position: relative;
 }
 
 #splash_text {
-  padding-top: 45vh;
   width: 80%;
-  padding-left: 10%;
-  padding-right: 10%;
-
+  position: absolute;
+  left: 80px;
+  bottom: 80px;
 }
 
 #splash_text > h1 {
@@ -101,11 +111,42 @@ ul {
   width: 60%;
 }
 
-#landing_page_button {
-  width: 50%;
-  padding-left: 10%;
-  padding-top: 50px;
+.landing_page_button {
+  width: 200px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
 }
+
+.landing_page_row {
+  width: 100%;
+  height: auto;
+  float: left;
+  margin-bottom: 100px;
+  margin-top: 100px;
+
+}
+
+.content_container {
+  width: 960px;
+  height: auto;
+  margin: auto;
+}
+
+.landing_page_icon {
+  height: 150px;
+  background-size: contain;
+  background-position: center;
+}
+
+.one_third_column {
+  width: 33.33%;
+  padding: 2.5%;
+  float: left;
+  text-align: center;
+}
+
+
 
 /* Custom page footer */
 .footer {
@@ -119,7 +160,8 @@ ul {
   .container {
     max-width: 730px;
   }
-}
+
+  }
 .container-narrow > hr {
   margin: 30px 0;
 }
@@ -158,6 +200,42 @@ ul {
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {
     border-bottom: 0;
+  }
+}
+
+@media screen and (max-width:768px) {
+
+
+    #splash_text {
+      width: 80%;
+      position: absolute;
+      left: 40px;
+      bottom: 40px;
+    }
+
+    #splash_text > h1 {
+      font-size: 50px;
+    }
+
+    #splash_text > h3 {
+      font-size: 25px;
+
+    }
+
+    #splash_text > h4 {
+      font-size: 20px;
+      width: 60%;
+    }
+
+    .one_third_column {
+      width: 100%;
+      padding: 5%;
+      float: left;
+      text-align: center;
+    }
+
+    .content_container {
+      width: 100%;
   }
 }
 

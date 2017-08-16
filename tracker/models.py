@@ -84,6 +84,7 @@ class UpperAccessoryMovement(models.Model):
 	db_rollbacks = models.CharField(max_length=60,blank=True)
 	dead_press = models.CharField(max_length=60,blank=True)
 	ab_movement = models.CharField(max_length=60,blank=True)
+	other = models.CharField(max_length=60,blank=True)
 	notes = models.CharField(max_length=300, blank=True)
 	media_url = models.URLField(blank=True)
 
@@ -108,5 +109,6 @@ class LowerAccessoryMovement(models.Model):
 	front_squat = models.CharField(max_length=60,blank=True)
 	back_extension = models.CharField(max_length=60,blank=True)
 	ab_movement = models.CharField(max_length=60,blank=True)
+	other = models.CharField(max_length=60,blank=True)
 	notes = models.CharField(max_length=300, blank=True)
 	media_url = models.URLField(blank=True)

@@ -125,7 +125,7 @@ class UpperForm(forms.ModelForm):
 		'reverse_pec_dec','t_bar_rows','chest_supported_rows','low_rows',
 		'pullups','inverted_row','face_pulls','db_rows','db_press','pullaparts',
 		'tri_extensions','skull_crushers','jam_press','olt_press','db_rollbacks',
-		'dead_press','ab_movement','notes', 'media_url']
+		'dead_press','ab_movement', 'other', 'notes', 'media_url']
 	top_set = forms.CharField(required=False,max_length=60)
 	close_grippness = forms.CharField(label="Close Grip",required=False,max_length=60)
 	tate_press = forms.CharField(required=False,max_length=60)
@@ -153,6 +153,7 @@ class UpperForm(forms.ModelForm):
 	db_rollbacks = forms.CharField(label="DB Rollbacks",required=False,max_length=60)
 	dead_press = forms.CharField(required=False,max_length=60)
 	ab_movement = forms.CharField(required=False,max_length=60)
+	other = forms.CharField(required=False,max_length=60)
 	notes = forms.CharField(required=False,max_length=300,widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Upper Accessory Notes Here'}))
 	media_url = forms.URLField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Media URL Here'}),required=False)
 
@@ -163,7 +164,7 @@ class LowerForm(forms.ModelForm):
 		fields = ['top_set','chair_dl','ghr','lunge','dimel_dl',
 		'reverse_hyper','hip_bridge','good_morning', 'step_up',
 		'belt_squat','hack_squat','leg_press','leg_curl','stiff_leg_dl',
-		'inverse_curl','front_squat','back_extension','ab_movement','notes', 'media_url']
+		'inverse_curl','front_squat','back_extension','ab_movement','notes', 'other', 'media_url']
 	top_set = forms.CharField(required=False,max_length=60)
 	chair_dl = forms.CharField(label="Chair Deadlift",required=False,max_length=60)
 	ghr = forms.CharField(label="GHR",required=False,max_length=60)
@@ -182,5 +183,6 @@ class LowerForm(forms.ModelForm):
 	front_squat = forms.CharField(required=False,max_length=60)
 	back_extension = forms.CharField(required=False,max_length=60)
 	ab_movement = forms.CharField(required=False,max_length=60)
+	other = forms.CharField(required=False,max_length=60)
 	notes = forms.CharField(required=False,max_length=300,widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Lower Accessory Notes Here'}))
 	media_url = forms.URLField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Media URL Here'}),required=False)

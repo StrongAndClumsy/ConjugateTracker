@@ -190,7 +190,8 @@ def new_lower(request):
                 front_squat=form.cleaned_data['front_squat'],
                 back_extension=form.cleaned_data['back_extension'],
                 ab_movement=form.cleaned_data['ab_movement'],
-                notes = form.cleaned_data['notes'],
+                other=form.cleaned_data['other'],
+                notes=form.cleaned_data['notes'],
                 media_url=form.cleaned_data['media_url']
             )
             new_lower_data.save()
@@ -232,7 +233,8 @@ def new_upper(request):
                 db_rollbacks=form.cleaned_data['db_rollbacks'],
                 dead_press=form.cleaned_data['dead_press'],
                 ab_movement=form.cleaned_data['ab_movement'],
-                notes = form.cleaned_data['notes'],
+                other=form.cleaned_data['other'],
+                notes=form.cleaned_data['notes'],
                 media_url=form.cleaned_data['media_url']
                 )
             new_upper_data.save()
@@ -309,11 +311,15 @@ def squat_search(request):
         for key, value in search_dict.items():
             if value != ''and value != "None":
                 filter_dict[key] = value
-        print(filter_dict)
-        filtered_movements = SquatMovement.objects.filter(user_id=request.user.id).filter(**filter_dict)
-        print(filtered_movements)
-        form = SquatSearchForm()
-        return render(request, 'tracker/squatmovement_search.html', {'form': form, 'objects': filtered_movements })
+        if len(filter_dict) > 0:
+            print(filter_dict)
+            filtered_movements = SquatMovement.objects.filter(user_id=request.user.id).filter(**filter_dict)
+            print(filtered_movements)
+            form = SquatSearchForm()
+            return render(request, 'tracker/squatmovement_search.html', {'form': form, 'objects': filtered_movements })
+        else:
+            form = SquatSearchForm()
+            return render(request, 'tracker/squatmovement_search.html', {'form': form })
     return render(request, 'Hello' )
 
 def bench_search(request):
@@ -323,10 +329,14 @@ def bench_search(request):
         for key, value in search_dict.items():
             if value != ''and value != "None":
                 filter_dict[key] = value
-        print(filter_dict)
-        filtered_movements = BenchMovement.objects.filter(user_id=request.user.id).filter(**filter_dict)
-        form = BenchSearchForm()
-        return render(request, 'tracker/benchmovement_search.html', {'form': form, 'objects': filtered_movements })
+        if len(filter_dict) > 0:
+            print(filter_dict)
+            filtered_movements = BenchMovement.objects.filter(user_id=request.user.id).filter(**filter_dict)
+            form = BenchSearchForm()
+            return render(request, 'tracker/benchmovement_search.html', {'form': form, 'objects': filtered_movements })
+        else:
+            form = BenchSearchForm()
+            return render(request, 'tracker/benchmovement_search.html', {'form': form })
     return render(request, 'Hello' )
 
 def deadlift_search(request):
@@ -336,9 +346,13 @@ def deadlift_search(request):
         for key, value in search_dict.items():
             if value != '' and value != "None":
                 filter_dict[key] = value
-        filtered_movements = DeadliftMovement.objects.filter(user_id=request.user.id).filter(**filter_dict)
-        form = DeadliftSearchForm()
-        return render(request, 'tracker/deadliftmovement_search.html', {'form': form, 'objects': filtered_movements })
+        if len(filter_dict) > 0:
+            filtered_movements = DeadliftMovement.objects.filter(user_id=request.user.id).filter(**filter_dict)
+            form = DeadliftSearchForm()
+            return render(request, 'tracker/deadliftmovement_search.html', {'form': form, 'objects': filtered_movements })
+        else:
+            form = DeadliftSearchForm()
+            return render(request, 'tracker/deadliftmovement_search.html', {'form': form })
     return render(request, 'Hello' )
 
 def upper_search(request):
@@ -348,11 +362,15 @@ def upper_search(request):
         for key, value in search_dict.items():
             if value != ''and value != "None":
                 filter_dict[key] = ''
-        filtered_movements = UpperAccessoryMovement.objects.filter(user_id=request.user.id).filter(~Q(**filter_dict))
-        print(filtered_movements)
-        form = UpperForm()
-        return render(request, 'tracker/uppermovement_search.html', {'form': form, 'objects': filtered_movements })
-    return render(request, 'Hello' )
+        if len(filter_dict) > 0:
+            filtered_movements = UpperAccessoryMovement.objects.filter(user_id=request.user.id).filter(~Q(**filter_dict))
+            print(filtered_movements)
+            form = UpperForm()
+            return render(request, 'tracker/uppermovement_search.html', {'form': form, 'objects': filtered_movements })
+        else:
+            form = UpperForm()
+            return render(request, 'tracker/uppermovement_search.html', {'form': form })
+    return render(request, 'Hello')
 
 def lower_search(request):
     if request.method == "GET":
@@ -361,7 +379,11 @@ def lower_search(request):
         for key, value in search_dict.items():
             if value != ''and value != "None":
                 filter_dict[key] = ''
-        filtered_movements = LowerAccessoryMovement.objects.filter(user_id=request.user.id).filter(~Q(**filter_dict))
-        form = LowerForm()
-        return render(request, 'tracker/lowermovement_search.html', {'form': form, 'objects': filtered_movements })
+        if len(filter_dict) > 0:
+            filtered_movements = LowerAccessoryMovement.objects.filter(user_id=request.user.id).filter(~Q(**filter_dict))
+            form = LowerForm()
+            return render(request, 'tracker/lowermovement_search.html', {'form': form, 'objects': filtered_movements })
+        else:
+            form = LowerForm()
+            return render(request, 'tracker/lowermovement_search.html', {'form': form })
     return render(request, 'Hello' )
