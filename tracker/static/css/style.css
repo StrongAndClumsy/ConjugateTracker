@@ -2,6 +2,16 @@
 
 ul {
   list-style-type: none;
+  padding: 0;
+}
+
+.bordered_list {
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  padding: 5px;
+
 }
 
 .hamburger_icon {
@@ -196,36 +206,37 @@ ul {
 @media screen and (max-width:768px) {
 
 
-  #splash_text {
-    width: 80%;
-    position: absolute;
-    left: 40px;
-    bottom: 40px;
+    #splash_text {
+      width: 80%;
+      position: absolute;
+      left: 40px;
+      bottom: 40px;
+    }
+
+    #splash_text > h1 {
+      font-size: 50px;
+    }
+
+    #splash_text > h3 {
+      font-size: 25px;
+
+    }
+
+    #splash_text > h4 {
+      font-size: 20px;
+      width: 60%;
+    }
+
+    .one_third_column {
+      width: 100%;
+      padding: 5%;
+      float: left;
+      text-align: center;
+    }
+
+    .content_container {
+      width: 100%;
   }
-
-  #splash_text > h1 {
-    font-size: 50px;
-  }
-
-  #splash_text > h3 {
-    font-size: 25px;
-
-  }
-
-  #splash_text > h4 {
-    font-size: 20px;
-    width: 60%;
-  }
-
-  .one_third_column {
-    width: 100%;
-    padding: 5%;
-    float: left;
-    text-align: center;
-  }
-
-  .content_container {
-    width: 100%;
 }
 
 body {

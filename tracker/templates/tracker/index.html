@@ -9,7 +9,7 @@
           {% if latest_squat_list %}
           <ul>
               {% for squat in latest_squat_list %}
-              <li><a href="{% url 'tracker:squat_detail' squat.id %}">{{ squat.bar_type }} Bar, {{ squat.effort_type }} Effort, {{ squat.created_at}}</a></li>
+              <li class="bordered_list"><a href="{% url 'tracker:squat_detail' squat.id %}">{{ squat.bar_type }} Bar, {{ squat.effort_type }} Effort</a></li>
               {% endfor %}
           </ul>
           {% else %}
@@ -23,7 +23,7 @@
           {% if latest_bench_list %}
           <ul>
               {% for bench in latest_bench_list %}
-              <li><a href="{% url 'tracker:bench_detail' bench.id %}">{{ bench.bar_type }} Bar, {{ bench.effort_type}} Effort, {{ bench.created_at }}</a></li>
+              <li class="bordered_list"><a href="{% url 'tracker:bench_detail' bench.id %}">{{ bench.bar_type }} Bar, {{ bench.effort_type}} Effort</a></li>
               {% endfor %}
           </ul>
           {% else %}
@@ -39,7 +39,7 @@
           {% if latest_deadlift_list %}
           <ul>
               {% for deadlift in latest_deadlift_list %}
-              <li><a href="{% url 'tracker:deadlift_detail' deadlift.id %}">Deadlift, {{ deadlift.effort_type}} Effort, {{ deadlift.sumo_conventional}}, {{ deadlift.created_at }}</a></li>
+              <li class="bordered_list"><a href="{% url 'tracker:deadlift_detail' deadlift.id %}">Deadlift, {{ deadlift.effort_type}} Effort, {{ deadlift.sumo_conventional}}</a></li>
               {% endfor %}
           </ul>
           {% else %}
@@ -54,7 +54,7 @@
           {% if latest_loweraccessory_list %}
           <ul>
               {% for loweraccessory in latest_loweraccessory_list %}
-              <li><a href="{% url 'tracker:lower_detail' loweraccessory.id %}">Lower Accessory Movement on {{ loweraccessory.created_at }}</a></li>
+              <li class="bordered_list"><a href="{% url 'tracker:lower_detail' loweraccessory.id %}">Lower Accessory Movements</a></li>
               {% endfor %}
           </ul>
           {% else %}
@@ -68,7 +68,7 @@
           {% if latest_upperaccessory_list %}
           <ul>
               {% for upperaccessory in latest_upperaccessory_list %}
-              <li><a href="{% url 'tracker:upper_detail' upperaccessory.id %}">Upper Accessory Movement on {{ upperaccessory.created_at }}</a></li>
+              <li class="bordered_list"><a href="{% url 'tracker:upper_detail' upperaccessory.id %}">Upper Accessory Movements</a></li>
               {% endfor %}
           </ul>
           {% else %}
