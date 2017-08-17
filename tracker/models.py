@@ -12,6 +12,7 @@ class SquatMovement(models.Model):
 	bands_type = models.CharField(max_length=60, blank=True)
 	chain_weight = models.IntegerField(default=0, blank=True)
 	movement_weight = models.IntegerField(default=0)
+	movement_sets = models.IntegerField(default=0)
 	movement_reps = models.IntegerField(default=0)
 	media_url = models.URLField(blank=True)
 
@@ -31,6 +32,7 @@ class DeadliftMovement(models.Model):
 	bands_type = models.CharField(max_length=60, blank=True)
 	chain_weight = models.IntegerField(blank=True)
 	movement_weight = models.IntegerField(default=0)
+	movement_sets = models.IntegerField(default=0)
 	movement_reps = models.IntegerField(default=0)
 	deadlift_notes = models.CharField(max_length=60, blank=True)
 	media_url = models.URLField(blank=True)
@@ -50,6 +52,7 @@ class BenchMovement(models.Model):
 	bands_type = models.CharField(max_length=60, blank=True)
 	chain_weight = models.IntegerField(blank=True)
 	movement_weight = models.IntegerField(default=0)
+	movement_sets = models.IntegerField(default=0)
 	movement_reps = models.IntegerField(default=0)
 	media_url = models.URLField(blank=True)
 

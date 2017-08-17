@@ -12,13 +12,14 @@ class SquatForm(forms.ModelForm):
 	class Meta:
 		model = SquatMovement
 		fields = ['box_free','effort_type','bar_type','bands_type','chain_weight',
-		'movement_weight','movement_reps','squat_notes', 'media_url']
+		'movement_weight', 'movement_sets', 'movement_reps','squat_notes', 'media_url']
 	effort_type = forms.ChoiceField(label="Day", widget=forms.RadioSelect(), choices=EFFORT_CHOICES)
 	box_free = forms.ChoiceField(label="Squat Type", widget=forms.RadioSelect, choices=BOXFREE_CHOICES)
 	bar_type = forms.ChoiceField(label="Bar Type", widget=forms.Select, choices=BAR_OPTIONS, required=True)
 	bands_type = forms.ChoiceField(label="Band Type", widget=forms.Select, choices=BAND_TYPE, required=False)
 	chain_weight = forms.IntegerField(required=False, initial=0)
 	movement_weight = forms.IntegerField(label="Bar Weight", required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 150'}))
+	movement_sets = forms.IntegerField(label="Sets", required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 1'}))
 	movement_reps = forms.IntegerField(label="Reps", required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 1'}))
 	squat_notes = forms.CharField(max_length=300,widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Squat Notes Here'}),required=False)
 	media_url = forms.URLField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Media URL Here'}),required=False)
@@ -27,13 +28,14 @@ class SquatSearchForm(forms.ModelForm):
 	class Meta:
 		model = SquatMovement
 		fields = ['box_free','effort_type','bar_type','bands_type','chain_weight',
-		'movement_weight','movement_reps','squat_notes', 'media_url']
+		'movement_weight', 'movement_sets', 'movement_reps','squat_notes', 'media_url']
 	effort_type = forms.ChoiceField(label="Day", widget=forms.RadioSelect(), choices=EFFORT_CHOICES)
 	box_free = forms.ChoiceField(label="Squat Type", widget=forms.RadioSelect, choices=BOXFREE_CHOICES)
 	bar_type = forms.CharField(max_length=60)
 	bands_type = forms.CharField(label="Band Type", required=False, max_length=60)
 	chain_weight = forms.IntegerField(required=False, initial=0)
 	movement_weight = forms.IntegerField(label="Bar Weight", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 150'}))
+	movement_sets = forms.IntegerField(label="Sets", required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 1'}))
 	movement_reps = forms.IntegerField(label="Reps", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 1'}))
 	squat_notes = forms.CharField(max_length=300,widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Squat Notes Here'}),required=False)
 	media_url = forms.URLField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Media URL Here'}),required=False)
@@ -42,7 +44,7 @@ class DeadliftForm(forms.ModelForm):
 	class Meta:
 		model = DeadliftMovement
 		fields = ['effort_type','sumo_conventional','deficit','block','standard','pin', 'reverse','chain_weight', 'bands_type',
-		'movement_weight','movement_reps','deadlift_notes', 'media_url']
+		'movement_weight','movement_sets','movement_reps','deadlift_notes', 'media_url']
 	effort_type = forms.ChoiceField(label="Day", widget=forms.RadioSelect(), choices=EFFORT_CHOICES)
 	sumo_conventional = forms.ChoiceField(label="Deadlift Style",widget=forms.RadioSelect, choices=SUMO_CHOICES)
 	deficit = forms.BooleanField(required=False)
@@ -53,6 +55,7 @@ class DeadliftForm(forms.ModelForm):
 	bands_type = forms.ChoiceField(label="Band Type", widget=forms.Select, choices=BAND_TYPE, required=False)
 	chain_weight = forms.IntegerField(required=False, initial=0)
 	movement_weight = forms.IntegerField(label="Bar Weight", required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 120'}))
+	movement_sets = forms.IntegerField(label="Sets", required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 1'}))
 	movement_reps = forms.IntegerField(label="Reps", required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 1'}))
 	deadlift_notes = forms.CharField(required=False,max_length=300,widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Deadlift Notes Here'}))
 	media_url = forms.URLField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Media URL Here'}),required=False)
@@ -61,7 +64,7 @@ class DeadliftSearchForm(forms.ModelForm):
 	class Meta:
 		model = DeadliftMovement
 		fields = ['effort_type','sumo_conventional','deficit','block','standard','pin','chain_weight', 'bands_type',
-		'reverse','movement_weight','movement_reps','deadlift_notes', 'media_url']
+		'reverse','movement_weight', 'movement_sets','movement_reps','deadlift_notes', 'media_url']
 	effort_type = forms.ChoiceField(label="Day", widget=forms.RadioSelect(), choices=EFFORT_CHOICES)
 	sumo_conventional = forms.ChoiceField(label="Deadlift Style",widget=forms.RadioSelect, choices=SUMO_CHOICES)
 	deficit = forms.BooleanField(required=False)
@@ -72,6 +75,7 @@ class DeadliftSearchForm(forms.ModelForm):
 	bands_type = forms.ChoiceField(label="Band Type", widget=forms.Select, choices=BAND_TYPE, required=False)
 	chain_weight = forms.IntegerField(required=False, initial=0)
 	movement_weight = forms.IntegerField(label="Bar Weight", required=False, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 120'}))
+	movement_sets = forms.IntegerField(label="Sets", required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 1'}))
 	movement_reps = forms.IntegerField(label="Reps", required=False, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 1'}))
 	deadlift_notes = forms.CharField(required=False,max_length=300,widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Deadlift Notes Here'}))
 	media_url = forms.URLField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Media URL Here'}),required=False)
@@ -80,7 +84,7 @@ class BenchForm(forms.ModelForm):
 	class Meta:
 		model = BenchMovement
 		fields = ['effort_type','bar_type','floor','reverse','standard','board','manpon',
-		'pin','bands_type','chain_weight','movement_weight','movement_reps','bench_notes', 'media_url']
+		'pin','bands_type','chain_weight','movement_weight', 'movement_sets','movement_reps','bench_notes', 'media_url']
 	effort_type = forms.ChoiceField(label="Day", widget=forms.RadioSelect(), choices=EFFORT_CHOICES)
 	bar_type = forms.ChoiceField(label="Bar Type", widget=forms.Select, choices=BENCH_BAR_OPTIONS, required=True)
 	floor = forms.BooleanField(label="Floor Press",required=False)
@@ -92,6 +96,7 @@ class BenchForm(forms.ModelForm):
 	bands_type = forms.ChoiceField(label="Band Type", widget=forms.Select, choices=BAND_TYPE, required=False)
 	chain_weight = forms.IntegerField(required=False, initial=0)
 	movement_weight = forms.IntegerField(label="Bar Weight",required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 150'}))
+	movement_sets = forms.IntegerField(label="Sets", required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 1'}))
 	movement_reps = forms.IntegerField(label="Reps",required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 1'}))
 	bench_notes = forms.CharField(required=False,max_length=300,widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Bench Notes Here'}))
 	media_url = forms.URLField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Media URL Here'}),required=False)
@@ -100,7 +105,7 @@ class BenchSearchForm(forms.ModelForm):
 	class Meta:
 		model = BenchMovement
 		fields = ['effort_type','bar_type','floor','reverse','standard','board','manpon',
-		'pin','bands_type','chain_weight','movement_weight','movement_reps','bench_notes', 'media_url']
+		'pin','bands_type','chain_weight','movement_weight', 'movement_sets','movement_reps','bench_notes', 'media_url']
 	effort_type = forms.ChoiceField(label="Day", widget=forms.RadioSelect(), choices=EFFORT_CHOICES)
 	bar_type = forms.ChoiceField(label="Bar Type", widget=forms.Select, choices=BENCH_BAR_OPTIONS, required=False)
 	floor = forms.BooleanField(label="Floor Press",required=False)
@@ -112,6 +117,7 @@ class BenchSearchForm(forms.ModelForm):
 	bands_type = forms.ChoiceField(label="Band Type", widget=forms.Select, choices=BAND_TYPE, required=False)
 	chain_weight = forms.IntegerField(required=False, initial=0)
 	movement_weight = forms.IntegerField(label="Bar Weight",required=False, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 150'}))
+	movement_sets = forms.IntegerField(label="Sets", required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 1'}))
 	movement_reps = forms.IntegerField(label="Reps",required=False, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 1'}))
 	bench_notes = forms.CharField(required=False,max_length=300,widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Bench Notes Here'}))
 	media_url = forms.URLField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add Media URL Here'}),required=False)
