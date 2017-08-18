@@ -10,6 +10,7 @@ from django.views.generic.detail import DetailView
 from django.db.models import Q
 from .models import SquatMovement, DeadliftMovement, BenchMovement, LowerAccessoryMovement, UpperAccessoryMovement
 from .forms import SquatForm, SquatSearchForm, DeadliftForm, DeadliftSearchForm, BenchForm, BenchSearchForm, LowerForm, UpperForm
+import pygal
 
 class SquatDetailView(DetailView):
     model = SquatMovement
@@ -100,11 +101,12 @@ def new_squat(request):
             bands_type = form.cleaned_data['bands_type']
             chain_weight = form.cleaned_data['chain_weight']
             movement_weight = form.cleaned_data['movement_weight']
+            movement_sets = form.cleaned_data['movement_sets']
             movement_reps = form.cleaned_data['movement_reps']
             squat_notes = form.cleaned_data['squat_notes']
             media_url = form.cleaned_data['media_url']
             new_squat_data = SquatMovement( user = request.user, effort_type = effort, box_free = box_free, bar_type = bar_type, bands_type = bands_type,
-                chain_weight = chain_weight, movement_weight = movement_weight,movement_reps = movement_reps, squat_notes = squat_notes, media_url = media_url )
+                chain_weight = chain_weight, movement_weight = movement_weight, movement_sets = movement_sets, movement_reps = movement_reps, squat_notes = squat_notes, media_url = media_url )
             new_squat_data.save()
             return HttpResponseRedirect('/')
     else:
@@ -127,6 +129,7 @@ def new_deadlift(request):
                 bands_type=form.cleaned_data['bands_type'],
                 chain_weight=form.cleaned_data['chain_weight'],
                 movement_weight=form.cleaned_data['movement_weight'],
+                movement_sets=form.cleaned_data['movement_sets'],
                 movement_reps=form.cleaned_data['movement_reps'],
                 deadlift_notes=form.cleaned_data['deadlift_notes'],
                 media_url=form.cleaned_data['media_url']
@@ -156,6 +159,7 @@ def new_bench(request):
                 bands_type=form.cleaned_data['bands_type'],
                 chain_weight=form.cleaned_data['chain_weight'],
                 movement_weight=form.cleaned_data['movement_weight'],
+                movement_sets=form.cleaned_data['movement_sets'],
                 movement_reps=form.cleaned_data['movement_reps'],
                 media_url=form.cleaned_data['media_url']
                 )
@@ -387,3 +391,25 @@ def lower_search(request):
             form = LowerForm()
             return render(request, 'tracker/lowermovement_search.html', {'form': form })
     return render(request, 'Hello' )
+
+
+def analysis(request):
+    filter_dict = {"effort_type": "Dynamic"}
+    filtered_deadlifts = DeadliftMovement.objects.filter(user_id=request.user.id).filter(**filter_dict)
+    filtered_bench = BenchMovement.objects.filter(user_id=request.user.id).filter(**filter_dict)
+    max_deadlift = []
+    max_bench = []
+    for workout in filtered_deadlifts:
+        max_deadlift.append(workout.movement_weight)
+    for workout in filtered_bench:
+        max_bench.append(workout.movement_weight)
+    while len(max_bench) < len(max_deadlift):
+        max_bench.append(None)
+    line_chart = pygal.Line()
+    line_chart.title = 'Lift Progression'
+    line_chart.x_labels = map(str, range(1, len(max_bench)))
+    line_chart.add('Dynamic Deadlifts', max_deadlift)
+    line_chart.add('Dynamic Bench', max_bench)
+    line_chart.render_to_file('tracker/static/tmp/chart.svg')
+
+    return render(request, 'tracker/analysis.html', {})
