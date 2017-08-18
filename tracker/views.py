@@ -10,6 +10,7 @@ from django.views.generic.detail import DetailView
 from django.db.models import Q
 from .models import SquatMovement, DeadliftMovement, BenchMovement, LowerAccessoryMovement, UpperAccessoryMovement
 from .forms import SquatForm, SquatSearchForm, DeadliftForm, DeadliftSearchForm, BenchForm, BenchSearchForm, LowerForm, UpperForm
+import pygal
 
 class SquatDetailView(DetailView):
     model = SquatMovement
@@ -390,3 +391,25 @@ def lower_search(request):
             form = LowerForm()
             return render(request, 'tracker/lowermovement_search.html', {'form': form })
     return render(request, 'Hello' )
+
+
+def analysis(request):
+    filter_dict = {"effort_type": "Dynamic"}
+    filtered_deadlifts = DeadliftMovement.objects.filter(user_id=request.user.id).filter(**filter_dict)
+    filtered_bench = BenchMovement.objects.filter(user_id=request.user.id).filter(**filter_dict)
+    max_deadlift = []
+    max_bench = []
+    for workout in filtered_deadlifts:
+        max_deadlift.append(workout.movement_weight)
+    for workout in filtered_bench:
+        max_bench.append(workout.movement_weight)
+    while len(max_bench) < len(max_deadlift):
+        max_bench.append(None)
+    line_chart = pygal.Line()
+    line_chart.title = 'Lift Progression'
+    line_chart.x_labels = map(str, range(1, len(max_bench)))
+    line_chart.add('Dynamic Deadlifts', max_deadlift)
+    line_chart.add('Dynamic Bench', max_bench)
+    line_chart.render_to_file('tracker/static/tmp/chart.svg')
+
+    return render(request, 'tracker/analysis.html', {})
