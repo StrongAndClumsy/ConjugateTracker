@@ -4,7 +4,7 @@ from django.utils import timezone
 # Create your models here.
 class SquatMovement(models.Model):
 	user = models.ForeignKey('auth.User')
-	created_at = models.DateTimeField(default=timezone.now)
+	created_at = models.DateTimeField(default=timezone.now, blank=True)
 	effort_type = models.CharField(max_length=60)
 	squat_notes = models.CharField(max_length=300,blank=True)
 	box_free = models.CharField(max_length=60)
@@ -21,7 +21,7 @@ class SquatMovement(models.Model):
 
 class DeadliftMovement(models.Model):
 	user = models.ForeignKey('auth.User')
-	created_at = models.DateTimeField(default=timezone.now)
+	created_at = models.DateTimeField(default=timezone.now, blank=True)
 	effort_type = models.CharField(max_length=60)
 	sumo_conventional = models.CharField(max_length=60)
 	deficit = models.BooleanField()
@@ -39,7 +39,7 @@ class DeadliftMovement(models.Model):
 
 class BenchMovement(models.Model):
 	user = models.ForeignKey('auth.User')
-	created_at = models.DateTimeField(default=timezone.now)
+	created_at = models.DateTimeField(default=timezone.now, blank=True)
 	effort_type = models.CharField(max_length=60)
 	bar_type = models.CharField(max_length=60, blank=True)
 	floor = models.BooleanField()
@@ -59,7 +59,7 @@ class BenchMovement(models.Model):
 
 class UpperAccessoryMovement(models.Model):
 	user = models.ForeignKey('auth.User')
-	created_at = models.DateTimeField(default=timezone.now)
+	created_at = models.DateTimeField(default=timezone.now, blank=True)
 	top_set = models.CharField(max_length=60,blank=True)
 	close_grippness = models.CharField(max_length=60,blank=True)
 	tate_press = models.CharField(max_length=60,blank=True)
@@ -93,7 +93,7 @@ class UpperAccessoryMovement(models.Model):
 
 class LowerAccessoryMovement(models.Model):
 	user = models.ForeignKey('auth.User')
-	created_at = models.DateTimeField(default=timezone.now)
+	created_at = models.DateTimeField(default=timezone.now, blank=True)
 	top_set = models.CharField(max_length=60,blank=True)
 	chair_dl = models.CharField(max_length=60,blank=True)
 	ghr = models.CharField(max_length=60,blank=True)

@@ -95,6 +95,7 @@ def new_squat(request):
     if request.method == 'POST':
         form = SquatForm(request.POST)
         if form.is_valid():
+            created_at = form.cleaned_data['created_at']
             effort = form.cleaned_data['effort_type']
             box_free = form.cleaned_data['box_free']
             bar_type = form.cleaned_data['bar_type']
@@ -105,7 +106,7 @@ def new_squat(request):
             movement_reps = form.cleaned_data['movement_reps']
             squat_notes = form.cleaned_data['squat_notes']
             media_url = form.cleaned_data['media_url']
-            new_squat_data = SquatMovement( user = request.user, effort_type = effort, box_free = box_free, bar_type = bar_type, bands_type = bands_type,
+            new_squat_data = SquatMovement( user = request.user, created_at = created_at, effort_type = effort, box_free = box_free, bar_type = bar_type, bands_type = bands_type,
                 chain_weight = chain_weight, movement_weight = movement_weight, movement_sets = movement_sets, movement_reps = movement_reps, squat_notes = squat_notes, media_url = media_url )
             new_squat_data.save()
             return HttpResponseRedirect('/')
@@ -119,6 +120,7 @@ def new_deadlift(request):
         if form.is_valid():
             new_deadlift_data = DeadliftMovement(
                 user=request.user,
+                created_at = form.cleaned_data['created_at'],
                 effort_type = form.cleaned_data['effort_type'],
                 sumo_conventional=form.cleaned_data['sumo_conventional'],
                 deficit=form.cleaned_data['deficit'],
@@ -147,6 +149,7 @@ def new_bench(request):
         if form.is_valid():
             new_bench_data = BenchMovement(
                 user=request.user,
+                created_at = form.cleaned_data['created_at'],
                 effort_type=form.cleaned_data['effort_type'],
                 bar_type=form.cleaned_data['bar_type'],
                 floor=form.cleaned_data['floor'],
@@ -176,6 +179,7 @@ def new_lower(request):
         if form.is_valid():
             new_lower_data = LowerAccessoryMovement(
                 user=request.user,
+                created_at = form.cleaned_data['created_at'],
                 top_set=form.cleaned_data['top_set'],
                 chair_dl=form.cleaned_data['chair_dl'],
                 ghr=form.cleaned_data['ghr'],
@@ -210,6 +214,7 @@ def new_upper(request):
         if form.is_valid():
             new_upper_data = UpperAccessoryMovement(
                 user=request.user,
+                created_at = form.cleaned_data['created_at'],
                 top_set=form.cleaned_data['top_set'],
                 close_grippness=form.cleaned_data['close_grippness'],
                 tate_press=form.cleaned_data['tate_press'],

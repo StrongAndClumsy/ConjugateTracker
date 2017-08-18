@@ -1,5 +1,7 @@
 from django import forms
 from .models import SquatMovement, DeadliftMovement, BenchMovement, LowerAccessoryMovement, UpperAccessoryMovement
+from django.utils import timezone
+
 
 EFFORT_CHOICES = (('Dynamic', 'Dynamic Effort'), ('Max', 'Max Effort'))
 BOXFREE_CHOICES = (('Free', 'Free'), ('Box', 'Box'))
@@ -11,8 +13,9 @@ BAND_TYPE = (('None', 'None'), ('Micro Mini', 'Micro Mini'), ('Mini', 'Mini'), (
 class SquatForm(forms.ModelForm):
 	class Meta:
 		model = SquatMovement
-		fields = ['box_free','effort_type','bar_type','bands_type','chain_weight',
+		fields = ['created_at','box_free','effort_type','bar_type','bands_type','chain_weight',
 		'movement_weight', 'movement_sets', 'movement_reps','squat_notes', 'media_url']
+	created_at = forms.DateTimeField(initial=timezone.now)
 	effort_type = forms.ChoiceField(label="Day", widget=forms.RadioSelect(), choices=EFFORT_CHOICES)
 	box_free = forms.ChoiceField(label="Squat Type", widget=forms.RadioSelect, choices=BOXFREE_CHOICES)
 	bar_type = forms.ChoiceField(label="Bar Type", widget=forms.Select, choices=BAR_OPTIONS, required=True)
@@ -43,8 +46,9 @@ class SquatSearchForm(forms.ModelForm):
 class DeadliftForm(forms.ModelForm):
 	class Meta:
 		model = DeadliftMovement
-		fields = ['effort_type','sumo_conventional','deficit','block','standard','pin', 'reverse','chain_weight', 'bands_type',
+		fields = ['created_at','effort_type','sumo_conventional','deficit','block','standard','pin', 'reverse','chain_weight', 'bands_type',
 		'movement_weight','movement_sets','movement_reps','deadlift_notes', 'media_url']
+	created_at = forms.DateTimeField(initial=timezone.now)
 	effort_type = forms.ChoiceField(label="Day", widget=forms.RadioSelect(), choices=EFFORT_CHOICES)
 	sumo_conventional = forms.ChoiceField(label="Deadlift Style",widget=forms.RadioSelect, choices=SUMO_CHOICES)
 	deficit = forms.BooleanField(required=False)
@@ -83,8 +87,9 @@ class DeadliftSearchForm(forms.ModelForm):
 class BenchForm(forms.ModelForm):
 	class Meta:
 		model = BenchMovement
-		fields = ['effort_type','bar_type','floor','reverse','standard','board','manpon',
+		fields = ['created_at','effort_type','bar_type','floor','reverse','standard','board','manpon',
 		'pin','bands_type','chain_weight','movement_weight', 'movement_sets','movement_reps','bench_notes', 'media_url']
+	created_at = forms.DateTimeField(initial=timezone.now)
 	effort_type = forms.ChoiceField(label="Day", widget=forms.RadioSelect(), choices=EFFORT_CHOICES)
 	bar_type = forms.ChoiceField(label="Bar Type", widget=forms.Select, choices=BENCH_BAR_OPTIONS, required=True)
 	floor = forms.BooleanField(label="Floor Press",required=False)
@@ -126,12 +131,13 @@ class BenchSearchForm(forms.ModelForm):
 class UpperForm(forms.ModelForm):
 	class Meta:
 		model = UpperAccessoryMovement
-		fields = ['top_set','close_grippness','tate_press','dips','rev_db_fly',
+		fields = ['created_at','top_set','close_grippness','tate_press','dips','rev_db_fly',
 		'windmills','bamboo_bar','lat_pulldowns','lat_pullovers','pec_dec',
 		'reverse_pec_dec','t_bar_rows','chest_supported_rows','low_rows',
 		'pullups','inverted_row','face_pulls','db_rows','db_press','pullaparts',
 		'tri_extensions','skull_crushers','jam_press','olt_press','db_rollbacks',
 		'dead_press','ab_movement', 'other', 'notes', 'media_url']
+	created_at = forms.DateTimeField(initial=timezone.now)
 	top_set = forms.CharField(required=False,max_length=60)
 	close_grippness = forms.CharField(label="Close Grip",required=False,max_length=60)
 	tate_press = forms.CharField(required=False,max_length=60)
@@ -167,10 +173,11 @@ class UpperForm(forms.ModelForm):
 class LowerForm(forms.ModelForm):
 	class Meta:
 		model = LowerAccessoryMovement
-		fields = ['top_set','chair_dl','ghr','lunge','dimel_dl',
+		fields = ['created_at','top_set','chair_dl','ghr','lunge','dimel_dl',
 		'reverse_hyper','hip_bridge','good_morning', 'step_up',
 		'belt_squat','hack_squat','leg_press','leg_curl','stiff_leg_dl',
 		'inverse_curl','front_squat','back_extension','ab_movement','notes', 'other', 'media_url']
+	created_at = forms.DateTimeField(initial=timezone.now)
 	top_set = forms.CharField(required=False,max_length=60)
 	chair_dl = forms.CharField(label="Chair Deadlift",required=False,max_length=60)
 	ghr = forms.CharField(label="GHR",required=False,max_length=60)
