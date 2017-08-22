@@ -1,6 +1,6 @@
 {% extends 'tracker/base.html' %}
 {% block content %}
-<a class="btn btn-primary" href="{% url 'tracker:bench_edit' pk=object.pk %}">Edit</a>
+<a style="margin-top: 15px" class="btn btn-1" href="{% url 'tracker:bench_edit' pk=object.pk %}">Edit</a>
 
 <h1>{{ object.user.username }}</h1>
 

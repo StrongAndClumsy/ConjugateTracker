@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link href="https://fonts.googleapis.com/css?family=Catamaran|Passion+One" rel="stylesheet">
+  <!-- <link href="{ static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css"> -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<!-- Latest compiled and minified JavaScript -->
   <script
@@ -52,20 +53,20 @@
           <div type="button" class="hamburger_icon collapsed" data-toggle="collapse" data-target="#header-menu">
           </div>
           <ul class="header_menu collapse" id="header-menu">
-            <li type="button" role="presentation" class="active header_item btn btn-default"><a href="/">Home for {{user_name.title}}</a></li>
-            <li type="button" role="presentation" class="active header_item btn btn-default"><a href="{% url 'tracker:squat_new' %}">Add New Squat</a></li>
-            <li type="button" role="presentation" class="active header_item btn btn-default"><a href="{% url 'tracker:bench_new' %}">Add New Bench</a></li>
-            <li type="button" role="presentation" class="active header_item btn btn-default"><a href="{% url 'tracker:deadlift_new' %}">Add New Deadlift</a></li>
-            <li type="button" role="presentation" class="active header_item btn btn-default"><a href="{% url 'tracker:upper_new' %}">Add New Upper Accessory</a></li>
-            <li type="button" role="presentation" class="active header_item btn btn-default"><a href="{% url 'tracker:lower_new' %}">Add New Lower Accessory</a></li>
-            <li type="button" role="presentation" class="active header_item btn btn-default"><a href="{% url 'tracker:squat_search' %}">Search for Squat</a></li>
-            <li type="button" role="presentation" class="active header_item btn btn-default"><a href="{% url 'tracker:bench_search' %}">Search for Bench</a></li>
-            <li type="button" role="presentation" class="active header_item btn btn-default"><a href="{% url 'tracker:deadlift_search' %}">Search for Deadlift</a></li>
-            <li type="button" role="presentation" class="active header_item btn btn-default"><a href="{% url 'tracker:upper_search' %}">Search Upper Accessories</a></li>
-            <li type="button" role="presentation" class="active header_item btn btn-default"><a href="{% url 'tracker:lower_search' %}">Search Lower Accessories</a></li>
-            <li type="button" role="presentation" class="active header_item btn btn-default"><a href="{% url 'tracker:analysis' %}">Analysis</a></li>
-            <li type="button" role="presentation" class="header_item btn btn-default"><a href="mailto:admin@conjugatetracker.com">Email Admin</a></li>
-            <li type="button" role="presentation" class="header_item btn btn-default"><a href="/logout">Sign Out</a></li>
+            <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="/">Home for {{user_name.title}}</a></li>
+            <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:squat_new' %}">Add New Squat</a></li>
+            <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:bench_new' %}">Add New Bench</a></li>
+            <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:deadlift_new' %}">Add New Deadlift</a></li>
+            <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:upper_new' %}">Add New Upper Accessory</a></li>
+            <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:lower_new' %}">Add New Lower Accessory</a></li>
+            <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:squat_search' %}">Search for Squat</a></li>
+            <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:bench_search' %}">Search for Bench</a></li>
+            <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:deadlift_search' %}">Search for Deadlift</a></li>
+            <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:upper_search' %}">Search Upper Accessories</a></li>
+            <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:lower_search' %}">Search Lower Accessories</a></li>
+            <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:analysis' %}">Analysis</a></li>
+            <li type="button" role="presentation" class="header_item bordered_list"><a class="default_link" href="mailto:admin@conjugatetracker.com">Email Admin</a></li>
+            <li type="button" role="presentation" class="header_item bordered_list"><a class="default_link" href="/logout">Sign Out</a></li>
           </ul>
         </nav>
       </div>
