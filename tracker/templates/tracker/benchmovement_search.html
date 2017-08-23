@@ -32,7 +32,7 @@
 <p><label for="id_movement_reps">Reps:</label> <input class="form-control" id="id_movement_reps" name="movement_reps" placeholder="Example: 1" type="number" /></p>
 <p><label for="id_bench_notes">Bench notes:</label> <input class="form-control" id="id_bench_notes" maxlength="300" name="bench_notes" placeholder="Add Bench Notes Here" type="text" /></p>
 <p><label for="id_media_url">Media url:</label> <input class="form-control" id="id_media_url" name="media_url" placeholder="Add Media URL Here" type="text" /></p>
-    <input type="submit" value="Search" class="btn btn-primary" />
+    <input type="submit" value="Search" class="btn btn-1" />
 </form>
 
 {% if not objects %}
@@ -43,7 +43,7 @@
 
 {% for object in objects %}
 <h3>
-    - <a href="{% url 'tracker:bench_detail' object.id %}">{{ object.bar_type }} Bar Bench on {{ object.created_at }}, ({{object.effort_type}} Effort, Weight:{{object.movement_weight}})</a>
+    - <a class="default_link "href="{% url 'tracker:bench_detail' object.id %}">{{ object.bar_type }} Bar Bench on {{ object.created_at }}, ({{object.effort_type}} Effort, Weight:{{object.movement_weight}})</a>
 </h3>
 {% endfor %}
 

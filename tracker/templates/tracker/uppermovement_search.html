@@ -37,7 +37,7 @@
 
 <form action="{% url 'tracker:upper_search' %}" method="get">
     {{ form.as_p }}
-    <input type="submit" value="Search" class="btn btn-primary"/>
+    <input type="submit" value="Search" class="btn btn-1"/>
 </form>
 
 <script type="text/javascript">
@@ -74,7 +74,7 @@ function ToggleEntry() {
 
 {% for object in objects %}
 <h3>
-    - <a href="{% url 'tracker:upper_detail' object.id %}">{{ object.created_at }}: Upper Accessory </a>
+    - <a class="default_link" href="{% url 'tracker:upper_detail' object.id %}">{{ object.created_at }}: Upper Accessory </a>
 </h3>
 {% endfor %}
 

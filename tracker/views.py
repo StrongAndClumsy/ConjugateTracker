@@ -369,7 +369,7 @@ def upper_search(request):
         search_dict = request.GET.dict()
         filter_dict = {}
         for key, value in search_dict.items():
-            if value != ''and value != "None":
+            if value != ''and value != "None" and key != "created_at":
                 filter_dict[key] = ''
         if len(filter_dict) > 0:
             filtered_movements = UpperAccessoryMovement.objects.filter(user_id=request.user.id).filter(~Q(**filter_dict))
@@ -386,7 +386,7 @@ def lower_search(request):
         search_dict = request.GET.dict()
         filter_dict = {}
         for key, value in search_dict.items():
-            if value != ''and value != "None":
+            if value != ''and value != "None" and key != "created_at":
                 filter_dict[key] = ''
         if len(filter_dict) > 0:
             filtered_movements = LowerAccessoryMovement.objects.filter(user_id=request.user.id).filter(~Q(**filter_dict))

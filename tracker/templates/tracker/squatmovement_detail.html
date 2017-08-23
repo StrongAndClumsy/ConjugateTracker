@@ -1,8 +1,8 @@
 {% extends 'tracker/base.html' %}
 {% block content %}
-<a class="btn btn-primary" href="{% url 'tracker:squat_edit' pk=object.pk %}">Edit</a>
+<a style="margin-top: 15px" class="btn btn-1" href="{% url 'tracker:squat_edit' pk=object.pk %}">Edit</a>
 
-SEARCH
+
 <h1>{{ object.user.username }}</h1>
 <p><h4><b>Created: </b> {{ object.created_at }}</h4></p>
 <p><h4><b>Effort Type: </b> {{ object.effort_type }}</h4></p>
