@@ -11,6 +11,7 @@ from django.db.models import Q
 from .models import SquatMovement, DeadliftMovement, BenchMovement, LowerAccessoryMovement, UpperAccessoryMovement
 from .forms import SquatForm, SquatSearchForm, DeadliftForm, DeadliftSearchForm, BenchForm, BenchSearchForm, LowerForm, UpperForm
 import pygal
+from pygal.style import NeonStyle
 
 class SquatDetailView(DetailView):
     model = SquatMovement
@@ -399,22 +400,78 @@ def lower_search(request):
 
 
 def analysis(request):
-    filter_dict = {"effort_type": "Dynamic"}
-    filtered_deadlifts = DeadliftMovement.objects.filter(user_id=request.user.id).filter(**filter_dict)
-    filtered_bench = BenchMovement.objects.filter(user_id=request.user.id).filter(**filter_dict)
-    max_deadlift = []
-    max_bench = []
-    for workout in filtered_deadlifts:
-        max_deadlift.append(workout.movement_weight)
-    for workout in filtered_bench:
-        max_bench.append(workout.movement_weight)
-    while len(max_bench) < len(max_deadlift):
-        max_bench.append(None)
-    line_chart = pygal.Line()
-    line_chart.title = 'Lift Progression'
-    line_chart.x_labels = map(str, range(1, len(max_bench)))
-    line_chart.add('Dynamic Deadlifts', max_deadlift)
-    line_chart.add('Dynamic Bench', max_bench)
-    line_chart.render_to_file('tracker/static/tmp/chart.svg')
+    if request.method == "GET":
+        search_dict = request.GET.dict()
+        filter_dict = {}
+        for key, value in search_dict.items():
+            #Bench
+            if key == "movement1" and value == "bench1":
+                for key, value in search_dict.items():
+                    if value != '' and value != "None" and key != "movement1":
+                        filter_dict[key] = value
+                if len(filter_dict) > 0:
+                    print(filter_dict)
+                    filtered_movements = BenchMovement.objects.filter(user_id=request.user.id).filter(**filter_dict)
+                    max_weight = []
+                    for workout in filtered_movements:
+                        max_weight.append(workout.movement_weight)
+                    line_chart = pygal.Line(style=NeonStyle)
+                    line_chart.title = 'Lift Progression'
+                    line_chart.x_labels = map(str, range(1, len(max_weight)))
+                    line_chart.add('Bench', max_weight)
+                    line_chart.render_to_file('tracker/static/tmp/chart.svg')
 
-    return render(request, 'tracker/analysis.html', {})
+            #Deadlift
+            if key == "movement1" and value == "deadlift1":
+                for key, value in search_dict.items():
+                    if value != '' and value != "None" and key != "movement1":
+                        filter_dict[key] = value
+                if len(filter_dict) > 0:
+                    print(filter_dict)
+                    filtered_movements = DeadliftMovement.objects.filter(user_id=request.user.id).filter(**filter_dict)
+                    max_weight = []
+                    for workout in filtered_movements:
+                        max_weight.append(workout.movement_weight)
+                    line_chart = pygal.Line(style=NeonStyle)
+                    line_chart.title = 'Lift Progression'
+                    line_chart.x_labels = map(str, range(1, len(max_weight)))
+                    line_chart.add('Deadlift', max_weight)
+                    line_chart.render_to_file('tracker/static/tmp/chart.svg')
+
+            #Squat
+            if key == "movement1" and value == "squat1":
+                for key, value in search_dict.items():
+                    if value != '' and value != "None" and key != "movement1":
+                        filter_dict[key] = value
+                if len(filter_dict) > 0:
+                    print(filter_dict)
+                    filtered_movements = SquatMovement.objects.filter(user_id=request.user.id).filter(**filter_dict)
+                    max_weight = []
+                    for workout in filtered_movements:
+                        max_weight.append(workout.movement_weight)
+                    line_chart = pygal.Line(style=NeonStyle)
+                    line_chart.title = 'Lift Progression'
+                    line_chart.x_labels = map(str, range(1, len(max_weight)))
+                    line_chart.add('Squat', max_weight)
+                    line_chart.render_to_file('tracker/static/tmp/chart.svg')
+
+            #Upper
+            if key == "movement1" and value == "upper1":
+                for key, value in search_dict.items():
+                    if value != '' and value != "None" and key != "movement1":
+                        filter_dict[key] = value
+                if len(filter_dict) > 0:
+                    print(filter_dict)
+                    filtered_movements = SquatMovement.objects.filter(user_id=request.user.id).filter(**filter_dict)
+                    max_weight = []
+                    for workout in filtered_movements:
+                        max_weight.append(workout.movement_weight)
+                    line_chart = pygal.Line(style=NeonStyle)
+                    line_chart.title = 'Lift Progression'
+                    line_chart.x_labels = map(str, range(1, len(max_weight)))
+                    line_chart.add('Squat', max_weight)
+                    line_chart.render_to_file('tracker/static/tmp/chart.svg')
+
+    upperform = UpperForm()
+    lowerform = LowerForm()
+    return render(request, 'tracker/analysis.html', {'upper_form': upperform, 'lower_form': lowerform})
