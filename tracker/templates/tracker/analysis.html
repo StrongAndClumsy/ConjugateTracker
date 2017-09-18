@@ -2,8 +2,218 @@
 {% block content %}
 {% load staticfiles %}
 
-    <figure>
+  <div style="width:100%; height:400px; overflow:scroll;">
+    <figure style="width:800px;">
       <embed type="image/svg+xml" src="{% static 'tmp/chart.svg' %}" />
     </figure>
+  </div>
+
+<form method="get" onload="Init();">
+  <select id="movement1" name="movement1" onchange="selectMovement1()">
+    <option value="none"></option>
+    <option value="squat1">Squat</option>
+    <option value="bench1">Bench</option>
+    <option value="deadlift1">Deadlift</option>
+  </select>
+  <div id="bench1" style="display:none;">
+    <p><label for="id_effort_type_0">Day:</label> <ul id="id_effort_type"><li><label for="id_effort_type_0"><input id="id_effort_type_0" name="effort_type" type="radio" value="Dynamic" /> Dynamic Effort</label></li>
+    <li><label for="id_effort_type_1"><input id="id_effort_type_1" name="effort_type" type="radio" value="Max" /> Max Effort</label></li></ul></p>
+    <p><label for="id_bar_type">Bar Type:</label> <select id="id_bar_type" name="bar_type">
+    <option value=""></option>
+    <option value="Straight">Straight</option>
+    <option value="Cambered">Cambered</option>
+    <option value="Bow">Bow</option>
+    <option value="Football Bar">Football Bar</option>
+    </select></p>
+    <p><label for="id_floor">Floor Press:</label> <input id="id_floor" name="floor" type="checkbox" value="True"/></p>
+    <p><label for="id_reverse">Reverse Band:</label> <input id="id_reverse" name="reverse" type="checkbox" value="True"/></p>
+    <p><label for="id_standard">Straight Weight:</label> <input id="id_standard" name="standard" type="checkbox" value="True"/></p>
+    <p><label for="id_board">Board:</label> <input id="id_board" name="board" type="checkbox" value="True"/></p>
+    <p><label for="id_manpon">Manpon:</label> <input id="id_manpon" name="manpon" type="checkbox" value="True"/></p>
+    <p><label for="id_pin">Pin:</label> <input id="id_pin" name="pin" type="checkbox" value="True"/></p>
+    <p><label for="id_bands_type">Band Type:</label> <select id="id_bands_type" name="bands_type">
+    <option value=""></option>
+    <option value="None">None</option>
+    <option value="Micro mini">Micro Mini</option>
+    <option value="Mini">Mini</option>
+    <<option value="Monster Mini">Monster Mini</option>
+    <option value="Light">Light</option>
+    <option value="Average">Average</option>
+    <option value="Heavy">Heavy</option>
+    </select></p>
+    <p><label for="id_chain_weight">Chain weight:</label> <input id="id_chain_weight" name="chain_weight" type="number" /></p>
+    <p><label for="id_movement_weight">Bar Weight:</label> <input class="form-control" id="id_movement_weight" name="movement_weight" placeholder="Example: 150" type="number"  /></p>
+    <p><label for="id_movement_sets">Sets:</label> <input class="form-control" id="id_movement_sets" name="movement_sets" placeholder="Example: 1" type="number" /></p>
+    <p><label for="id_movement_reps">Reps:</label> <input class="form-control" id="id_movement_reps" name="movement_reps" placeholder="Example: 1" type="number" /></p>
+    <p><label for="id_bench_notes">Bench notes:</label> <input class="form-control" id="id_bench_notes" maxlength="300" name="bench_notes" placeholder="Add Bench Notes Here" type="text" /></p>
+    <p><label for="id_media_url">Media url:</label> <input class="form-control" id="id_media_url" name="media_url" placeholder="Add Media URL Here" type="text" /></p>
+  </div>
+  <div id="squat1" style="display:none;">
+    <p><label for="id_box_free_0">Squat Type:</label> <ul id="id_box_free"><li><label for="id_box_free_0"><input id="id_box_free_0" name="box_free" type="radio" value="Free" /> Free</label></li>
+    <li><label for="id_box_free_1"><input id="id_box_free_1" name="box_free" type="radio" value="Box" /> Box</label></li></ul></p>
+    <p><label for="id_effort_type_0">Day:</label> <ul id="id_effort_type"><li><label for="id_effort_type_0"><input id="id_effort_type_0" name="effort_type" type="radio" value="Dynamic"  /> Dynamic Effort</label></li>
+    <li><label for="id_effort_type_1"><input id="id_effort_type_1" name="effort_type" type="radio" value="Max"  /> Max Effort</label></li></ul></p>
+    <p><label for="id_bar_type">Bar Type:</label> <select id="id_bar_type" name="bar_type" >
+    <option value=""></option>
+    <option value="Straight">Straight</option>
+    <option value="Giant Cambered">Giant Cambered</option>
+    <option value="Buffalo">Buffalo</option>
+    <option value="Bow">Bow</option>
+    <option value="Safety Squat Bar">Safety Squat Bar</option>
+    </select></p>
+    <p><label for="id_bands_type">Band Type:</label> <select id="id_bands_type" name="bands_type">
+    <option value=""></option>
+    <option value="None">None</option>
+    <option value="Micro mini">Micro Mini</option>
+    <option value="Mini">Mini</option>
+    <<option value="Monster Mini">Monster Mini</option>
+    <option value="Light">Light</option>
+    <option value="Average">Average</option>
+    <option value="Heavy">Heavy</option>
+    </select></p>
+    <p><label for="id_chain_weight">Chain weight:</label> <input id="id_chain_weight" name="chain_weight" type="number" /></p>
+    <p><label for="id_movement_weight">Bar Weight:</label> <input class="form-control" id="id_movement_weight" name="movement_weight" placeholder="Example: 150" type="number"  /></p>
+    <p><label for="id_movement_sets">Sets:</label> <input class="form-control" id="id_movement_sets" name="movement_sets" placeholder="Example: 1" type="number" /></p>
+    <p><label for="id_movement_reps">Reps:</label> <input class="form-control" id="id_movement_reps" name="movement_reps" placeholder="Example: 1" type="number"  /></p>
+    <p><label for="id_squat_notes">Squat notes:</label> <input class="form-control" id="id_squat_notes" maxlength="300" name="squat_notes" placeholder="Add Squat Notes Here" type="text" /></p>
+    <p><label for="id_media_url">Media url:</label> <input class="form-control" id="id_media_url" name="media_url" placeholder="Add Media URL Here" type="text" /></p>
+  </div>
+  <div id="deadlift1" style="display:none;">
+    <p><label for="id_effort_type_0">Day:</label> <ul id="id_effort_type"><li><label for="id_effort_type_0"><input id="id_effort_type_0" name="effort_type" type="radio" value="Dynamic"  /> Dynamic Effort</label></li>
+<li><label for="id_effort_type_1"><input id="id_effort_type_1" name="effort_type" type="radio" value="Max"  /> Max Effort</label></li></ul></p>
+<p><label for="id_sumo_conventional_0">Deadlift Style:</label> <ul id="id_sumo_conventional"><li><label for="id_sumo_conventional_0"><input id="id_sumo_conventional_0" name="sumo_conventional" type="radio" value="Sumo"  /> Sumo</label></li>
+<li><label for="id_sumo_conventional_1"><input id="id_sumo_conventional_1" name="sumo_conventional" type="radio" value="Conventional"  /> Conventional</label></li></ul></p>
+<p><label for="id_deficit">Deficit:</label> <input id="id_deficit" name="deficit" type="checkbox" value="True"/></p>
+<p><label for="id_block">Block:</label> <input id="id_block" name="block" type="checkbox" value="True"/></p>
+<p><label for="id_standard">Standard:</label> <input id="id_standard" name="standard" type="checkbox" value="True"/></p>
+<p><label for="id_pin">Pin:</label> <input id="id_pin" name="pin" type="checkbox" value="True"/></p>
+<p><label for="id_chain_weight">Chain weight:</label> <input id="id_chain_weight" name="chain_weight" type="number" /></p>
+<p><label for="id_bands_type">Band Type:</label> <select id="id_bands_type" name="bands_type">
+<option value=""></option>
+<option value="None">None</option>
+<option value="Micro mini">Micro Mini</option>
+<option value="Mini">Mini</option>
+<option value="Monster Mini">Monster Mini</option>
+<option value="Light">Light</option>
+<option value="Average">Average</option>
+<option value="Heavy">Heavy</option>
+</select></p>
+<p><label for="id_reverse">Reverse Band:</label> <input id="id_reverse" name="reverse" type="checkbox" value="True"/></p>
+<p><label for="id_movement_weight">Bar Weight:</label> <input class="form-control" id="id_movement_weight" name="movement_weight" placeholder="Example: 120" type="number"  /></p>
+<p><label for="id_movement_sets">Sets:</label> <input class="form-control" id="id_movement_sets" name="movement_sets" placeholder="Example: 1" type="number" /></p>
+<p><label for="id_movement_reps">Reps:</label> <input class="form-control" id="id_movement_reps" name="movement_reps" placeholder="Example: 1" type="number"  /></p>
+<p><label for="id_deadlift_notes">Deadlift notes:</label> <input class="form-control" id="id_deadlift_notes" maxlength="300" name="deadlift_notes" placeholder="Add Deadlift Notes Here" type="text" /></p>
+<p><label for="id_media_url">Media url:</label> <input class="form-control" id="id_media_url" name="media_url" placeholder="Add Media URL Here" type="text" /></p>
+  </div>
+  <div id="upper1" style="display:none;">
+    <select class="dropdown" id="upAcc"  onchange="ToggleEntry()">
+      <option>Select all accessories</option>
+      <option value="id_top_set">Top Set</option>
+      <option value="id_close_grippness">Close Grip</option>
+      <option value="id_tate_press">Tate Press</option>
+      <option value="id_dips">Dips</option>
+      <option value="id_rev_db_fly">Reverse DB Fly</option>
+      <option value="id_windmills">Windmills</option>
+      <option value="id_bamboo_bar">Bamboo Bar</option>
+      <option value="id_lat_pulldowns">Lat Pulldowns</option>
+      <option value="id_lat_pullovers">Lat Pullovers</option>
+      <option value="id_pec_dec">Pec Dec</option>
+      <option value="id_reverse_pec_dec">Reverse Pec Dec</option>
+      <option value="id_t_bar_rows">T Bar Rows</option>
+      <option value="id_chest_supported_rows">Chest Supported Rows</option>
+      <option value="id_low_rows">Low Rows</option>
+      <option value="id_pullups">Pullups</option>
+      <option value="id_inverted_row">Inverted Row</option>
+      <option value="id_face_pulls">Face Pulls</option>
+      <option value="id_db_rows">DB Rows</option>
+      <option value="id_db_press">DB Press</option>
+      <option value="id_pullaparts">Pullaparts</option>
+      <option value="id_tri_extensions">Tricep Extensions</option>
+      <option value="id_skull_crushers">Skull Crushers</option>
+      <option value="id_jam_press">JM Press</option>
+      <option value="id_olt_press">Overhead Press</option>
+      <option value="id_db_rollbacks">DB Rollbacks</option>
+      <option value="id_dead_press">Dead Press</option>
+      <option value="id_ab_movement">Ab Movement</option>
+      <option value="id_other">Other</option>
+      <option value="id_notes">Notes</option>
+    </select>
+
+    {{ upper_form.as_p }}
+
+  </div>
+  <div id="lower1" style="display:none;">
+    <select class="dropdown" id="LowAcc" onchange="ToggleEntry()">
+      <option>Select all accessories</option>
+      <option value="id_top_set">Top Set</option>
+      <option value="id_chair_dl">Chair Deadlift</option>
+      <option value="id_ghr">Glute Ham Raise</option>
+      <option value="id_lunge">Lunge</option>
+      <option value="id_dimel_dl">Dimel Deadlift</option>
+      <option value="id_reverse_hyper">Reverse Hyper</option>
+      <option value="id_hip_bridge">Hip Bridge</option>
+      <option value="id_good_morning">Good Morning</option>
+      <option value="id_step_up">Step Up</option>
+      <option value="id_belt_squat">Belt Squat</option>
+      <option value="id_hack_squat">Hack Squat</option>
+      <option value="id_leg_press">Leg Press</option>
+      <option value="id_leg_curl">Leg Curl</option>
+      <option value="id_stiff_leg_dl">Stiff Leg Deadlift</option>
+      <option value="id_inverse_curl">Inverse Curl</option>
+      <option value="id_front_squat">Front Squat</option>
+      <option value="id_back_extension">Back Extension</option>
+      <option value="id_ab_movement">Ab Movement</option>
+      <option value="id_other">Other</option>
+      <option value="id_notes">Notes</option>
+    </select>
+
+    {{ lower_form.as_p }}
+
+  </div>
+  <input type="submit" value="Search">
+</form>
+
+<script type="text/javascript">
+
+function Init () {
+  document.getElementById('lower1').style.display = "none";
+  SetInputs(false, document.getElementById('lower1'));
+  document.getElementById('bench1').style.display = "none";
+  SetInputs(false, document.getElementById('bench1'));
+  document.getElementById('upper1').style.display = "none";
+  SetInputs(false, document.getElementById('upper1'));
+  document.getElementById('squat1').style.display = "none";
+  SetInputs(false, document.getElementById('squat1'));
+  document.getElementById('deadlift1').style.display = "none";
+  SetInputs(false, document.getElementById('deadlift1'));
+}
+
+function SetInputs (setting, parent) {
+  for (var i = 0; i < parent.children.length; i++) {
+    if (parent.children[i].nodeName == "INPUT") {
+      parent.children[i].disabled = !setting;
+    } else if (parent.children[i].nodeName == "SELECT") {
+      parent.children[i].disabled = !setting;
+    } else {
+      SetInputs (setting, parent.children[i]);
+    }
+  }
+}
+
+  function selectMovement1() {
+    document.getElementById('lower1').style.display = "none";
+    SetInputs(false, document.getElementById('lower1'));
+    document.getElementById('bench1').style.display = "none";
+    SetInputs(false, document.getElementById('bench1'));
+    document.getElementById('upper1').style.display = "none";
+    SetInputs(false, document.getElementById('upper1'));
+    document.getElementById('squat1').style.display = "none";
+    SetInputs(false, document.getElementById('squat1'));
+    document.getElementById('deadlift1').style.display = "none";
+    SetInputs(false, document.getElementById('deadlift1'));
+    document.getElementById(document.getElementById('movement1').value).style.display = "block";
+    SetInputs(true, document.getElementById(document.getElementById('movement1').value));
+  }
+</script>
 
 {% endblock %}

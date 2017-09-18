@@ -28,5 +28,5 @@ urlpatterns = [
     url(r'^deadlift_movement/search$', views.deadlift_search, name='deadlift_search'),
     url(r'^upper_movement/search$', views.upper_search, name='upper_search'),
     url(r'^lower_movement/search$', views.lower_search, name='lower_search'),
-    url(r'^analysis$', views.analysis, name='analysis'),
+    url(r'^analysis$', views.analysis, name='analysis')
 ]
