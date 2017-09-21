@@ -87,14 +87,13 @@ class DeadliftSearchForm(forms.ModelForm):
 class BenchForm(forms.ModelForm):
 	class Meta:
 		model = BenchMovement
-		fields = ['created_at','effort_type','bar_type','floor','reverse','standard','board','manpon',
+		fields = ['created_at','effort_type','bar_type','floor','reverse','board','manpon',
 		'pin','bands_type','chain_weight','movement_weight', 'movement_sets','movement_reps','bench_notes', 'media_url']
 	created_at = forms.DateTimeField(initial=timezone.now)
 	effort_type = forms.ChoiceField(label="Day", widget=forms.RadioSelect(), choices=EFFORT_CHOICES)
 	bar_type = forms.ChoiceField(label="Bar Type", widget=forms.Select, choices=BENCH_BAR_OPTIONS, required=True)
 	floor = forms.BooleanField(label="Floor Press",required=False)
 	reverse = forms.BooleanField(label="Reverse Band",required=False)
-	standard = forms.BooleanField(label="Straight Weight",required=False)
 	board = forms.BooleanField(required=False)
 	manpon = forms.BooleanField(required=False)
 	pin = forms.BooleanField(required=False)
@@ -109,13 +108,12 @@ class BenchForm(forms.ModelForm):
 class BenchSearchForm(forms.ModelForm):
 	class Meta:
 		model = BenchMovement
-		fields = ['effort_type','bar_type','floor','reverse','standard','board','manpon',
+		fields = ['effort_type','bar_type','floor','reverse','board','manpon',
 		'pin','bands_type','chain_weight','movement_weight', 'movement_sets','movement_reps','bench_notes', 'media_url']
 	effort_type = forms.ChoiceField(label="Day", widget=forms.RadioSelect(), choices=EFFORT_CHOICES)
 	bar_type = forms.ChoiceField(label="Bar Type", widget=forms.Select, choices=BENCH_BAR_OPTIONS, required=False)
 	floor = forms.BooleanField(label="Floor Press",required=False)
 	reverse = forms.BooleanField(label="Reverse Band",required=False)
-	standard = forms.BooleanField(label="Straight Weight",required=False)
 	board = forms.BooleanField(required=False)
 	manpon = forms.BooleanField(required=False)
 	pin = forms.BooleanField(required=False)

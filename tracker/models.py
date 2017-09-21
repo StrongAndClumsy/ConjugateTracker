@@ -44,7 +44,6 @@ class BenchMovement(models.Model):
 	bar_type = models.CharField(max_length=60, blank=True)
 	floor = models.BooleanField()
 	reverse = models.BooleanField()
-	standard = models.BooleanField()
 	board = models.BooleanField()
 	manpon = models.BooleanField()
 	pin = models.BooleanField()
