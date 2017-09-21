@@ -12,6 +12,7 @@ from .models import SquatMovement, DeadliftMovement, BenchMovement, LowerAccesso
 from .forms import SquatForm, SquatSearchForm, DeadliftForm, DeadliftSearchForm, BenchForm, BenchSearchForm, LowerForm, UpperForm
 import pygal
 from pygal.style import NeonStyle
+import random
 
 class SquatDetailView(DetailView):
     model = SquatMovement
@@ -90,7 +91,7 @@ def index(request):
             'latest_loweraccessory_list': latest_loweraccessory_list,
             'latest_upperaccessory_list': latest_upperaccessory_list,
         }
-        return render(request, 'tracker/index.html', context)
+        return render(request, 'tracker/home_page.html', context)
 
 def new_squat(request):
     if request.method == 'POST':
@@ -155,7 +156,6 @@ def new_bench(request):
                 bar_type=form.cleaned_data['bar_type'],
                 floor=form.cleaned_data['floor'],
                 reverse=form.cleaned_data['reverse'],
-                standard=form.cleaned_data['standard'],
                 board=form.cleaned_data['board'],
                 manpon=form.cleaned_data['manpon'],
                 pin=form.cleaned_data['pin'],
@@ -401,6 +401,7 @@ def lower_search(request):
 
 def analysis(request):
     if request.method == "GET":
+        version = random.randint(0, 1000)
         search_dict = request.GET.dict()
         filter_dict = {}
         for key, value in search_dict.items():
@@ -474,4 +475,4 @@ def analysis(request):
 
     upperform = UpperForm()
     lowerform = LowerForm()
-    return render(request, 'tracker/analysis.html', {'upper_form': upperform, 'lower_form': lowerform})
+    return render(request, 'tracker/analysis.html', {'upper_form': upperform, 'lower_form': lowerform, 'version': version})
