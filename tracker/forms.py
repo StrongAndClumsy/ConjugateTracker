@@ -9,17 +9,19 @@ SUMO_CHOICES = (('Sumo', 'Sumo'), ('Conventional', 'Conventional'))
 BAR_OPTIONS = (('Straight', 'Straight'), ('Giant Cambered', 'Giant Cambered'), ('Buffalo', 'Buffalo'), ('Bow', 'Bow'), ('Safety Squat Bar', 'Safety Squat Bar'))
 BENCH_BAR_OPTIONS = (('Straight', 'Straight'), ('Cambered', 'Cambered'), ('Bow', 'Bow'), ('Football Bar', 'Football Bar'))
 BAND_TYPE = (('None', 'None'), ('Micro Mini', 'Micro Mini'), ('Mini', 'Mini'), ('Monster Mini', 'Monster Mini '), ('Light', 'Light'), ('Average', 'Average'), ('Heavy', 'Heavy'))
+BOARD = (('0', 'None'), ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'))
 
 class SquatForm(forms.ModelForm):
 	class Meta:
 		model = SquatMovement
-		fields = ['created_at','box_free','effort_type','bar_type','bands_type','chain_weight',
+		fields = ['created_at','box_free','effort_type','bar_type','bands_type', 'reverse', 'chain_weight',
 		'movement_weight', 'movement_sets', 'movement_reps','squat_notes', 'media_url']
 	created_at = forms.DateTimeField(initial=timezone.now)
 	effort_type = forms.ChoiceField(label="Day", widget=forms.RadioSelect(), choices=EFFORT_CHOICES)
 	box_free = forms.ChoiceField(label="Squat Type", widget=forms.RadioSelect, choices=BOXFREE_CHOICES)
 	bar_type = forms.ChoiceField(label="Bar Type", widget=forms.Select, choices=BAR_OPTIONS, required=True)
 	bands_type = forms.ChoiceField(label="Band Type", widget=forms.Select, choices=BAND_TYPE, required=False)
+	reverse = forms.BooleanField(label="Reverse Band",required=False)
 	chain_weight = forms.IntegerField(required=False, initial=0)
 	movement_weight = forms.IntegerField(label="Bar Weight", required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 150'}))
 	movement_sets = forms.IntegerField(label="Sets", required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 1'}))
@@ -30,12 +32,13 @@ class SquatForm(forms.ModelForm):
 class SquatSearchForm(forms.ModelForm):
 	class Meta:
 		model = SquatMovement
-		fields = ['box_free','effort_type','bar_type','bands_type','chain_weight',
+		fields = ['box_free','effort_type','bar_type','bands_type','reverse', 'chain_weight',
 		'movement_weight', 'movement_sets', 'movement_reps','squat_notes', 'media_url']
 	effort_type = forms.ChoiceField(label="Day", widget=forms.RadioSelect(), choices=EFFORT_CHOICES)
 	box_free = forms.ChoiceField(label="Squat Type", widget=forms.RadioSelect, choices=BOXFREE_CHOICES)
 	bar_type = forms.CharField(max_length=60)
 	bands_type = forms.CharField(label="Band Type", required=False, max_length=60)
+	reverse = forms.BooleanField(label="Reverse Band",required=False)
 	chain_weight = forms.IntegerField(required=False, initial=0)
 	movement_weight = forms.IntegerField(label="Bar Weight", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 150'}))
 	movement_sets = forms.IntegerField(label="Sets", required=True, widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Example: 1'}))
@@ -94,7 +97,7 @@ class BenchForm(forms.ModelForm):
 	bar_type = forms.ChoiceField(label="Bar Type", widget=forms.Select, choices=BENCH_BAR_OPTIONS, required=True)
 	floor = forms.BooleanField(label="Floor Press",required=False)
 	reverse = forms.BooleanField(label="Reverse Band",required=False)
-	board = forms.BooleanField(required=False)
+	board = forms.ChoiceField(label="Boards", widget=forms.Select, choices=BOARD, required=False)
 	manpon = forms.BooleanField(required=False)
 	pin = forms.BooleanField(required=False)
 	bands_type = forms.ChoiceField(label="Band Type", widget=forms.Select, choices=BAND_TYPE, required=False)
@@ -114,7 +117,7 @@ class BenchSearchForm(forms.ModelForm):
 	bar_type = forms.ChoiceField(label="Bar Type", widget=forms.Select, choices=BENCH_BAR_OPTIONS, required=False)
 	floor = forms.BooleanField(label="Floor Press",required=False)
 	reverse = forms.BooleanField(label="Reverse Band",required=False)
-	board = forms.BooleanField(required=False)
+	board = forms.ChoiceField(label="Boards", widget=forms.Select, choices=BOARD, required=False)
 	manpon = forms.BooleanField(required=False)
 	pin = forms.BooleanField(required=False)
 	bands_type = forms.ChoiceField(label="Band Type", widget=forms.Select, choices=BAND_TYPE, required=False)

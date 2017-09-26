@@ -102,13 +102,14 @@ def new_squat(request):
             box_free = form.cleaned_data['box_free']
             bar_type = form.cleaned_data['bar_type']
             bands_type = form.cleaned_data['bands_type']
+            reverse = form.cleaned_data['reverse']
             chain_weight = form.cleaned_data['chain_weight']
             movement_weight = form.cleaned_data['movement_weight']
             movement_sets = form.cleaned_data['movement_sets']
             movement_reps = form.cleaned_data['movement_reps']
             squat_notes = form.cleaned_data['squat_notes']
             media_url = form.cleaned_data['media_url']
-            new_squat_data = SquatMovement( user = request.user, created_at = created_at, effort_type = effort, box_free = box_free, bar_type = bar_type, bands_type = bands_type,
+            new_squat_data = SquatMovement( user = request.user, created_at = created_at, effort_type = effort, box_free = box_free, bar_type = bar_type, bands_type = bands_type, reverse = reverse,
                 chain_weight = chain_weight, movement_weight = movement_weight, movement_sets = movement_sets, movement_reps = movement_reps, squat_notes = squat_notes, media_url = media_url )
             new_squat_data.save()
             return HttpResponseRedirect('/')
