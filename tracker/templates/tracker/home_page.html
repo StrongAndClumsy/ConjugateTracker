@@ -1,0 +1,57 @@
+{% extends 'tracker/base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<a class="default_link" data-toggle="collapse" data-target="#log-menu"><div class="row" style="height:120px; background-color:rgba(167,28,32,.4); width: 100%; margin: 0; float: left;">
+  <div class="col-xs-6" style="text-align: center">
+    <div class="home_page_icon" style="background-image: url({% static 'images/loggingiconwhite.png' %})"></div>
+  </div>
+  <div class="col-xs-6">
+    <div class="home_page_text">
+      Log Movement
+    </div>
+  </div>
+</div></a>
+
+<ul class="header_menu collapse" id="log-menu">
+  <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:squat_new' %}">Add New Squat</a></li>
+  <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:bench_new' %}">Add New Bench</a></li>
+  <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:deadlift_new' %}">Add New Deadlift</a></li>
+  <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:upper_new' %}">Add New Upper Accessory</a></li>
+  <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:lower_new' %}">Add New Lower Accessory</a></li>
+</ul>
+
+<a class="default_link" data-toggle="collapse" data-target="#search-menu"><div class="row" style="height:120px; background-color:rgba(144,0,4,.4); width: 100%; margin: 0; float: left;">
+  <div class="col-xs-6" style="text-align: center">
+    <div class="home_page_icon" style="background-image: url({% static 'images/searchiconwhite.png' %})"></div>
+  </div>
+  <div class="col-xs-6">
+    <div class="home_page_text">
+      Search for <br>
+      Movement
+    </div>
+  </div>
+</div></a>
+
+<ul class="header_menu collapse" id="search-menu">
+  <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:squat_search' %}">Search for Squat</a></li>
+  <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:bench_search' %}">Search for Bench</a></li>
+  <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:deadlift_search' %}">Search for Deadlift</a></li>
+  <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:upper_search' %}">Search Upper Accessories</a></li>
+  <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:lower_search' %}">Search Lower Accessories</a></li>
+</ul>
+
+<a class="default_link" href="{% url 'tracker:analysis' %}">
+  <div class="row" style="height:120px; background-color:rgba(108,0,3,.4); width: 100%; margin: 0; float: left;">
+    <div class="col-xs-6" style="text-align: center">
+      <div class="home_page_icon" style="background-image: url({% static 'images/analysisiconwhite.png' %})"></div>
+    </div>
+    <div class="col-xs-6">
+      <div class="home_page_text">
+        Analyze Movement
+      </div>
+    </div>
+  </div>
+</a>
+
+{% endblock %}

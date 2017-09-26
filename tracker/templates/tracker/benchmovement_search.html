@@ -1,5 +1,6 @@
 {% extends 'tracker/base.html' %}
 {% block content %}
+<div class="page_format">
 <h3>Search Bench Movements</h3>
 <form action="{% url 'tracker:bench_search' %}" method="get">
     <p><label for="id_effort_type_0">Day:</label> <ul id="id_effort_type"><li><label for="id_effort_type_0"><input id="id_effort_type_0" name="effort_type" type="radio" value="Dynamic" /> Dynamic Effort</label></li>
@@ -53,5 +54,6 @@
     - <a class="default_link "href="{% url 'tracker:bench_detail' object.id %}">{{ object.bar_type }} Bar Bench on {{ object.created_at }}, ({{object.effort_type}} Effort, Weight:{{object.movement_weight}})</a>
 </h3>
 {% endfor %}
+</div>
 
 {% endblock %}
