@@ -50,33 +50,45 @@
       <div class="header clearfix">
         <nav role="navigation">
         <a href="/"><div class="logo"></div></a>
-          <div type="button" class="hamburger_icon collapsed" data-toggle="collapse" data-target="#header-menu">
-          </div>
+          <a data-toggle="collapse" data-target="#header-menu" href="#header-menu">
+            <div type="button" class="hamburger_icon collapsed">
+            </div>
+          </a>
           <ul class="header_menu collapse" id="header-menu">
             <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="/">Home for {{user_name.title}}</a></li>
-            <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:squat_new' %}">Add New Squat</a></li>
-            <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:bench_new' %}">Add New Bench</a></li>
-            <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:deadlift_new' %}">Add New Deadlift</a></li>
-            <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:upper_new' %}">Add New Upper Accessory</a></li>
-            <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:lower_new' %}">Add New Lower Accessory</a></li>
-            <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:squat_search' %}">Search for Squat</a></li>
-            <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:bench_search' %}">Search for Bench</a></li>
-            <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:deadlift_search' %}">Search for Deadlift</a></li>
-            <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:upper_search' %}">Search Upper Accessories</a></li>
-            <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:lower_search' %}">Search Lower Accessories</a></li>
-            <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:analysis' %}">Analysis</a></li>
+            <li type="button" role="presentation" class="active header_item bordered_list">
+              <a class="default_link" data-toggle="collapse" data-target="#header-menu-log">Log New Movement</a>
+              <ul class="collapse" id="header-menu-log">
+                <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:squat_new' %}">Add New Squat</a></li>
+                <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:bench_new' %}">Add New Bench</a></li>
+                <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:deadlift_new' %}">Add New Deadlift</a></li>
+                <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:upper_new' %}">Add New Upper Accessory</a></li>
+                <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:lower_new' %}">Add New Lower Accessory</a></li>
+              </ul>
+            </li>
+            <li type="button" role="presentation" class="active header_item bordered_list">
+              <a class="default_link" data-toggle="collapse" data-target="#header-menu-search">Search Movements</a>
+              <ul class="collapse" id="header-menu-search">
+                <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:squat_search' %}">Search for Squat</a></li>
+                <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:bench_search' %}">Search for Bench</a></li>
+                <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:deadlift_search' %}">Search for Deadlift</a></li>
+                <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:upper_search' %}">Search Upper Accessories</a></li>
+                <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:lower_search' %}">Search Lower Accessories</a></li>
+              </ul>
+            </li>
+                <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:analysis' %}">Analysis</a></li>
             <li type="button" role="presentation" class="header_item bordered_list"><a class="default_link" href="mailto:admin@conjugatetracker.com">Email Admin</a></li>
             <li type="button" role="presentation" class="header_item bordered_list"><a class="default_link" href="/logout">Sign Out</a></li>
           </ul>
         </nav>
       </div>
+    </div>
+  </div>
 		{% block content %}
 		{% endblock %}
 
-		      <footer class="footer">
-		        <p>&copy; 2017 Conjugate Tracker</p>
-		      </footer>
-	</div>
-</div>
+		      <!--<footer class="footer">
+		        <!<p>&copy; 2017 Conjugate Tracker</p>
+		      </footer>-->
 </body>
 </html>

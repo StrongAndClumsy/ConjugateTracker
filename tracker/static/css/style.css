@@ -5,6 +5,10 @@ ul {
   padding: 0;
 }
 
+.page_format {
+  margin: 15px;
+}
+
 .bordered_list {
   border-bottom: solid 1px #fff;
   margin-bottom: 5px;
@@ -55,7 +59,7 @@ ul {
 /* Custom page header */
 .header {
   padding-bottom: 20px;
-  border-bottom: 1px solid #e5e5e5;
+  /*border-bottom: 1px solid #e5e5e5;*/
 }
 /* Make the masthead heading the same height as the navigation */
 .header h3 {
@@ -143,6 +147,25 @@ ul {
   padding: 2.5%;
   float: left;
   text-align: center;
+}
+
+.home_page_text {
+  margin-top: 40px;
+  float: left;
+  border-bottom: 1px #e5e5e5 solid;
+  width: 100%;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
+.home_page_icon {
+  width: 100px;
+  height: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: 20px;
 }
 
 
@@ -276,7 +299,12 @@ a.default_link {
 }
 
 select {
-  color: black;
+  color: white;
+  background: none;
+}
+
+option {
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 input {
