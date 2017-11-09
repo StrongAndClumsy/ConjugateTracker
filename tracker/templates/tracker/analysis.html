@@ -3,13 +3,14 @@
 {% load staticfiles %}
 
   <div style="width:100%; height:400px; overflow:scroll;">
-    <figure style="width:800px;">
+    <figure style="width:100%;">
       <embed type="image/svg+xml" src="{% static 'tmp/chart.svg' %}?version={{ version }}" />
     </figure>
   </div>
 
 <form method="get" onload="Init();">
-  <select id="movement1" name="movement1" onchange="selectMovement1()">
+  <label for="movement1">Select Movement</label>
+  <select id="movement1" name="movement1" class="form-control" onchange="selectMovement1()">
     <option value="none"></option>
     <option value="squat1">Squat</option>
     <option value="bench1">Bench</option>
@@ -170,7 +171,7 @@
     {{ lower_form.as_p }}
 
   </div>
-  <input type="submit" value="Search">
+  <input type="submit" class="btn btn-1 btn-block" value="Search" />
 </form>
 
 <script type="text/javascript">

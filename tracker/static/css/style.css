@@ -265,7 +265,8 @@ ul {
 body {
 	background-image: url("/static/images/newdiamondplate.jpg");
   background-attachment: fixed;
-color:#FFF;
+  color:#FFF;
+  margin: 15px;
 }
 
 .container {
@@ -290,7 +291,9 @@ a.default_link {
   background-color: #d40f1b;
   border-color: white;
   color:white;
+  width:100%;
 }
+
 
 .btn-2 {
   background-color: #c45865;
@@ -308,5 +311,11 @@ option {
 }
 
 input {
-  color: black;
+  color: white;
+  background: none;
+}
+
+.form-control {
+  color: white;
+  background: none;
 }

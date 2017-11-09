@@ -152,7 +152,7 @@ def new_bench(request):
         if form.is_valid():
             new_bench_data = BenchMovement(
                 user=request.user,
-                created_at = form.cleaned_data['created_at'],
+                created_at=form.cleaned_data['created_at'],
                 effort_type=form.cleaned_data['effort_type'],
                 bar_type=form.cleaned_data['bar_type'],
                 floor=form.cleaned_data['floor'],
@@ -181,7 +181,7 @@ def new_lower(request):
         if form.is_valid():
             new_lower_data = LowerAccessoryMovement(
                 user=request.user,
-                created_at = form.cleaned_data['created_at'],
+                created_at=form.cleaned_data['created_at'],
                 top_set=form.cleaned_data['top_set'],
                 chair_dl=form.cleaned_data['chair_dl'],
                 ghr=form.cleaned_data['ghr'],
@@ -216,7 +216,7 @@ def new_upper(request):
         if form.is_valid():
             new_upper_data = UpperAccessoryMovement(
                 user=request.user,
-                created_at = form.cleaned_data['created_at'],
+                created_at=form.cleaned_data['created_at'],
                 top_set=form.cleaned_data['top_set'],
                 close_grippness=form.cleaned_data['close_grippness'],
                 tate_press=form.cleaned_data['tate_press'],
@@ -327,7 +327,7 @@ def squat_search(request):
             filtered_movements = SquatMovement.objects.filter(user_id=request.user.id).filter(**filter_dict)
             print(filtered_movements)
             form = SquatSearchForm()
-            return render(request, 'tracker/squatmovement_search.html', {'form': form, 'objects': filtered_movements })
+            return render(request, 'tracker/squatmovement_search.html', {'form': form, 'objects': filtered_movements})
         else:
             form = SquatSearchForm()
             return render(request, 'tracker/squatmovement_search.html', {'form': form })
@@ -344,7 +344,7 @@ def bench_search(request):
             print(filter_dict)
             filtered_movements = BenchMovement.objects.filter(user_id=request.user.id).filter(**filter_dict)
             form = BenchSearchForm()
-            return render(request, 'tracker/benchmovement_search.html', {'form': form, 'objects': filtered_movements })
+            return render(request, 'tracker/benchmovement_search.html', {'form': form, 'objects': filtered_movements})
         else:
             form = BenchSearchForm()
             return render(request, 'tracker/benchmovement_search.html', {'form': form })
@@ -360,7 +360,7 @@ def deadlift_search(request):
         if len(filter_dict) > 0:
             filtered_movements = DeadliftMovement.objects.filter(user_id=request.user.id).filter(**filter_dict)
             form = DeadliftSearchForm()
-            return render(request, 'tracker/deadliftmovement_search.html', {'form': form, 'objects': filtered_movements })
+            return render(request, 'tracker/deadliftmovement_search.html', {'form': form, 'objects': filtered_movements})
         else:
             form = DeadliftSearchForm()
             return render(request, 'tracker/deadliftmovement_search.html', {'form': form })
@@ -377,7 +377,7 @@ def upper_search(request):
             filtered_movements = UpperAccessoryMovement.objects.filter(user_id=request.user.id).filter(~Q(**filter_dict))
             print(filtered_movements)
             form = UpperForm()
-            return render(request, 'tracker/uppermovement_search.html', {'form': form, 'objects': filtered_movements })
+            return render(request, 'tracker/uppermovement_search.html', {'form': form, 'objects': filtered_movements})
         else:
             form = UpperForm()
             return render(request, 'tracker/uppermovement_search.html', {'form': form })
@@ -393,7 +393,7 @@ def lower_search(request):
         if len(filter_dict) > 0:
             filtered_movements = LowerAccessoryMovement.objects.filter(user_id=request.user.id).filter(~Q(**filter_dict))
             form = LowerForm()
-            return render(request, 'tracker/lowermovement_search.html', {'form': form, 'objects': filtered_movements })
+            return render(request, 'tracker/lowermovement_search.html', {'form': form, 'objects': filtered_movements})
         else:
             form = LowerForm()
             return render(request, 'tracker/lowermovement_search.html', {'form': form })
@@ -423,7 +423,7 @@ def analysis(request):
                     line_chart.add('Bench', max_weight)
                     line_chart.render_to_file('tracker/static/tmp/chart.svg')
 
-            #Deadlift
+            # Deadlift
             if key == "movement1" and value == "deadlift1":
                 for key, value in search_dict.items():
                     if value != '' and value != "None" and key != "movement1":
@@ -440,7 +440,7 @@ def analysis(request):
                     line_chart.add('Deadlift', max_weight)
                     line_chart.render_to_file('tracker/static/tmp/chart.svg')
 
-            #Squat
+            # Squat
             if key == "movement1" and value == "squat1":
                 for key, value in search_dict.items():
                     if value != '' and value != "None" and key != "movement1":
@@ -457,7 +457,7 @@ def analysis(request):
                     line_chart.add('Squat', max_weight)
                     line_chart.render_to_file('tracker/static/tmp/chart.svg')
 
-            #Upper
+            # Upper
             if key == "movement1" and value == "upper1":
                 for key, value in search_dict.items():
                     if value != '' and value != "None" and key != "movement1":
