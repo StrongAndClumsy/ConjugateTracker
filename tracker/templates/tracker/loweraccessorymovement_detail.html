@@ -3,7 +3,7 @@
 <a style="margin-top: 15px" class="btn btn-1" href="{% url 'tracker:lower_edit' pk=object.pk %}">Edit</a>
 
 <h1>{{ object.user.username }}</h1>
-<p><h4><b>Created: </b>{{ object.created_at }}</h4></p>
+<p><h4><b>Workout Date: </b>{{ object.created_at }}</h4></p>
 
 {% if object.top_set != '' %}
 <p><h4><b>Top Set: </b>{{ object.top_set }}</h4></p>
