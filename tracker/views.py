@@ -97,20 +97,20 @@ def new_squat(request):
     if request.method == 'POST':
         form = SquatForm(request.POST)
         if form.is_valid():
-            created_at = form.cleaned_data['created_at']
-            effort = form.cleaned_data['effort_type']
-            box_free = form.cleaned_data['box_free']
-            bar_type = form.cleaned_data['bar_type']
-            bands_type = form.cleaned_data['bands_type']
-            reverse = form.cleaned_data['reverse']
-            chain_weight = form.cleaned_data['chain_weight']
-            movement_weight = form.cleaned_data['movement_weight']
-            movement_sets = form.cleaned_data['movement_sets']
-            movement_reps = form.cleaned_data['movement_reps']
-            squat_notes = form.cleaned_data['squat_notes']
-            media_url = form.cleaned_data['media_url']
-            new_squat_data = SquatMovement( user = request.user, created_at = created_at, effort_type = effort, box_free = box_free, bar_type = bar_type, bands_type = bands_type, reverse = reverse,
-                chain_weight = chain_weight, movement_weight = movement_weight, movement_sets = movement_sets, movement_reps = movement_reps, squat_notes = squat_notes, media_url = media_url )
+            new_squat_data = SquatMovement(
+                user = request.user,
+                created_at = form.cleaned_data['created_at'],
+                effort_type = form.cleaned_data['effort_type'],
+                box_free = form.cleaned_data['box_free'],
+                bar_type = form.cleaned_data['bar_type'],
+                bands_type = form.cleaned_data['bands_type'],
+                reverse = form.cleaned_data['reverse'],
+                chain_weight = form.cleaned_data['chain_weight'],
+                movement_weight = form.cleaned_data['movement_weight'],
+                movement_sets = form.cleaned_data['movement_sets'],
+                movement_reps = form.cleaned_data['movement_reps'],
+                squat_notes = form.cleaned_data['squat_notes'],
+                media_url = form.cleaned_data['media_url'])
             new_squat_data.save()
             return HttpResponseRedirect('/')
     else:
@@ -330,8 +330,8 @@ def squat_search(request):
             return render(request, 'tracker/squatmovement_search.html', {'form': form, 'objects': filtered_movements})
         else:
             form = SquatSearchForm()
-            return render(request, 'tracker/squatmovement_search.html', {'form': form})
-    return render(request, 'Hello')
+            return render(request, 'tracker/squatmovement_search.html', {'form': form })
+    return render(request, 'Request type not allowed.' )
 
 def bench_search(request):
     if request.method == "GET":
@@ -347,8 +347,8 @@ def bench_search(request):
             return render(request, 'tracker/benchmovement_search.html', {'form': form, 'objects': filtered_movements})
         else:
             form = BenchSearchForm()
-            return render(request, 'tracker/benchmovement_search.html', {'form': form})
-    return render(request, 'Hello')
+            return render(request, 'tracker/benchmovement_search.html', {'form': form })
+    return render(request, 'Request type not allowed.' )
 
 def deadlift_search(request):
     if request.method == "GET":
@@ -363,8 +363,8 @@ def deadlift_search(request):
             return render(request, 'tracker/deadliftmovement_search.html', {'form': form, 'objects': filtered_movements})
         else:
             form = DeadliftSearchForm()
-            return render(request, 'tracker/deadliftmovement_search.html', {'form': form})
-    return render(request, 'Hello')
+            return render(request, 'tracker/deadliftmovement_search.html', {'form': form })
+    return render(request, 'Request type not allowed.' )
 
 def upper_search(request):
     if request.method == "GET":
@@ -380,8 +380,8 @@ def upper_search(request):
             return render(request, 'tracker/uppermovement_search.html', {'form': form, 'objects': filtered_movements})
         else:
             form = UpperForm()
-            return render(request, 'tracker/uppermovement_search.html', {'form': form})
-    return render(request, 'Hello')
+            return render(request, 'tracker/uppermovement_search.html', {'form': form })
+    return render(request, 'Request type not allowed.')
 
 def lower_search(request):
     if request.method == "GET":
@@ -396,8 +396,8 @@ def lower_search(request):
             return render(request, 'tracker/lowermovement_search.html', {'form': form, 'objects': filtered_movements})
         else:
             form = LowerForm()
-            return render(request, 'tracker/lowermovement_search.html', {'form': form})
-    return render(request, 'Hello' )
+            return render(request, 'tracker/lowermovement_search.html', {'form': form })
+    return render(request, 'Request type not allowed.' )
 
 
 def analysis(request):
