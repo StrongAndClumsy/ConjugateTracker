@@ -11,7 +11,6 @@ docutils==0.13.1
 idna==2.5
 jmespath==0.9.3
 packaging==16.8
-pkg-resources==0.0.0
 pygal==2.4.0
 pyparsing==2.2.0
 python-dateutil==2.6.0
