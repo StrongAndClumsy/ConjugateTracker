@@ -12,15 +12,12 @@ class TrackerViewsTestCase(TestCase):
         test_user1 = User.objects.create_user('test_user1', 'test@example.com', 'testpass1')
         test_user2 = User.objects.create_user('test_user2', 'test2@example.com', 'testpass2')
         self.test_bench1 = BenchMovement.objects.create(user=test_user1, created_at=timezone.now(), bar_type="dive", floor=True,
-                                                    reverse=True, standard=False, board=False, manpon=False, pin=False, bench_notes="None", bands="Some", chains="Hot")
+                                                        reverse=True, board=0, manpon=False, pin=False, bench_notes="None", bands_type="Some",
+                                                        chain_weight=300, movement_weight=300, movement_sets=3, movement_reps=2, media_url="None")
         self.test_bench1.save()
         self.test_bench2 = BenchMovement.objects.create(user=test_user2, created_at=timezone.now(), bar_type="classy", floor=True,
-                                                    reverse=True, standard=False, board=False, manpon=False, pin=False, bench_notes="None", bands="Some", chains="Hot")
+                                                    reverse=True, board=False, manpon=False, pin=False, bench_notes="None", bands_type="Some", chain_weight=300)
         self.test_bench2.save()
-
-    def test_index_redirects_when_not_logged_in(self):
-        resp = self.client.get('/')
-        self.assertEqual(resp.status_code, 302)
 
     def test_index_when_logged_in(self):
         self.client.login(username='test_user1', password='testpass1')
