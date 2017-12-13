@@ -8,11 +8,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.views.generic.detail import DetailView
 from django.db.models import Q
+import os
 from .models import SquatMovement, DeadliftMovement, BenchMovement, LowerAccessoryMovement, UpperAccessoryMovement
 from .forms import SquatForm, SquatSearchForm, DeadliftForm, DeadliftSearchForm, BenchForm, BenchSearchForm, LowerForm, UpperForm
 import pygal
 from pygal.style import NeonStyle
 import random
+
+IMAGE_PATH = os.getenv('BASEPATH', default="")
 
 class SquatDetailView(DetailView):
     model = SquatMovement
@@ -421,7 +424,7 @@ def analysis(request):
                     line_chart.title = 'Lift Progression'
                     line_chart.x_labels = map(str, range(1, len(max_weight)))
                     line_chart.add('Bench', max_weight)
-                    line_chart.render_to_file('tracker/static/tmp/chart.svg')
+                    line_chart.render_to_file(IMAGE_PATH + 'tracker/static/tmp/chart.svg')
 
             # Deadlift
             if key == "movement1" and value == "deadlift1":
@@ -438,7 +441,7 @@ def analysis(request):
                     line_chart.title = 'Lift Progression'
                     line_chart.x_labels = map(str, range(1, len(max_weight)))
                     line_chart.add('Deadlift', max_weight)
-                    line_chart.render_to_file('tracker/static/tmp/chart.svg')
+                    line_chart.render_to_file(IMAGE_PATH + 'tracker/static/tmp/chart.svg')
 
             # Squat
             if key == "movement1" and value == "squat1":
@@ -455,7 +458,7 @@ def analysis(request):
                     line_chart.title = 'Lift Progression'
                     line_chart.x_labels = map(str, range(1, len(max_weight)))
                     line_chart.add('Squat', max_weight)
-                    line_chart.render_to_file('tracker/static/tmp/chart.svg')
+                    line_chart.render_to_file(IMAGE_PATH + 'tracker/static/tmp/chart.svg')
 
             # Upper
             if key == "movement1" and value == "upper1":
@@ -472,7 +475,7 @@ def analysis(request):
                     line_chart.title = 'Lift Progression'
                     line_chart.x_labels = map(str, range(1, len(max_weight)))
                     line_chart.add('Squat', max_weight)
-                    line_chart.render_to_file('tracker/static/tmp/chart.svg')
+                    line_chart.render_to_file(IMAGE_PATH + 'tracker/static/tmp/chart.svg')
 
     upperform = UpperForm()
     lowerform = LowerForm()
