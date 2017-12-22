@@ -127,6 +127,8 @@ if deploy_environment == "production":
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
+ACCOUNT_ACTIVATION_DAYS = 7
+
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'America/Los_Angeles'

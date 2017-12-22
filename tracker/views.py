@@ -74,7 +74,7 @@ def signup(request):
             return redirect('/')
     else:
         form = UserCreationForm()
-    return render(request, 'signup.html', {'form': form})
+    return render(request, 'registration_form.html', {'form': form})
 
 def index(request):
     if not request.user.is_authenticated:
