@@ -23,10 +23,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '7zd*j%6fbo9z*+qras=h2e#!f5f$-9qu(_ll@9x09c9o5qdtf*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+deploy_environment = os.getenv('PYTHON_ENV', default="development")
+DEBUG = False if deploy_environment == 'production' else True
 
-ALLOWED_HOSTS = []
-
+if deploy_environment == "production":
+    ALLOWED_HOSTS = ['staging.conjugatetracker.com']
+else:
+    ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -99,6 +102,26 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+if deploy_environment == "production":
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {
+            'file': {
+                'level': 'DEBUG',
+                'class': 'logging.FileHandler',
+                'filename': '/home/ubuntu/debug.log',
+            },
+        },
+        'loggers': {
+            'django': {
+                'handlers': ['file'],
+                'level': 'DEBUG',
+                'propagate': True,
+            },
+        },
+    }
 
 
 # Internationalization
