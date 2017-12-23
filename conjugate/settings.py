@@ -123,6 +123,12 @@ if deploy_environment == "production":
         },
     }
 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.getenv('PYTHON_EMAIL')
+EMAIL_HOST_PASSWORD = os.getenv('PYTHON_EMAIL_PASSWORD')
+EMAIL_USE_TLS = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
