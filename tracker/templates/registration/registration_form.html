@@ -1,10 +1,10 @@
 {% extends 'tracker/base.html' %}
 
 {% block content %}
-  <h2>Sign Up for Conjugate</h2>
+  <h2>Sign Up for Conjugate Tracker</h2>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button class="btn btn-1" type="submit">Sign up</button>
+    <button type="submit" class="btn btn-1">Sign up</button>
   </form>
 {% endblock %}
