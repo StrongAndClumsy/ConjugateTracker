@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.conf.urls import include, url
 from django.http import HttpResponseRedirect, HttpResponse
 
 from . import views
@@ -6,7 +6,7 @@ app_name = "tracker"
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^signup/$', views.signup, name='signup'),
+    url(r'^accounts/',  include('registration.backends.hmac.urls')),
     url(r'^robots.txt$', lambda r: HttpResponse("User-agent: *\nDisallow: /", content_type="text/plain")),
     url(r'^squat_movement/(?P<pk>[0-9]+)/$', views.SquatDetailView.as_view(), name='squat_detail'),
     url(r'^deadlift_movement/(?P<pk>[0-9]+)/$', views.DeadliftDetailView.as_view(), name='deadlift_detail'),
