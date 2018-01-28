@@ -45,7 +45,7 @@ class BenchMovement(models.Model):
 	bar_type = models.CharField(max_length=60, blank=True)
 	floor = models.BooleanField()
 	reverse = models.BooleanField()
-	board = models.IntegerField(default=0)
+	board = models.IntegerField(blank=True)
 	manpon = models.BooleanField()
 	pin = models.BooleanField()
 	bench_notes = models.CharField(max_length=60, blank=True)

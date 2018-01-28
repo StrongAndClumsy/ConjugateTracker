@@ -9,7 +9,7 @@ SUMO_CHOICES = (('Sumo', 'Sumo'), ('Conventional', 'Conventional'))
 BAR_OPTIONS = (('Straight', 'Straight'), ('Giant Cambered', 'Giant Cambered'), ('Buffalo', 'Buffalo'), ('Bow', 'Bow'), ('Safety Squat Bar', 'Safety Squat Bar'))
 BENCH_BAR_OPTIONS = (('Straight', 'Straight'), ('Cambered', 'Cambered'), ('Bow', 'Bow'), ('Football Bar', 'Football Bar'))
 BAND_TYPE = (('None', 'None'), ('Micro Mini', 'Micro Mini'), ('Mini', 'Mini'), ('Monster Mini', 'Monster Mini '), ('Light', 'Light'), ('Average', 'Average'), ('Heavy', 'Heavy'))
-BOARD = (('0', 'None'), ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'))
+BOARD = (('', ''), ('0', 'None'), ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'))
 
 class SquatForm(forms.ModelForm):
 	class Meta:
