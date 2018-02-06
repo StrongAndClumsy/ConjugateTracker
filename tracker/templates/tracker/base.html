@@ -57,7 +57,7 @@
           <ul class="header_menu collapse" id="header-menu">
             <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="/">Home for {{user_name.title}}</a></li>
             <li type="button" role="presentation" class="active header_item bordered_list">
-              <a class="default_link" data-toggle="collapse" data-target="#header-menu-log">Log New Movement</a>
+              <a class="default_link" href="#collapse1" data-toggle="collapse" data-target="#header-menu-log">Log New Movement</a>
               <ul class="collapse" id="header-menu-log">
                 <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:squat_new' %}">Add New Squat</a></li>
                 <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:bench_new' %}">Add New Bench</a></li>
@@ -67,7 +67,7 @@
               </ul>
             </li>
             <li type="button" role="presentation" class="active header_item bordered_list">
-              <a class="default_link" data-toggle="collapse" data-target="#header-menu-search">Search Movements</a>
+              <a class="default_link" href="#collapse1" data-toggle="collapse" data-target="#header-menu-search">Search Movements</a>
               <ul class="collapse" id="header-menu-search">
                 <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:squat_search' %}">Search for Squat</a></li>
                 <li type="button" role="presentation" class="active header_item bordered_list"><a class="default_link" href="{% url 'tracker:bench_search' %}">Search for Bench</a></li>
