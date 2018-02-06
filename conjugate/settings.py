@@ -27,7 +27,7 @@ deploy_environment = os.getenv('PYTHON_ENV', default="development")
 DEBUG = False if deploy_environment == 'production' else True
 
 if deploy_environment == "production":
-    ALLOWED_HOSTS = ['staging.conjugatetracker.com']
+    ALLOWED_HOSTS = ['staging.conjugatetracker.com', 'www.conjugatetracker.com']
 else:
     ALLOWED_HOSTS = []
 
