@@ -8,6 +8,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.views.generic.detail import DetailView
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 import os
 from .models import SquatMovement, DeadliftMovement, BenchMovement, LowerAccessoryMovement, UpperAccessoryMovement
 from .forms import SquatForm, SquatSearchForm, DeadliftForm, DeadliftSearchForm, BenchForm, BenchSearchForm, LowerForm, UpperForm
@@ -62,6 +63,8 @@ class LowerDetailView(DetailView):
             raise Http404
         return context
 
+
+@login_required
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -76,6 +79,8 @@ def signup(request):
         form = UserCreationForm()
     return render(request, 'registration_form.html', {'form': form})
 
+
+@login_required
 def index(request):
     if not request.user.is_authenticated:
         #return redirect('%s?next=%s' % ('/login/', request.path))
@@ -96,168 +101,198 @@ def index(request):
         }
         return render(request, 'tracker/home_page.html', context)
 
+
+@login_required
 def new_squat(request):
-    if request.method == 'POST':
-        form = SquatForm(request.POST)
-        if form.is_valid():
-            new_squat_data = SquatMovement(
-                user = request.user,
-                created_at = form.cleaned_data['created_at'],
-                effort_type = form.cleaned_data['effort_type'],
-                box_free = form.cleaned_data['box_free'],
-                bar_type = form.cleaned_data['bar_type'],
-                bands_type = form.cleaned_data['bands_type'],
-                reverse = form.cleaned_data['reverse'],
-                chain_weight = form.cleaned_data['chain_weight'],
-                movement_weight = form.cleaned_data['movement_weight'],
-                movement_sets = form.cleaned_data['movement_sets'],
-                movement_reps = form.cleaned_data['movement_reps'],
-                squat_notes = form.cleaned_data['squat_notes'],
-                media_url = form.cleaned_data['media_url'])
-            new_squat_data.save()
-            return HttpResponseRedirect('/')
+    if not request.user.is_authenticated:
+        #return redirect('%s?next=%s' % ('/login/', request.path))
+        return render(request, 'tracker/landing_page.html')
     else:
-        form = SquatForm()
-    return render(request, 'new_squat.html', {'form': form})
+        if request.method == 'POST':
+            form = SquatForm(request.POST)
+            if form.is_valid():
+                new_squat_data = SquatMovement(
+                    user = request.user,
+                    created_at = form.cleaned_data['created_at'],
+                    effort_type = form.cleaned_data['effort_type'],
+                    box_free = form.cleaned_data['box_free'],
+                    bar_type = form.cleaned_data['bar_type'],
+                    bands_type = form.cleaned_data['bands_type'],
+                    reverse = form.cleaned_data['reverse'],
+                    chain_weight = form.cleaned_data['chain_weight'],
+                    movement_weight = form.cleaned_data['movement_weight'],
+                    movement_sets = form.cleaned_data['movement_sets'],
+                    movement_reps = form.cleaned_data['movement_reps'],
+                    squat_notes = form.cleaned_data['squat_notes'],
+                    media_url = form.cleaned_data['media_url'])
+                new_squat_data.save()
+                return HttpResponseRedirect('/')
+        else:
+            form = SquatForm()
+        return render(request, 'new_squat.html', {'form': form})
 
+
+@login_required
 def new_deadlift(request):
-    if request.method == 'POST':
-        form = DeadliftForm(request.POST)
-        if form.is_valid():
-            new_deadlift_data = DeadliftMovement(
-                user=request.user,
-                created_at = form.cleaned_data['created_at'],
-                effort_type = form.cleaned_data['effort_type'],
-                sumo_conventional=form.cleaned_data['sumo_conventional'],
-                deficit=form.cleaned_data['deficit'],
-                block=form.cleaned_data['block'],
-                standard=form.cleaned_data['standard'],
-                pin=form.cleaned_data['pin'],
-                reverse=form.cleaned_data['reverse'],
-                bands_type=form.cleaned_data['bands_type'],
-                chain_weight=form.cleaned_data['chain_weight'],
-                movement_weight=form.cleaned_data['movement_weight'],
-                movement_sets=form.cleaned_data['movement_sets'],
-                movement_reps=form.cleaned_data['movement_reps'],
-                deadlift_notes=form.cleaned_data['deadlift_notes'],
-                media_url=form.cleaned_data['media_url']
-            )
-            new_deadlift_data.save()
-            return HttpResponseRedirect('/')
+    if not request.user.is_authenticated:
+        #return redirect('%s?next=%s' % ('/login/', request.path))
+        return render(request, 'tracker/landing_page.html')
     else:
-        form = DeadliftForm()
-    return render(request, 'new_deadlift.html', {'form': form})
+        if request.method == 'POST':
+            form = DeadliftForm(request.POST)
+            if form.is_valid():
+                new_deadlift_data = DeadliftMovement(
+                    user=request.user,
+                    created_at = form.cleaned_data['created_at'],
+                    effort_type = form.cleaned_data['effort_type'],
+                    sumo_conventional=form.cleaned_data['sumo_conventional'],
+                    deficit=form.cleaned_data['deficit'],
+                    block=form.cleaned_data['block'],
+                    standard=form.cleaned_data['standard'],
+                    pin=form.cleaned_data['pin'],
+                    reverse=form.cleaned_data['reverse'],
+                    bands_type=form.cleaned_data['bands_type'],
+                    chain_weight=form.cleaned_data['chain_weight'],
+                    movement_weight=form.cleaned_data['movement_weight'],
+                    movement_sets=form.cleaned_data['movement_sets'],
+                    movement_reps=form.cleaned_data['movement_reps'],
+                    deadlift_notes=form.cleaned_data['deadlift_notes'],
+                    media_url=form.cleaned_data['media_url']
+                )
+                new_deadlift_data.save()
+                return HttpResponseRedirect('/')
+        else:
+            form = DeadliftForm()
+        return render(request, 'new_deadlift.html', {'form': form})
 
 
+
+@login_required
 def new_bench(request):
-    if request.method == 'POST':
-        form = BenchForm(request.POST)
-        if form.is_valid():
-            new_bench_data = BenchMovement(
-                user=request.user,
-                created_at=form.cleaned_data['created_at'],
-                effort_type=form.cleaned_data['effort_type'],
-                bar_type=form.cleaned_data['bar_type'],
-                floor=form.cleaned_data['floor'],
-                reverse=form.cleaned_data['reverse'],
-                board=form.cleaned_data['board'],
-                manpon=form.cleaned_data['manpon'],
-                pin=form.cleaned_data['pin'],
-                bench_notes=form.cleaned_data['bench_notes'],
-                bands_type=form.cleaned_data['bands_type'],
-                chain_weight=form.cleaned_data['chain_weight'],
-                movement_weight=form.cleaned_data['movement_weight'],
-                movement_sets=form.cleaned_data['movement_sets'],
-                movement_reps=form.cleaned_data['movement_reps'],
-                media_url=form.cleaned_data['media_url']
-                )
-            new_bench_data.save()
-            return HttpResponseRedirect('/')
+    if not request.user.is_authenticated:
+        #return redirect('%s?next=%s' % ('/login/', request.path))
+        return render(request, 'tracker/landing_page.html')
     else:
-        form = BenchForm()
-    return render(request, 'new_bench.html', {'form': form})
+        if request.method == 'POST':
+            form = BenchForm(request.POST)
+            if form.is_valid():
+                new_bench_data = BenchMovement(
+                    user=request.user,
+                    created_at=form.cleaned_data['created_at'],
+                    effort_type=form.cleaned_data['effort_type'],
+                    bar_type=form.cleaned_data['bar_type'],
+                    floor=form.cleaned_data['floor'],
+                    reverse=form.cleaned_data['reverse'],
+                    board=form.cleaned_data['board'],
+                    manpon=form.cleaned_data['manpon'],
+                    pin=form.cleaned_data['pin'],
+                    bench_notes=form.cleaned_data['bench_notes'],
+                    bands_type=form.cleaned_data['bands_type'],
+                    chain_weight=form.cleaned_data['chain_weight'],
+                    movement_weight=form.cleaned_data['movement_weight'],
+                    movement_sets=form.cleaned_data['movement_sets'],
+                    movement_reps=form.cleaned_data['movement_reps'],
+                    media_url=form.cleaned_data['media_url']
+                    )
+                new_bench_data.save()
+                return HttpResponseRedirect('/')
+        else:
+            form = BenchForm()
+        return render(request, 'new_bench.html', {'form': form})
 
 
+@login_required
 def new_lower(request):
-    if request.method == 'POST':
-        form = LowerForm(request.POST)
-        if form.is_valid():
-            new_lower_data = LowerAccessoryMovement(
-                user=request.user,
-                created_at=form.cleaned_data['created_at'],
-                top_set=form.cleaned_data['top_set'],
-                chair_dl=form.cleaned_data['chair_dl'],
-                ghr=form.cleaned_data['ghr'],
-                lunge=form.cleaned_data['lunge'],
-                dimel_dl=form.cleaned_data['dimel_dl'],
-                reverse_hyper=form.cleaned_data['reverse_hyper'],
-                hip_bridge=form.cleaned_data['hip_bridge'],
-                good_morning=form.cleaned_data['good_morning'],
-                step_up=form.cleaned_data['step_up'],
-                belt_squat=form.cleaned_data['belt_squat'],
-                hack_squat=form.cleaned_data['hack_squat'],
-                leg_press=form.cleaned_data['leg_press'],
-                leg_curl=form.cleaned_data['leg_curl'],
-                stiff_leg_dl=form.cleaned_data['stiff_leg_dl'],
-                inverse_curl=form.cleaned_data['inverse_curl'],
-                front_squat=form.cleaned_data['front_squat'],
-                back_extension=form.cleaned_data['back_extension'],
-                ab_movement=form.cleaned_data['ab_movement'],
-                other=form.cleaned_data['other'],
-                notes=form.cleaned_data['notes'],
-                media_url=form.cleaned_data['media_url']
-            )
-            new_lower_data.save()
-            return HttpResponseRedirect('/')
+    if not request.user.is_authenticated:
+        #return redirect('%s?next=%s' % ('/login/', request.path))
+        return render(request, 'tracker/landing_page.html')
     else:
-        form = LowerForm()
-    return render(request, 'new_lower.html', {'form': form})
-
-def new_upper(request):
-    if request.method == 'POST':
-        form = UpperForm(request.POST)
-        if form.is_valid():
-            new_upper_data = UpperAccessoryMovement(
-                user=request.user,
-                created_at=form.cleaned_data['created_at'],
-                top_set=form.cleaned_data['top_set'],
-                close_grippness=form.cleaned_data['close_grippness'],
-                tate_press=form.cleaned_data['tate_press'],
-                dips=form.cleaned_data['dips'],
-                rev_db_fly=form.cleaned_data['rev_db_fly'],
-                windmills=form.cleaned_data['windmills'],
-                bamboo_bar=form.cleaned_data['bamboo_bar'],
-                lat_pulldowns=form.cleaned_data['lat_pulldowns'],
-                lat_pullovers=form.cleaned_data['lat_pullovers'],
-                pec_dec=form.cleaned_data['pec_dec'],
-                reverse_pec_dec=form.cleaned_data['reverse_pec_dec'],
-                t_bar_rows=form.cleaned_data['t_bar_rows'],
-                chest_supported_rows=form.cleaned_data['chest_supported_rows'],
-                low_rows=form.cleaned_data['low_rows'],
-                pullups=form.cleaned_data['pullups'],
-                inverted_row=form.cleaned_data['inverted_row'],
-                face_pulls=form.cleaned_data['face_pulls'],
-                db_rows=form.cleaned_data['db_rows'],
-                db_press=form.cleaned_data['db_press'],
-                pullaparts=form.cleaned_data['pullaparts'],
-                tri_extensions=form.cleaned_data['tri_extensions'],
-                skull_crushers=form.cleaned_data['skull_crushers'],
-                jam_press=form.cleaned_data['jam_press'],
-                olt_press=form.cleaned_data['olt_press'],
-                db_rollbacks=form.cleaned_data['db_rollbacks'],
-                dead_press=form.cleaned_data['dead_press'],
-                ab_movement=form.cleaned_data['ab_movement'],
-                other=form.cleaned_data['other'],
-                notes=form.cleaned_data['notes'],
-                media_url=form.cleaned_data['media_url']
+        if request.method == 'POST':
+            form = LowerForm(request.POST)
+            if form.is_valid():
+                new_lower_data = LowerAccessoryMovement(
+                    user=request.user,
+                    created_at=form.cleaned_data['created_at'],
+                    top_set=form.cleaned_data['top_set'],
+                    chair_dl=form.cleaned_data['chair_dl'],
+                    ghr=form.cleaned_data['ghr'],
+                    lunge=form.cleaned_data['lunge'],
+                    dimel_dl=form.cleaned_data['dimel_dl'],
+                    reverse_hyper=form.cleaned_data['reverse_hyper'],
+                    hip_bridge=form.cleaned_data['hip_bridge'],
+                    good_morning=form.cleaned_data['good_morning'],
+                    step_up=form.cleaned_data['step_up'],
+                    belt_squat=form.cleaned_data['belt_squat'],
+                    hack_squat=form.cleaned_data['hack_squat'],
+                    leg_press=form.cleaned_data['leg_press'],
+                    leg_curl=form.cleaned_data['leg_curl'],
+                    stiff_leg_dl=form.cleaned_data['stiff_leg_dl'],
+                    inverse_curl=form.cleaned_data['inverse_curl'],
+                    front_squat=form.cleaned_data['front_squat'],
+                    back_extension=form.cleaned_data['back_extension'],
+                    ab_movement=form.cleaned_data['ab_movement'],
+                    other=form.cleaned_data['other'],
+                    notes=form.cleaned_data['notes'],
+                    media_url=form.cleaned_data['media_url']
                 )
-            new_upper_data.save()
-            return HttpResponseRedirect('/')
+                new_lower_data.save()
+                return HttpResponseRedirect('/')
+        else:
+            form = LowerForm()
+        return render(request, 'new_lower.html', {'form': form})
+
+
+@login_required
+def new_upper(request):
+    if not request.user.is_authenticated:
+        #return redirect('%s?next=%s' % ('/login/', request.path))
+        return render(request, 'tracker/landing_page.html')
     else:
-        form = UpperForm()
-    return render(request, 'new_upper.html', {'form': form})
+        if request.method == 'POST':
+            form = UpperForm(request.POST)
+            if form.is_valid():
+                new_upper_data = UpperAccessoryMovement(
+                    user=request.user,
+                    created_at=form.cleaned_data['created_at'],
+                    top_set=form.cleaned_data['top_set'],
+                    close_grippness=form.cleaned_data['close_grippness'],
+                    tate_press=form.cleaned_data['tate_press'],
+                    dips=form.cleaned_data['dips'],
+                    rev_db_fly=form.cleaned_data['rev_db_fly'],
+                    windmills=form.cleaned_data['windmills'],
+                    bamboo_bar=form.cleaned_data['bamboo_bar'],
+                    lat_pulldowns=form.cleaned_data['lat_pulldowns'],
+                    lat_pullovers=form.cleaned_data['lat_pullovers'],
+                    pec_dec=form.cleaned_data['pec_dec'],
+                    reverse_pec_dec=form.cleaned_data['reverse_pec_dec'],
+                    t_bar_rows=form.cleaned_data['t_bar_rows'],
+                    chest_supported_rows=form.cleaned_data['chest_supported_rows'],
+                    low_rows=form.cleaned_data['low_rows'],
+                    pullups=form.cleaned_data['pullups'],
+                    inverted_row=form.cleaned_data['inverted_row'],
+                    face_pulls=form.cleaned_data['face_pulls'],
+                    db_rows=form.cleaned_data['db_rows'],
+                    db_press=form.cleaned_data['db_press'],
+                    pullaparts=form.cleaned_data['pullaparts'],
+                    tri_extensions=form.cleaned_data['tri_extensions'],
+                    skull_crushers=form.cleaned_data['skull_crushers'],
+                    jam_press=form.cleaned_data['jam_press'],
+                    olt_press=form.cleaned_data['olt_press'],
+                    db_rollbacks=form.cleaned_data['db_rollbacks'],
+                    dead_press=form.cleaned_data['dead_press'],
+                    ab_movement=form.cleaned_data['ab_movement'],
+                    other=form.cleaned_data['other'],
+                    notes=form.cleaned_data['notes'],
+                    media_url=form.cleaned_data['media_url']
+                    )
+                new_upper_data.save()
+                return HttpResponseRedirect('/')
+        else:
+            form = UpperForm()
+        return render(request, 'new_upper.html', {'form': form})
 
 
+@login_required
 def squat_edit(request, pk):
     squat = get_object_or_404(SquatMovement, pk=pk)
     if request.method == "POST":
@@ -270,6 +305,8 @@ def squat_edit(request, pk):
         form = SquatForm(instance=squat)
     return render(request, 'edit_squat.html', {'form': form, 'pk': pk})
 
+
+@login_required
 def bench_edit(request, pk):
     bench = get_object_or_404(BenchMovement, pk=pk)
     if request.method == "POST":
@@ -282,6 +319,8 @@ def bench_edit(request, pk):
         form = BenchForm(instance=bench)
     return render(request, 'edit_bench.html', {'form': form, 'pk': pk})
 
+
+@login_required
 def deadlift_edit(request, pk):
     deadlift = get_object_or_404(DeadliftMovement, pk=pk)
     if request.method == "POST":
@@ -294,6 +333,8 @@ def deadlift_edit(request, pk):
         form = DeadliftForm(instance=deadlift)
     return render(request, 'edit_deadlift.html', {'form': form, 'pk': pk})
 
+
+@login_required
 def upper_edit(request, pk):
     upper = get_object_or_404(UpperAccessoryMovement, pk=pk)
     if request.method == "POST":
@@ -306,6 +347,8 @@ def upper_edit(request, pk):
         form = UpperForm(instance=upper)
     return render(request, 'edit_upper.html', {'form': form, 'pk': pk})
 
+
+@login_required
 def lower_edit(request, pk):
     lower = get_object_or_404(LowerAccessoryMovement, pk=pk)
     if request.method == "POST":
@@ -318,6 +361,8 @@ def lower_edit(request, pk):
         form = LowerForm(instance=lower)
     return render(request, 'edit_lower.html', {'form': form, 'pk': pk})
 
+
+@login_required
 def squat_search(request):
     if request.method == "GET":
         search_dict = request.GET.dict()
@@ -336,6 +381,8 @@ def squat_search(request):
             return render(request, 'tracker/squatmovement_search.html', {'form': form })
     return render(request, 'Request type not allowed.' )
 
+
+@login_required
 def bench_search(request):
     if request.method == "GET":
         search_dict = request.GET.dict()
@@ -353,6 +400,8 @@ def bench_search(request):
             return render(request, 'tracker/benchmovement_search.html', {'form': form })
     return render(request, 'Request type not allowed.' )
 
+
+@login_required
 def deadlift_search(request):
     if request.method == "GET":
         search_dict = request.GET.dict()
@@ -369,6 +418,8 @@ def deadlift_search(request):
             return render(request, 'tracker/deadliftmovement_search.html', {'form': form })
     return render(request, 'Request type not allowed.' )
 
+
+@login_required
 def upper_search(request):
     if request.method == "GET":
         search_dict = request.GET.dict()
@@ -386,6 +437,8 @@ def upper_search(request):
             return render(request, 'tracker/uppermovement_search.html', {'form': form })
     return render(request, 'Request type not allowed.')
 
+
+@login_required
 def lower_search(request):
     if request.method == "GET":
         search_dict = request.GET.dict()
@@ -403,6 +456,7 @@ def lower_search(request):
     return render(request, 'Request type not allowed.' )
 
 
+@login_required
 def analysis(request):
     if request.method == "GET":
         version = random.randint(0, 1000)
