@@ -53,9 +53,11 @@ function ToggleEntry() {
   var parentElement = targetElement.parentElement;
 
   parentElement.style.display = 'block';
-  targetElement.value = 'true';
-  targetElement.style.display = 'none';
-
+  if (selectedId != 'id_created_at') {
+    targetElement.value = 'true';
+    targetElement.style.display = 'none';
+  }
+  
 }
 
 </script>
