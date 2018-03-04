@@ -22,7 +22,6 @@
 
 <select class="dropdown" id="upAcc"  onchange="ToggleEntry()">
   <option>Select all accessories</option>
-  <option value="id_created_at">Workout Date</option>
   <option value="id_top_set">Top Set</option>
   <option value="id_ab_movement">Ab Movement</option>
   <option value="id_bamboo_bar">Bamboo Bar</option>
@@ -82,7 +81,7 @@ function ToggleEntry() {
   parentElement.style.display = 'block';
   if (selectedId != 'id_created_at') {
     targetElement.value = 'true';
-    targetElement.style.display = 'none';  
+    targetElement.style.display = 'none';
   }
 
 }
