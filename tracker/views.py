@@ -10,16 +10,21 @@ from django.views.generic.detail import DetailView
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 import os
-from .models import SquatMovement, DeadliftMovement, BenchMovement, LowerAccessoryMovement, UpperAccessoryMovement
-from .forms import SquatForm, SquatSearchForm, DeadliftForm, DeadliftSearchForm, BenchForm, BenchSearchForm, LowerForm, UpperForm
+from .models import SquatMovement, DeadliftMovement, BenchMovement, \
+    LowerAccessoryMovement, UpperAccessoryMovement
+from .forms import SquatForm, SquatSearchForm, DeadliftForm, \
+    DeadliftSearchForm, BenchForm, BenchSearchForm, LowerForm, UpperForm
 import pygal
 from pygal.style import NeonStyle
 import random
 
 IMAGE_PATH = os.getenv('BASEPATH', default="")
 
+
 class SquatDetailView(DetailView):
+
     model = SquatMovement
+
     def get_context_data(self, **kwargs):
         context = super(SquatDetailView, self).get_context_data(**kwargs)
         context['now'] = timezone.now()
@@ -27,8 +32,11 @@ class SquatDetailView(DetailView):
             raise Http404
         return context
 
+
 class BenchDetailView(DetailView):
+
     model = BenchMovement
+
     def get_context_data(self, **kwargs):
         context = super(BenchDetailView, self).get_context_data(**kwargs)
         context['now'] = timezone.now()
@@ -36,8 +44,11 @@ class BenchDetailView(DetailView):
             raise Http404
         return context
 
+
 class DeadliftDetailView(DetailView):
+
     model = DeadliftMovement
+
     def get_context_data(self, **kwargs):
         context = super(DeadliftDetailView, self).get_context_data(**kwargs)
         context['now'] = timezone.now()
@@ -45,8 +56,11 @@ class DeadliftDetailView(DetailView):
             raise Http404
         return context
 
+
 class UpperDetailView(DetailView):
+
     model = UpperAccessoryMovement
+
     def get_context_data(self, **kwargs):
         context = super(UpperDetailView, self).get_context_data(**kwargs)
         context['now'] = timezone.now()
@@ -54,8 +68,11 @@ class UpperDetailView(DetailView):
             raise Http404
         return context
 
+
 class LowerDetailView(DetailView):
+
     model = LowerAccessoryMovement
+
     def get_context_data(self, **kwargs):
         context = super(LowerDetailView, self).get_context_data(**kwargs)
         context['now'] = timezone.now()
@@ -83,14 +100,19 @@ def signup(request):
 @login_required
 def index(request):
     if not request.user.is_authenticated:
-        #return redirect('%s?next=%s' % ('/login/', request.path))
+        # return redirect('%s?next=%s' % ('/login/', request.path))
         return render(request, 'tracker/landing_page.html')
     else:
-        latest_squat_list = SquatMovement.objects.filter(user_id=request.user.id).order_by('-created_at')[:5]
-        latest_deadlift_list = DeadliftMovement.objects.filter(user_id=request.user.id).order_by('-created_at')[:5]
-        latest_bench_list = BenchMovement.objects.filter(user_id=request.user.id).order_by('-created_at')[:5]
-        latest_loweraccessory_list = LowerAccessoryMovement.objects.filter(user_id=request.user.id).order_by('-created_at')[:5]
-        latest_upperaccessory_list = UpperAccessoryMovement.objects.filter(user_id=request.user.id).order_by('-created_at')[:5]
+        latest_squat_list = SquatMovement.objects.\
+            filter(user_id=request.user.id).order_by('-created_at')[:5]
+        latest_deadlift_list = DeadliftMovement.objects.\
+            filter(user_id=request.user.id).order_by('-created_at')[:5]
+        latest_bench_list = BenchMovement.objects.\
+            filter(user_id=request.user.id).order_by('-created_at')[:5]
+        latest_loweraccessory_list = LowerAccessoryMovement.objects.\
+            filter(user_id=request.user.id).order_by('-created_at')[:5]
+        latest_upperaccessory_list = UpperAccessoryMovement.objects.\
+            filter(user_id=request.user.id).order_by('-created_at')[:5]
         context = {
             'user_name': request.user.username,
             'latest_squat_list': latest_squat_list,
@@ -105,26 +127,26 @@ def index(request):
 @login_required
 def new_squat(request):
     if not request.user.is_authenticated:
-        #return redirect('%s?next=%s' % ('/login/', request.path))
+        # return redirect('%s?next=%s' % ('/login/', request.path))
         return render(request, 'tracker/landing_page.html')
     else:
         if request.method == 'POST':
             form = SquatForm(request.POST)
             if form.is_valid():
                 new_squat_data = SquatMovement(
-                    user = request.user,
-                    created_at = form.cleaned_data['created_at'],
-                    effort_type = form.cleaned_data['effort_type'],
-                    box_free = form.cleaned_data['box_free'],
-                    bar_type = form.cleaned_data['bar_type'],
-                    bands_type = form.cleaned_data['bands_type'],
-                    reverse = form.cleaned_data['reverse'],
-                    chain_weight = form.cleaned_data['chain_weight'],
-                    movement_weight = form.cleaned_data['movement_weight'],
-                    movement_sets = form.cleaned_data['movement_sets'],
-                    movement_reps = form.cleaned_data['movement_reps'],
-                    squat_notes = form.cleaned_data['squat_notes'],
-                    media_url = form.cleaned_data['media_url'])
+                    user=request.user,
+                    created_at=form.cleaned_data['created_at'],
+                    effort_type=form.cleaned_data['effort_type'],
+                    box_free=form.cleaned_data['box_free'],
+                    bar_type=form.cleaned_data['bar_type'],
+                    bands_type=form.cleaned_data['bands_type'],
+                    reverse=form.cleaned_data['reverse'],
+                    chain_weight=form.cleaned_data['chain_weight'],
+                    movement_weight=form.cleaned_data['movement_weight'],
+                    movement_sets=form.cleaned_data['movement_sets'],
+                    movement_reps=form.cleaned_data['movement_reps'],
+                    squat_notes=form.cleaned_data['squat_notes'],
+                    media_url=form.cleaned_data['media_url'])
                 new_squat_data.save()
                 return HttpResponseRedirect('/')
         else:
@@ -135,7 +157,7 @@ def new_squat(request):
 @login_required
 def new_deadlift(request):
     if not request.user.is_authenticated:
-        #return redirect('%s?next=%s' % ('/login/', request.path))
+        # return redirect('%s?next=%s' % ('/login/', request.path))
         return render(request, 'tracker/landing_page.html')
     else:
         if request.method == 'POST':
@@ -143,8 +165,8 @@ def new_deadlift(request):
             if form.is_valid():
                 new_deadlift_data = DeadliftMovement(
                     user=request.user,
-                    created_at = form.cleaned_data['created_at'],
-                    effort_type = form.cleaned_data['effort_type'],
+                    created_at=form.cleaned_data['created_at'],
+                    effort_type=form.cleaned_data['effort_type'],
                     sumo_conventional=form.cleaned_data['sumo_conventional'],
                     deficit=form.cleaned_data['deficit'],
                     block=form.cleaned_data['block'],
@@ -166,11 +188,10 @@ def new_deadlift(request):
         return render(request, 'new_deadlift.html', {'form': form})
 
 
-
 @login_required
 def new_bench(request):
     if not request.user.is_authenticated:
-        #return redirect('%s?next=%s' % ('/login/', request.path))
+        # return redirect('%s?next=%s' % ('/login/', request.path))
         return render(request, 'tracker/landing_page.html')
     else:
         if request.method == 'POST':
@@ -204,7 +225,7 @@ def new_bench(request):
 @login_required
 def new_lower(request):
     if not request.user.is_authenticated:
-        #return redirect('%s?next=%s' % ('/login/', request.path))
+        # return redirect('%s?next=%s' % ('/login/', request.path))
         return render(request, 'tracker/landing_page.html')
     else:
         if request.method == 'POST':
@@ -245,7 +266,7 @@ def new_lower(request):
 @login_required
 def new_upper(request):
     if not request.user.is_authenticated:
-        #return redirect('%s?next=%s' % ('/login/', request.path))
+        # return redirect('%s?next=%s' % ('/login/', request.path))
         return render(request, 'tracker/landing_page.html')
     else:
         if request.method == 'POST':
@@ -266,7 +287,8 @@ def new_upper(request):
                     pec_dec=form.cleaned_data['pec_dec'],
                     reverse_pec_dec=form.cleaned_data['reverse_pec_dec'],
                     t_bar_rows=form.cleaned_data['t_bar_rows'],
-                    chest_supported_rows=form.cleaned_data['chest_supported_rows'],
+                    chest_supported_rows=form.cleaned_data[
+                        'chest_supported_rows'],
                     low_rows=form.cleaned_data['low_rows'],
                     pullups=form.cleaned_data['pullups'],
                     inverted_row=form.cleaned_data['inverted_row'],
@@ -300,7 +322,9 @@ def squat_edit(request, pk):
         if form.is_valid():
             squat = form.save(commit=False)
             squat.save()
-            return render(request, 'tracker/squatmovement_detail.html', {'object': squat})
+            return render(request,
+                          'tracker/squatmovement_detail.html',
+                          {'object': squat})
     else:
         form = SquatForm(instance=squat)
     return render(request, 'edit_squat.html', {'form': form, 'pk': pk})
@@ -314,7 +338,9 @@ def bench_edit(request, pk):
         if form.is_valid():
             bench = form.save(commit=False)
             bench.save()
-            return render(request, 'tracker/benchmovement_detail.html', {'object': bench})
+            return render(request,
+                          'tracker/benchmovement_detail.html',
+                          {'object': bench})
     else:
         form = BenchForm(instance=bench)
     return render(request, 'edit_bench.html', {'form': form, 'pk': pk})
@@ -328,7 +354,8 @@ def deadlift_edit(request, pk):
         if form.is_valid():
             deadlift = form.save(commit=False)
             deadlift.save()
-            return render(request, 'tracker/deadliftmovement_detail.html', {'object': deadlift})
+            return render(request, 'tracker/deadliftmovement_detail.html',
+                          {'object': deadlift})
     else:
         form = DeadliftForm(instance=deadlift)
     return render(request, 'edit_deadlift.html', {'form': form, 'pk': pk})
@@ -342,7 +369,9 @@ def upper_edit(request, pk):
         if form.is_valid():
             upper = form.save(commit=False)
             upper.save()
-            return render(request, 'tracker/upperaccessorymovement_detail.html', {'object': upper})
+            return render(request,
+                          'tracker/upperaccessorymovement_detail.html',
+                          {'object': upper})
     else:
         form = UpperForm(instance=upper)
     return render(request, 'edit_upper.html', {'form': form, 'pk': pk})
@@ -356,7 +385,9 @@ def lower_edit(request, pk):
         if form.is_valid():
             lower = form.save(commit=False)
             lower.save()
-            return render(request, 'tracker/loweraccessorymovement_detail.html', {'object': lower})
+            return render(request,
+                          'tracker/loweraccessorymovement_detail.html',
+                          {'object': lower})
     else:
         form = LowerForm(instance=lower)
     return render(request, 'edit_lower.html', {'form': form, 'pk': pk})
@@ -372,14 +403,17 @@ def squat_search(request):
                 filter_dict[key] = value
         if len(filter_dict) > 0:
             print(filter_dict)
-            filtered_movements = SquatMovement.objects.filter(user_id=request.user.id).filter(**filter_dict)
+            filtered_movements = SquatMovement.objects.\
+                filter(user_id=request.user.id).filter(**filter_dict)
             print(filtered_movements)
             form = SquatSearchForm()
-            return render(request, 'tracker/squatmovement_search.html', {'form': form, 'objects': filtered_movements})
+            return render(request, 'tracker/squatmovement_search.html',
+                          {'form': form, 'objects': filtered_movements})
         else:
             form = SquatSearchForm()
-            return render(request, 'tracker/squatmovement_search.html', {'form': form })
-    return render(request, 'Request type not allowed.' )
+            return render(request, 'tracker/squatmovement_search.html',
+                          {'form': form})
+    return render(request, 'Request type not allowed.')
 
 
 @login_required
@@ -392,13 +426,16 @@ def bench_search(request):
                 filter_dict[key] = value
         if len(filter_dict) > 0:
             print(filter_dict)
-            filtered_movements = BenchMovement.objects.filter(user_id=request.user.id).filter(**filter_dict)
+            filtered_movements = BenchMovement.objects.\
+                filter(user_id=request.user.id).filter(**filter_dict)
             form = BenchSearchForm()
-            return render(request, 'tracker/benchmovement_search.html', {'form': form, 'objects': filtered_movements})
+            return render(request, 'tracker/benchmovement_search.html',
+                          {'form': form, 'objects': filtered_movements})
         else:
             form = BenchSearchForm()
-            return render(request, 'tracker/benchmovement_search.html', {'form': form })
-    return render(request, 'Request type not allowed.' )
+            return render(request, 'tracker/benchmovement_search.html',
+                          {'form': form})
+    return render(request, 'Request type not allowed.')
 
 
 @login_required
@@ -410,13 +447,16 @@ def deadlift_search(request):
             if value != '' and value != "None":
                 filter_dict[key] = value
         if len(filter_dict) > 0:
-            filtered_movements = DeadliftMovement.objects.filter(user_id=request.user.id).filter(**filter_dict)
+            filtered_movements = DeadliftMovement.objects.\
+                filter(user_id=request.user.id).filter(**filter_dict)
             form = DeadliftSearchForm()
-            return render(request, 'tracker/deadliftmovement_search.html', {'form': form, 'objects': filtered_movements})
+            return render(request, 'tracker/deadliftmovement_search.html',
+                          {'form': form, 'objects': filtered_movements})
         else:
             form = DeadliftSearchForm()
-            return render(request, 'tracker/deadliftmovement_search.html', {'form': form })
-    return render(request, 'Request type not allowed.' )
+            return render(request, 'tracker/deadliftmovement_search.html',
+                          {'form': form})
+    return render(request, 'Request type not allowed.')
 
 
 @login_required
@@ -428,13 +468,16 @@ def upper_search(request):
             if value != ''and value != "None" and key != "created_at":
                 filter_dict[key] = ''
         if len(filter_dict) > 0:
-            filtered_movements = UpperAccessoryMovement.objects.filter(user_id=request.user.id).filter(~Q(**filter_dict))
+            filtered_movements = UpperAccessoryMovement.objects.\
+                filter(user_id=request.user.id).filter(~Q(**filter_dict))
             print(filtered_movements)
             form = UpperForm()
-            return render(request, 'tracker/uppermovement_search.html', {'form': form, 'objects': filtered_movements})
+            return render(request, 'tracker/uppermovement_search.html',
+                          {'form': form, 'objects': filtered_movements})
         else:
             form = UpperForm()
-            return render(request, 'tracker/uppermovement_search.html', {'form': form })
+            return render(request, 'tracker/uppermovement_search.html',
+                          {'form': form})
     return render(request, 'Request type not allowed.')
 
 
@@ -447,13 +490,16 @@ def lower_search(request):
             if value != ''and value != "None" and key != "created_at":
                 filter_dict[key] = ''
         if len(filter_dict) > 0:
-            filtered_movements = LowerAccessoryMovement.objects.filter(user_id=request.user.id).filter(~Q(**filter_dict))
+            filtered_movements = LowerAccessoryMovement.objects.\
+                filter(user_id=request.user.id).filter(~Q(**filter_dict))
             form = LowerForm()
-            return render(request, 'tracker/lowermovement_search.html', {'form': form, 'objects': filtered_movements})
+            return render(request, 'tracker/lowermovement_search.html',
+                          {'form': form, 'objects': filtered_movements})
         else:
             form = LowerForm()
-            return render(request, 'tracker/lowermovement_search.html', {'form': form })
-    return render(request, 'Request type not allowed.' )
+            return render(request, 'tracker/lowermovement_search.html',
+                          {'form': form})
+    return render(request, 'Request type not allowed.')
 
 
 @login_required
@@ -463,14 +509,15 @@ def analysis(request):
         search_dict = request.GET.dict()
         filter_dict = {}
         for key, value in search_dict.items():
-            #Bench
+            # Bench
             if key == "movement1" and value == "bench1":
                 for key, value in search_dict.items():
                     if value != '' and value != "None" and key != "movement1":
                         filter_dict[key] = value
                 if len(filter_dict) > 0:
                     print(filter_dict)
-                    filtered_movements = BenchMovement.objects.filter(user_id=request.user.id).filter(**filter_dict)
+                    filtered_movements = BenchMovement.objects.\
+                        filter(user_id=request.user.id).filter(**filter_dict)
                     max_weight = []
                     for workout in filtered_movements:
                         max_weight.append(workout.movement_weight)
@@ -478,7 +525,8 @@ def analysis(request):
                     line_chart.title = 'Lift Progression'
                     line_chart.x_labels = map(str, range(1, len(max_weight)))
                     line_chart.add('Bench', max_weight)
-                    line_chart.render_to_file(IMAGE_PATH + 'tracker/static/tmp/chart.svg')
+                    line_chart.render_to_file(IMAGE_PATH +
+                                              'tracker/static/tmp/chart.svg')
 
             # Deadlift
             if key == "movement1" and value == "deadlift1":
@@ -487,7 +535,8 @@ def analysis(request):
                         filter_dict[key] = value
                 if len(filter_dict) > 0:
                     print(filter_dict)
-                    filtered_movements = DeadliftMovement.objects.filter(user_id=request.user.id).filter(**filter_dict)
+                    filtered_movements = DeadliftMovement.objects.\
+                        filter(user_id=request.user.id).filter(**filter_dict)
                     max_weight = []
                     for workout in filtered_movements:
                         max_weight.append(workout.movement_weight)
@@ -495,7 +544,8 @@ def analysis(request):
                     line_chart.title = 'Lift Progression'
                     line_chart.x_labels = map(str, range(1, len(max_weight)))
                     line_chart.add('Deadlift', max_weight)
-                    line_chart.render_to_file(IMAGE_PATH + 'tracker/static/tmp/chart.svg')
+                    line_chart.render_to_file(IMAGE_PATH +
+                                              'tracker/static/tmp/chart.svg')
 
             # Squat
             if key == "movement1" and value == "squat1":
@@ -504,7 +554,8 @@ def analysis(request):
                         filter_dict[key] = value
                 if len(filter_dict) > 0:
                     print(filter_dict)
-                    filtered_movements = SquatMovement.objects.filter(user_id=request.user.id).filter(**filter_dict)
+                    filtered_movements = SquatMovement.objects.\
+                        filter(user_id=request.user.id).filter(**filter_dict)
                     max_weight = []
                     for workout in filtered_movements:
                         max_weight.append(workout.movement_weight)
@@ -512,7 +563,8 @@ def analysis(request):
                     line_chart.title = 'Lift Progression'
                     line_chart.x_labels = map(str, range(1, len(max_weight)))
                     line_chart.add('Squat', max_weight)
-                    line_chart.render_to_file(IMAGE_PATH + 'tracker/static/tmp/chart.svg')
+                    line_chart.render_to_file(IMAGE_PATH +
+                                              'tracker/static/tmp/chart.svg')
 
             # Upper
             if key == "movement1" and value == "upper1":
@@ -521,7 +573,8 @@ def analysis(request):
                         filter_dict[key] = value
                 if len(filter_dict) > 0:
                     print(filter_dict)
-                    filtered_movements = SquatMovement.objects.filter(user_id=request.user.id).filter(**filter_dict)
+                    filtered_movements = SquatMovement.objects.\
+                        filter(user_id=request.user.id).filter(**filter_dict)
                     max_weight = []
                     for workout in filtered_movements:
                         max_weight.append(workout.movement_weight)
@@ -529,8 +582,12 @@ def analysis(request):
                     line_chart.title = 'Lift Progression'
                     line_chart.x_labels = map(str, range(1, len(max_weight)))
                     line_chart.add('Squat', max_weight)
-                    line_chart.render_to_file(IMAGE_PATH + 'tracker/static/tmp/chart.svg')
+                    line_chart.render_to_file(IMAGE_PATH +
+                                              'tracker/static/tmp/chart.svg')
 
     upperform = UpperForm()
     lowerform = LowerForm()
-    return render(request, 'tracker/analysis.html', {'upper_form': upperform, 'lower_form': lowerform, 'version': version})
+    return render(request, 'tracker/analysis.html',
+                  {'upper_form': upperform,
+                   'lower_form': lowerform,
+                   'version': version})
