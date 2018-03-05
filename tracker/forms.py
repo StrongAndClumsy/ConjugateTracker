@@ -16,7 +16,7 @@ class SquatForm(forms.ModelForm):
 		model = SquatMovement
 		fields = ['created_at','box_free','effort_type','bar_type','bands_type', 'reverse', 'chain_weight',
 		'movement_weight', 'movement_sets', 'movement_reps','squat_notes', 'media_url']
-	created_at = forms.DateField(label="Workout Date",initial=timezone.now)
+	created_at = forms.DateField(label="Workout Date")
 	effort_type = forms.ChoiceField(label="Day", widget=forms.RadioSelect(), choices=EFFORT_CHOICES)
 	box_free = forms.ChoiceField(label="Squat Type", widget=forms.RadioSelect, choices=BOXFREE_CHOICES)
 	bar_type = forms.ChoiceField(label="Bar Type", widget=forms.Select, choices=BAR_OPTIONS, required=True)
@@ -51,7 +51,7 @@ class DeadliftForm(forms.ModelForm):
 		model = DeadliftMovement
 		fields = ['created_at','effort_type','sumo_conventional','deficit','block','standard','pin', 'reverse','chain_weight', 'bands_type',
 		'movement_weight','movement_sets','movement_reps','deadlift_notes', 'media_url']
-	created_at = forms.DateField(label="Workout Date",initial=timezone.now)
+	created_at = forms.DateField(label="Workout Date")
 	effort_type = forms.ChoiceField(label="Day", widget=forms.RadioSelect(), choices=EFFORT_CHOICES)
 	sumo_conventional = forms.ChoiceField(label="Deadlift Style",widget=forms.RadioSelect, choices=SUMO_CHOICES)
 	deficit = forms.BooleanField(required=False)
@@ -92,7 +92,7 @@ class BenchForm(forms.ModelForm):
 		model = BenchMovement
 		fields = ['created_at','effort_type','bar_type','floor','reverse','board','manpon',
 		'pin','bands_type','chain_weight','movement_weight', 'movement_sets','movement_reps','bench_notes', 'media_url']
-	created_at = forms.DateField(label="Workout Date",initial=timezone.now)
+	created_at = forms.DateField(label="Workout Date")
 	effort_type = forms.ChoiceField(label="Day", widget=forms.RadioSelect(), choices=EFFORT_CHOICES)
 	bar_type = forms.ChoiceField(label="Bar Type", widget=forms.Select, choices=BENCH_BAR_OPTIONS, required=True)
 	floor = forms.BooleanField(label="Floor Press",required=False)
@@ -138,7 +138,7 @@ class UpperForm(forms.ModelForm):
 		'pullups','inverted_row','face_pulls','db_rows','db_press','pullaparts',
 		'tri_extensions','skull_crushers','jam_press','olt_press','db_rollbacks',
 		'dead_press','ab_movement', 'other', 'notes', 'media_url']
-	created_at = forms.DateField(label="Workout Date",initial=timezone.now)
+	created_at = forms.DateField(label="Workout Date")
 	top_set = forms.CharField(required=False,max_length=60)
 	close_grippness = forms.CharField(label="Close Grip",required=False,max_length=60)
 	tate_press = forms.CharField(required=False,max_length=60)
@@ -178,7 +178,7 @@ class LowerForm(forms.ModelForm):
 		'reverse_hyper','hip_bridge','good_morning', 'step_up',
 		'belt_squat','hack_squat','leg_press','leg_curl','stiff_leg_dl',
 		'inverse_curl','front_squat','back_extension','ab_movement','notes', 'other', 'media_url']
-	created_at = forms.DateField(label="Workout Date",initial=timezone.now)
+	created_at = forms.DateField(label="Workout Date")
 	top_set = forms.CharField(required=False,max_length=60)
 	chair_dl = forms.CharField(label="Chair Deadlift",required=False,max_length=60)
 	ghr = forms.CharField(label="GHR",required=False,max_length=60)

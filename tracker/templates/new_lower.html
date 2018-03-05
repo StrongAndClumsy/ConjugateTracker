@@ -1,22 +1,7 @@
 {% extends 'tracker/base.html' %}
 {% block content %}
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-<script>
-        $(function() {
-                $( "#id_created_at" ).datepicker({
-                        dateFormat: "yy-mm-dd",
-                        defaultDate: "+1w",
-                        changeMonth: true,
-                        numberOfMonths: 2,
-                        onClose: function( selectedDate ) {
-                                $( "#id_created_at" ).datepicker( "option", selectedDate );
-                        }
-                });
-        });
-</script>
+
 <h1>Add Lower Accessories</h1>
 
 <select class="dropdown" id="LowAcc" onchange="ToggleEntry()">

@@ -43,6 +43,25 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script>
+            $(function() {
+                    $( "#id_created_at" ).datepicker({
+                            dateFormat: "yy-mm-dd",
+                            defaultDate: "+1w",
+                            changeMonth: true,
+                            numberOfMonths: 2,
+                            onClose: function( selectedDate ) {
+                                    $( "#id_created_at" ).datepicker( "option", selectedDate );
+                            }
+                    });
+                    var currentDate = new Date();
+                    var offset = currentDate.getTimezoneOffset() * 60000;
+                    $('#id_created_at').val((new Date(Date.now() - offset)).toISOString().split('T')[0]); 
+            });
+    </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-26468095-2"></script>
     <script>
