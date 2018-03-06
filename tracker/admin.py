@@ -1,7 +1,8 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import SquatMovement, DeadliftMovement, BenchMovement, UpperAccessoryMovement, LowerAccessoryMovement
+from .models import SquatMovement, DeadliftMovement, BenchMovement, \
+    UpperAccessoryMovement, LowerAccessoryMovement
 
 admin.site.register(SquatMovement)
 admin.site.register(DeadliftMovement)
