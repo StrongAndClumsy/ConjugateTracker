@@ -81,7 +81,7 @@ class LowerDetailView(DetailView):
         return context
 
 
-@login_required
+
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -97,7 +97,7 @@ def signup(request):
     return render(request, 'registration_form.html', {'form': form})
 
 
-@login_required
+
 def index(request):
     if not request.user.is_authenticated:
         # return redirect('%s?next=%s' % ('/login/', request.path))
