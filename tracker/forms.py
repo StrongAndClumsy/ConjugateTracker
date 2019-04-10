@@ -352,7 +352,8 @@ class UpperForm(forms.ModelForm):
                   'dips', 'rev_db_fly', 'windmills', 'bamboo_bar',
                   'lat_pulldowns', 'lat_pullovers', 'pec_dec',
                   'reverse_pec_dec', 't_bar_rows', 'chest_supported_rows',
-                  'low_rows', 'pullups', 'inverted_row', 'face_pulls',
+                  'low_rows', 'pullups', 'pushups', 'inverted_row',
+                  'face_pulls',
                   'db_rows', 'db_press', 'pullaparts', 'tri_extensions',
                   'skull_crushers', 'jam_press', 'olt_press', 'db_rollbacks',
                   'dead_press', 'ab_movement', 'other', 'notes', 'media_url']
@@ -375,6 +376,7 @@ class UpperForm(forms.ModelForm):
     chest_supported_rows = forms.CharField(required=False, max_length=60)
     low_rows = forms.CharField(required=False, max_length=60)
     pullups = forms.CharField(required=False, max_length=60)
+    pushups = forms.CharField(required=False, max_length=60)
     inverted_row = forms.CharField(required=False, max_length=60)
     face_pulls = forms.CharField(required=False, max_length=60)
     db_rows = forms.CharField(label="DB Rows",
@@ -410,7 +412,8 @@ class LowerForm(forms.ModelForm):
         model = LowerAccessoryMovement
         fields = ['created_at', 'top_set', 'chair_dl', 'ghr', 'lunge',
                   'dimel_dl', 'reverse_hyper', 'hip_bridge', 'good_morning',
-                  'step_up', 'belt_squat', 'hack_squat', 'leg_press',
+                  'step_up', 'belt_squat', 'hack_squat', 'kb_swings',
+                  'trapbar_deadlift', 'leg_press',
                   'leg_curl', 'stiff_leg_dl', 'inverse_curl', 'front_squat',
                   'back_extension', 'ab_movement', 'notes', 'other',
                   'media_url']
@@ -429,6 +432,8 @@ class LowerForm(forms.ModelForm):
     step_up = forms.CharField(required=False, max_length=60)
     belt_squat = forms.CharField(required=False, max_length=60)
     hack_squat = forms.CharField(required=False, max_length=60)
+    kb_swings = forms.CharField(required=False, max_length=60)
+    trapbar_deadlift = forms.CharField(required=False, max_length=60)
     leg_press = forms.CharField(required=False, max_length=60)
     leg_curl = forms.CharField(required=False, max_length=60)
     stiff_leg_dl = forms.CharField(label="Stiff Leg DL",

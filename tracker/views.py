@@ -81,7 +81,7 @@ class LowerDetailView(DetailView):
         return context
 
 
-@login_required
+
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -97,7 +97,7 @@ def signup(request):
     return render(request, 'registration_form.html', {'form': form})
 
 
-@login_required
+
 def index(request):
     if not request.user.is_authenticated:
         # return redirect('%s?next=%s' % ('/login/', request.path))
@@ -245,6 +245,8 @@ def new_lower(request):
                     step_up=form.cleaned_data['step_up'],
                     belt_squat=form.cleaned_data['belt_squat'],
                     hack_squat=form.cleaned_data['hack_squat'],
+                    kb_swings=form.cleaned_data['kb_swings'],
+                    trapbar_deadlift=form.cleaned_data['trapbar_deadlift'],
                     leg_press=form.cleaned_data['leg_press'],
                     leg_curl=form.cleaned_data['leg_curl'],
                     stiff_leg_dl=form.cleaned_data['stiff_leg_dl'],
@@ -291,6 +293,7 @@ def new_upper(request):
                         'chest_supported_rows'],
                     low_rows=form.cleaned_data['low_rows'],
                     pullups=form.cleaned_data['pullups'],
+                    pushups=form.cleaned_data['pushups'],
                     inverted_row=form.cleaned_data['inverted_row'],
                     face_pulls=form.cleaned_data['face_pulls'],
                     db_rows=form.cleaned_data['db_rows'],
